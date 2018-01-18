@@ -25,9 +25,14 @@ import java.util.Stack;
 public class Test {
 
 	public static void main(String[] args) {
+		
+		int availableProcessors = Runtime.getRuntime().availableProcessors();
+		
+		System.out.println(availableProcessors);
+		
 //		testQueue();
 		
-		LRUCache cache = new LRUCache(3);
+		/*LRUCache cache = new LRUCache(3);
 		
 		cache.put("1", 1);
 		cache.put("2", 2);
@@ -36,7 +41,7 @@ public class Test {
 		cache.put("1", 1);
 		System.out.println(cache);
 		cache.put("4", 4);
-		System.out.println(cache);
+		System.out.println(cache);*/
 		
 		
 	}
