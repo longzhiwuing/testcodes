@@ -7,7 +7,7 @@
  *
 */
 
-package com.lzwing.testcode.deck;
+package com.lzwing.testcode.deque;
 
 import java.util.Deque;
 import java.util.LinkedList;
@@ -24,7 +24,7 @@ import java.util.List;
  * @see
  */
 
-public class Deck {
+public class DequeTest {
 
 	public static void main(String[] args) {
 
@@ -52,5 +52,6 @@ public class Deck {
 			subway.offerLast("后门上" + i);
 		}
 		System.out.println(subway);
+		
 	}
 }
