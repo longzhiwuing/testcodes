@@ -10,14 +10,12 @@
 package com.lzwing.testcode.file;
 
 import java.io.IOException;
-import java.nio.file.DirectoryStream;
-import java.nio.file.FileVisitResult;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.SimpleFileVisitor;
+import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 /**
@@ -36,17 +34,63 @@ public class FileTest {
 
 	public static void main(String[] args) throws Exception {
 
-		 String path = "D:\\Projects";
+//		test1();
+
+		testSed();
+	}
+
+	/**
+	 * 获取springboot 引用的jar包路径，放入maven plugin goupids标签中
+	 * @throws Exception
+	 */
+	public static void testSed() throws Exception{
+		/**
+		 * mvn dependency:tree|grep -e "compile" -e "runtime"|sed 's/"[INFO]"//g'
+		 *
+		 */
+		String path = "D:\\test.txt";
+
+		Path dir = Paths.get(path);
+
+		List<String> infos = Files.readAllLines(dir);
+
+		Set<String> sets = new HashSet<>();
+
+		for (String info : infos) {
+//			System.out.println(info);
+//			System.out.println();
+			System.out.println();
+			String pakageInfo = info.replaceAll("\\[INFO\\]", "")
+					.replaceAll("[-+\\|\\\\]", "")
+					.replaceAll("\\s", "");
+			String packageName = pakageInfo.split(":")[0];
+			sets.add(packageName);
+		}
+
+		String info = "";
+
+		for (String packageStr : sets) {
+			info += packageStr + ",";
+		}
+
+		System.out.println(info);
+
+
+
+	}
+
+	private static void test1() throws IOException {
+		String path = "D:\\Projects";
 //		String path ="D:\\Projects\\AndroidProjects\\CommonDemo\\app\\src\\test\\java\\com\\lzw\\commondemo";
 //		String path = "D:\\Projects\\VueProjects";
 		Path dir = Paths.get(path);
 
-		 getAlldirsWalkFileTree(dir);
+		getAlldirsWalkFileTree(dir);
 
-	
+
 //		 getDir(dir);
-		 
-		 System.out.println(fileCount);
+
+		System.out.println(fileCount);
 
 //		 listDir(dir);
 	}
