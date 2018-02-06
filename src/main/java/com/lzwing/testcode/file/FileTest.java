@@ -9,14 +9,23 @@
 
 package com.lzwing.testcode.file;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import org.apache.commons.io.FileUtils;
 
 /**
  * ClassName:FileTest <br/>
@@ -36,7 +45,58 @@ public class FileTest {
 
 //		test1();
 
-		testSed();
+//		testSed();
+		
+		testHsTable();
+		
+//		testReplaceAll();
+	}
+
+	private static void testReplaceAll() throws Exception {
+//		String path = "D:\\Apache\\web\\OA\\sdc\\oa\\RES_PROJ";
+		String path = "C:\\Users\\Administrator\\Desktop\\test";
+		File dir = new File(path);
+		for(String fileName:dir.list()){
+			boolean is2Change = false;
+			File itemFile = new File(path+"\\"+fileName);
+			List<String> readLines = FileUtils.readLines(itemFile);
+			List<String> lines2Write = new ArrayList<>();
+			for(String line:readLines){
+				if(line.contains("hsTable")){
+					is2Change = true;
+					line = line.replace("hsTable", "cec-table");
+				}
+				lines2Write.add(line);
+			}
+			if(is2Change){
+				System.out.println(fileName);
+				FileUtils.writeLines(itemFile, lines2Write);
+			}else{
+				lines2Write = null;
+			}
+		}
+	}
+
+	private static void testHsTable() throws Exception{
+		String path = "C:\\Users\\Administrator\\Desktop\\test1";
+		Path dir = Paths.get(path);
+		Files.list(dir).filter(new Predicate<Path>(){
+			@Override
+			public boolean test(Path path) {
+				try {
+					List<String> collect = Files.lines(path).filter(new Predicate<String>() {
+						@Override
+						public boolean test(String t) {
+							return t.contains("cec-table");
+						}
+					}).collect(Collectors.toList());
+					return collect.size()>0;
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				return false;
+			}
+		}).forEach(System.out::println);
 	}
 
 	/**

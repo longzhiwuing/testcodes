@@ -173,7 +173,20 @@ public class TestCodes {
 		System.out.println("value:"+value);
 	}
 	
+	public static String finalTest(){
+		try {
+			System.out.println("try...");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			System.out.println("finally...");
+		}
+		return "bbb";
+	}
+	
 	public static void main(String[] args) throws Exception {
+		
+		System.out.println(finalTest());
 		
 		/*int max=45;
         int min=10;
