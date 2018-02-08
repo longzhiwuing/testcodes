@@ -1,12 +1,12 @@
 /**
  * Project Name:testcode
  * File Name:Test.java
- * Package Name:com.lzwing.testcode.java8time
+ * Package Name:com.lzwing.testcode.java8
  * Date:2018年2月7日上午11:47:37
  * Copyright (c) 2018, chenzhongyong@cecdat.com All Rights Reserved.
  */
 
-package com.lzwing.testcode.java8time;
+package com.lzwing.testcode.java8;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -22,7 +22,7 @@ import java.time.temporal.ChronoUnit;
  * @since JDK 1.8
  * @see
  */
-public class Test {
+public class TimeTest {
 
     public static void main(String[] args) {
 //		getToday();
