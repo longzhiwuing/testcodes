@@ -10,8 +10,8 @@
 package com.lzwing.testcode.deque;
 
 import java.util.Deque;
+import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * ClassName:Snippet <br/>
@@ -27,9 +27,23 @@ import java.util.List;
 public class DequeTest {
 
 	public static void main(String[] args) {
+//		testDeque();
+		reverseString();
+	}
 
-		List<String> test = new LinkedList<>();
-		testDeque();
+	private static void reverseString() {
+		Deque<Character> stack = new LinkedList<>();
+		String value = "test 0123456789";
+		for (char c : value.toCharArray()) {
+			stack.push(c);
+		}
+
+		StringBuilder reverse = new StringBuilder();
+		Iterator<Character> iterator = stack.iterator();
+		while (iterator.hasNext()) {
+			reverse.append(iterator.next());
+		}
+		System.out.println(reverse);
 	}
 
 	public static void testDeque() {
