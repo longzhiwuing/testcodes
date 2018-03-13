@@ -1,4 +1,4 @@
-package com.lzwing.testcode.thread;
+package com.lzwing.testcode.thread.countdownlatch;
 
 import java.util.concurrent.CountDownLatch;
 
