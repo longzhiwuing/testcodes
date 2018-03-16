@@ -8,6 +8,9 @@
 */
 
 package com.lzwing.testcode.fanxing;
+
+import lombok.Data;
+
 /**
  * ClassName:BaseEntity <br/>
  * Function: TODO ADD FUNCTION. <br/>
@@ -17,10 +20,20 @@ package com.lzwing.testcode.fanxing;
  * @since    JDK 1.8
  * @see 	 
  */
-public class TestBean {
+@Data
+public class TestBean implements Cloneable{
 
 	public String name;
 	
 	public String id;
+
+	public PropertyBean propertyBean;
+
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		TestBean testBean = (TestBean)super.clone();
+		testBean.setPropertyBean((PropertyBean) propertyBean.clone());
+		return testBean;
+	}
 }
 

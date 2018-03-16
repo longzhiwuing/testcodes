@@ -1,4 +1,4 @@
-package com.lzwing.testcode.guavacache;
+package com.lzwing.testcode.guava.guavacache;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

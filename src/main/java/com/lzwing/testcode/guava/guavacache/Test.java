@@ -1,4 +1,4 @@
-package com.lzwing.testcode.guavacache;
+package com.lzwing.testcode.guava.guavacache;
 
 import com.google.common.cache.*;
 
