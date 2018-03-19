@@ -23,6 +23,7 @@ public class Test {
         System.out.println(s);*/
 
         testParam("bbb", 2);
+
     }
 
     private static void testParam(@NonNull String str, @NonNull Integer i) {
