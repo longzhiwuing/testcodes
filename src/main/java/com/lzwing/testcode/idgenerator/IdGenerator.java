@@ -1,5 +1,7 @@
 package com.lzwing.testcode.idgenerator;
 
+import java.math.BigDecimal;
+
 /**
  * @Description:ID
  * @author:rongshaolin
@@ -71,8 +73,15 @@ public class IdGenerator {
 
     }*/
 
-//    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
 //        System.out.println(-1L^(-1L<<10));
-//    }
+
+        System.out.println(Integer.MAX_VALUE);
+        System.out.println((1 << 31)-1);
+        System.out.println(new BigDecimal(Math.pow(2,31)-1));
+
+
+
+    }
 
 }
