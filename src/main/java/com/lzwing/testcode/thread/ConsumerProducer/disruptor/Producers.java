@@ -5,20 +5,27 @@ import com.lmax.disruptor.RingBuffer;
 import java.nio.ByteBuffer;
 
 public class Producers {
-    private final RingBuffer<MyData> ringBuffer;        //创建环形队列(环形缓冲区)
+    //创建环形队列(环形缓冲区)
+    private final RingBuffer<MyData> ringBuffer;
 
     public Producers(RingBuffer<MyData> ringBuffer) {
-        this.ringBuffer = ringBuffer;           //将ringBuffer与Producers绑定
+        //将ringBuffer与Producers绑定
+        this.ringBuffer = ringBuffer;
     }
 
-    public void putData(ByteBuffer byteBuffer){         //此方法将产生的数据推入缓冲区
+    //此方法将产生的数据推入缓冲区
+    public void putData(ByteBuffer byteBuffer){
 
-    long sequeue = ringBuffer.next();       //通过.next()方法得到ringBuffer的下一个节点，并且赋值给sequeue
+        //通过.next()方法得到ringBuffer的下一个节点，并且赋值给sequeue
+        long sequeue = ringBuffer.next();
 
-    MyData event = ringBuffer.get(sequeue);     //将mydata数据存入到下一个节点
+        //将mydata数据存入到下一个节点
+        MyData event = ringBuffer.get(sequeue);
 
-    event.setValue(byteBuffer.getLong(0));        //mydata的值有ByteBuffer参数带入
+        //mydata的值有ByteBuffer参数带入
+        event.setValue(byteBuffer.getLong(0));
 
-    ringBuffer.publish(sequeue);        //将sequeue节点内的数据发布
+        //将sequeue节点内的数据发布
+        ringBuffer.publish(sequeue);
     }
 }
