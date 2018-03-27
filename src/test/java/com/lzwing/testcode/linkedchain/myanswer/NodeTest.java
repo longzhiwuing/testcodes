@@ -47,6 +47,8 @@ public class NodeTest {
     @BeforeTest
     public void before() {
         head = initList();
+
+        showList(head);
     }
 
     @Test
@@ -118,11 +120,15 @@ public class NodeTest {
 
     @Test
     public void testDeleteElement() throws Exception {
-        showList(head);
         deleteElement(head, 3);
         showList(head);
 
         assertEquals(getLength(head),9);
         assertEquals(getNodeIndex(head,5),3);
+    }
+
+    @Test
+    public void testGetMiddleNode() throws Exception {
+        Node middleNode = getMiddleNode(head);
     }
 }

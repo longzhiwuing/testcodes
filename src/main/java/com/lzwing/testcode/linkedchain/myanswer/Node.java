@@ -188,4 +188,23 @@ public class Node<T> {
 
         return head;
     }
+
+    public static Node getMiddleNode(Node head) throws Exception{
+        if (head == null) {
+            throw new Exception("不能为空");
+        }
+
+        Node fast = head;
+        Node slow = head;
+
+        while (fast.getNext() != null) {
+            fast = fast.getNext();
+            if (fast.getNext() != null) {
+                fast = fast.getNext();
+                slow = slow.getNext();
+            }
+        }
+
+        return slow;
+    }
 }

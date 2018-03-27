@@ -1,4 +1,6 @@
-package com.lzwing.testcode;
+package com.lzwing.testcode.idgenerator;
+
+import org.apache.commons.lang.StringUtils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -6,8 +8,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.apache.commons.lang.StringUtils;
 
 public class CreateSerialNo {
 

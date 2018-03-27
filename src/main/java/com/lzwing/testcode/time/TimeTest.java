@@ -6,7 +6,7 @@
  * Copyright (c) 2018, chenzhongyong@cecdat.com All Rights Reserved.
  */
 
-package com.lzwing.testcode.java8;
+package com.lzwing.testcode.time;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;

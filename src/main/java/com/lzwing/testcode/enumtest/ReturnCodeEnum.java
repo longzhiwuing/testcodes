@@ -1,4 +1,4 @@
-package com.lzwing.testcode;
+package com.lzwing.testcode.enumtest;
 public enum  ReturnCodeEnum {
 
     OK ("200"),

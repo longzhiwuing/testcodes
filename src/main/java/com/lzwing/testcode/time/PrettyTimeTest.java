@@ -7,10 +7,10 @@
  *
 */
 
-package com.lzwing.testcode;
+package com.lzwing.testcode.time;
 
 import org.ocpsoft.prettytime.PrettyTime;
-import org.testng.Assert;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -24,7 +24,7 @@ import java.util.Locale;
  * @since    JDK 1.8
  * @see 	 
  */
-public class MavenTest {
+public class PrettyTimeTest {
 
     public void testLocal() {
         PrettyTime p = new PrettyTime(new Locale("ZH_CN"));
@@ -50,7 +50,7 @@ public class MavenTest {
     }
     
     public static void main(String[] args) throws Exception{
-		MavenTest mavenTest = new MavenTest();
+		PrettyTimeTest mavenTest = new PrettyTimeTest();
 		mavenTest.testLocal();
 		mavenTest.testMinutesFromNow();
 		mavenTest.testMomentsAgo();

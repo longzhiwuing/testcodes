@@ -7,15 +7,13 @@
  *
 */
 
-package com.lzwing.testcode;
+package com.lzwing.testcode.time;
 
 import java.util.Calendar;
 import java.util.Date;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 
 /**
  * ClassName:JodaTest <br/>

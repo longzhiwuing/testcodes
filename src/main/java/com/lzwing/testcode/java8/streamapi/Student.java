@@ -1,4 +1,4 @@
-package com.lzwing.testcode.streamapi;
+package com.lzwing.testcode.java8.streamapi;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.lzwing.testcode.streamapi;
+package com.lzwing.testcode.java8.streamapi;
 
 import java.util.*;
 import java.util.stream.Collectors;
