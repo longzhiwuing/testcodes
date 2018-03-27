@@ -1,7 +1,5 @@
 package com.lzwing.testcode.string;
 
-import com.lzwing.testcode.SystemInfo;
-
 import java.net.URI;
 
 /**
