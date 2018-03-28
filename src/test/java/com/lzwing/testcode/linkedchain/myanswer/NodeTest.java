@@ -130,5 +130,48 @@ public class NodeTest {
     @Test
     public void testGetMiddleNode() throws Exception {
         Node middleNode = getMiddleNode(head);
+        System.out.println(middleNode.getData());
+    }
+
+    @Test
+    public void testIsLoopList() throws Exception {
+        /*boolean loopList = isLoopList(head);
+        assertEquals(false,loopList);*/
+
+        Node loopHead = new Node(Integer.MAX_VALUE);
+
+        Node node1 = new Node(0);
+        Node node2 = new Node(1);
+        Node node3 = new Node(2);
+
+        loopHead.setNext(node1);
+        node1.setNext(node2);
+        node2.setNext(node3);
+        node3.setNext(node1);
+
+        boolean loopList = isLoopList(loopHead);
+        assertEquals(true,loopList);
+
+    }
+
+    @Test
+    public void testGetLoopSize() throws Exception {
+        Node loopHead = new Node(Integer.MAX_VALUE);
+
+        Node node1 = new Node(1);
+        Node node2 = new Node(2);
+        Node node3 = new Node(3);
+        Node node4 = new Node(4);
+        Node node5 = new Node(5);
+
+        loopHead.setNext(node1);
+        node1.setNext(node2);
+        node2.setNext(node3);
+        node3.setNext(node4);
+        node4.setNext(node5);
+        node5.setNext(node2);
+
+        int loopSize = getLoopSize(loopHead);
+        System.out.println(loopSize);
     }
 }

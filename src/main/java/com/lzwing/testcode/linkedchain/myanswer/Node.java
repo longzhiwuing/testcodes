@@ -20,7 +20,7 @@ public class Node<T> {
         this.data = data;
     }
 
-    public static int getLength(Node head) throws Exception{
+    public static int getLength(Node head) throws Exception {
         if (head == null) {
             throw new Exception("head不能为空");
         }
@@ -36,7 +36,9 @@ public class Node<T> {
 
     }
 
-    /** 获取指定角标的节点值 */
+    /**
+     * 获取指定角标的节点值
+     */
     public static Object getValueOfIndex(Node head, int index) throws Exception {
         if (index < 0 || index > getLength(head)) {
             throw new Exception("越界");
@@ -46,7 +48,7 @@ public class Node<T> {
             throw new Exception("head不能为空");
         }
 
-        int i=0;
+        int i = 0;
 
         while (i++ < index) {
             head = head.getNext();
@@ -55,7 +57,9 @@ public class Node<T> {
         return head.getData();
     }
 
-    /** 获取节点值等于 value 的第一个元素角标 */
+    /**
+     * 获取节点值等于 value 的第一个元素角标
+     */
     public static int getNodeIndex(Node head, Integer value) throws Exception {
         if (head == null) {
             throw new Exception("head不能为空");
@@ -65,7 +69,7 @@ public class Node<T> {
 
         while (head.getNext() != null) {
             Node node = head.getNext();
-            if (Objects.equals(value,node.getData())) {
+            if (Objects.equals(value, node.getData())) {
                 return index;
             }
             head = head.getNext();
@@ -75,7 +79,9 @@ public class Node<T> {
         return -1;
     }
 
-    /**在已有链表头部插入一个节点*/
+    /**
+     * 在已有链表头部插入一个节点
+     */
     public static Node addAtHead(Node head, int value) throws Exception {
         if (head == null) {
             throw new Exception("head不能为空");
@@ -117,7 +123,7 @@ public class Node<T> {
 
         Node dummyNode = head;
 
-        for (int i = 0; i <index ; i++) {
+        for (int i = 0; i < index; i++) {
             dummyNode = dummyNode.getNext();
         }
 
@@ -131,7 +137,9 @@ public class Node<T> {
     }
 
 
-    /** 删除头部节点 也就是删除索引为 0 的节点：*/
+    /**
+     * 删除头部节点 也就是删除索引为 0 的节点：
+     */
     public static Node deleteHead(Node head) throws Exception {
 
         if (head == null || head.getNext() == null) {
@@ -147,9 +155,11 @@ public class Node<T> {
         return head;
     }
 
-    /**删除尾节点*/
+    /**
+     * 删除尾节点
+     */
     public static Node deleteTail(Node head) throws Exception {
-        if (head == null||head.getNext()==null) {
+        if (head == null || head.getNext() == null) {
             throw new Exception("head不能为空,也不能只有头结点");
         }
 
@@ -164,7 +174,9 @@ public class Node<T> {
         return head;
     }
 
-    /**删除指定索引的节点：*/
+    /**
+     * 删除指定索引的节点：
+     */
     public static Node deleteElement(Node head, int index) throws Exception {
         if (head == null) {
             throw new Exception("不能为空");
@@ -176,7 +188,7 @@ public class Node<T> {
 
         Node preDelNode = head;
 
-        for(int i=0;i<index;i++) {
+        for (int i = 0; i < index; i++) {
             preDelNode = preDelNode.getNext();
         }
 
@@ -189,7 +201,7 @@ public class Node<T> {
         return head;
     }
 
-    public static Node getMiddleNode(Node head) throws Exception{
+    public static Node getMiddleNode(Node head) throws Exception {
         if (head == null) {
             throw new Exception("不能为空");
         }
@@ -206,5 +218,57 @@ public class Node<T> {
         }
 
         return slow;
+    }
+
+    public static boolean isLoopList(Node head) throws Exception {
+        if (head == null) {
+            throw new Exception("不能为空");
+        }
+
+        Node fast = head;
+        Node slow = head;
+
+        boolean isLoop = false;
+
+        while (fast != null && fast.getNext() != null) {
+            fast = fast.getNext().getNext();
+            slow = slow.getNext();
+
+            if (fast == slow) {
+                isLoop = true;
+                break;
+            }
+        }
+
+        return isLoop;
+    }
+
+    public static int getLoopSize(Node head) throws Exception{
+        if (head == null) {
+            throw new Exception("不能为空");
+        }
+
+        Node fast = head;
+        Node slow = head;
+
+        int count = 0;
+        int meetTime = 2;
+
+        while (meetTime>0) {
+            fast = fast.getNext().getNext();
+            slow = slow.getNext();
+
+            if (fast == slow) {
+                meetTime--;
+            }
+
+            if (meetTime == 1) {
+                count++;
+            }
+
+        }
+
+        return count;
+
     }
 }
