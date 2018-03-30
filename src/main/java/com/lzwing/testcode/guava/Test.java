@@ -9,33 +9,18 @@
 
 package com.lzwing.testcode.guava;
 
-import com.google.common.base.Optional;
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
+import com.google.common.base.*;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Collections2;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Multimap;
-import com.google.common.collect.Ordering;
+import com.google.common.collect.*;
 import com.google.common.reflect.Reflection;
-import com.google.common.util.concurrent.FutureCallback;
-import com.google.common.util.concurrent.Futures;
-import com.google.common.util.concurrent.ListenableFuture;
-import com.google.common.util.concurrent.ListeningExecutorService;
-import com.google.common.util.concurrent.MoreExecutors;
-
-import static com.google.common.base.Preconditions.*;
+import com.google.common.util.concurrent.*;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -43,10 +28,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import com.google.common.base.CaseFormat;
-import com.google.common.base.Charsets;
-import com.google.common.base.Functions;
-import com.google.common.base.MoreObjects;
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkElementIndex;
 
 /**
  * ClassName:Test <br/>
@@ -77,8 +60,19 @@ public class Test {
 		
 //		testProxy();
 		
-		testFunctional();
+//		testFunctional();
 
+		testMultiSet();
+
+	}
+
+	public static void testMultiSet() {
+		List<String> list = Lists.newArrayList("10", "20", "hello", "hah", "hah", "hah");
+		Multiset<String> set = HashMultiset.create(list);
+		System.out.println(set.contains("hello"));
+		System.out.println(set.count("hah"));
+		System.out.println(set.count("haha"));
+		System.out.println(set.elementSet().toString()+set.entrySet().toString());
 	}
 	
 	public static void testFunctional(){
