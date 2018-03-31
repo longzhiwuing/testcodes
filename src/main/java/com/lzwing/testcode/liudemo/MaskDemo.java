@@ -9,6 +9,8 @@
 
 package com.lzwing.testcode.liudemo;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -41,6 +43,9 @@ public class MaskDemo {
 		System.out.println("before:"+data);
 		System.out.println("========================");
 		System.out.println("after:"+mask(data));
+		System.out.println("========================");
+		System.out.printf("Stringutils:%s%n", StringUtils.abbreviate(data, 100));
+
 	}
 	
 	public static String mask(String data){
