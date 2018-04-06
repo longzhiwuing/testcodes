@@ -56,12 +56,56 @@ public class LinkedListDemo {
                 System.out.print("->");
             }
         }
+
+        System.out.println();
     }
 
     public static void main(String[] args) {
 //        testCreateLinkedList();
 
-        testReserve();
+//        testReserve();
+
+        testDeleteif();
+
+    }
+
+    private static void testDeleteif() {
+//        Node linkedList = createLinkedList(Arrays.asList(1, 2, 2, 2, 3, 4, 5, 3, 2, 1));
+//        Node linkedList = createLinkedList(Arrays.asList(1, 1, 1, 1, 2, 3, 4, 5, 3, 2, 1));
+        Node linkedList = createLinkedList(Arrays.asList(1, 1, 1, 1, 1));
+//        Node linkedList = createLinkedList(Arrays.asList(1,2,3,4,5));
+
+        showLinkedList(linkedList);
+
+        Node rest = deleteIf(linkedList, 1);
+
+        showLinkedList(rest);
+    }
+
+    private static Node deleteIf(Node head, int i) {
+
+        Node prev = head;
+
+        if (prev == null) {
+            return null;
+        }
+
+        while (head != null && prev.getValue().equals(i)) {
+            head = head.getNext();
+            prev = head;
+        }
+
+        while (prev != null && prev.getNext() != null) {
+            Node node2del = prev.getNext();
+            while (node2del != null && node2del.getValue().equals(i)) {
+                prev.setNext(node2del.getNext());
+                node2del = prev.getNext();
+            }
+
+            prev = prev.getNext();
+        }
+
+        return head;
 
     }
 
