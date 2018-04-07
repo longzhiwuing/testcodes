@@ -1,6 +1,11 @@
 package com.lzwing.testcode.commonjars;
 
+import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.lang.time.StopWatch;
 import org.apache.commons.lang3.StringUtils;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,6 +16,15 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class StringUtilsDemo {
     public static void main(String[] args) {
+
+        testSpringStopWatch();
+
+//        testStopWatch();
+
+//        testEscapte();
+
+//        testRandomUtils();
+
         /*
          * 输出样例
          **************************************************
@@ -21,6 +35,92 @@ public class StringUtilsDemo {
 
         //补零 输出00123
 //      System.out.println(getLeftPad("123",5,"0"));
+    }
+
+    private static void testSpringStopWatch() {
+        org.springframework.util.StopWatch sw = new org.springframework.util.StopWatch();
+
+        sw.start("起床");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        sw.stop();
+
+
+        sw.start("洗漱");
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        sw.stop();
+
+
+        sw.start("锁门");
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        sw.stop();
+
+
+        System.out.println(sw.prettyPrint());
+        System.out.println(sw.getTotalTimeMillis());
+        System.out.println(sw.getLastTaskName());
+        System.out.println(sw.getLastTaskInfo());
+        System.out.println(sw.getTaskCount());
+    }
+
+    private static void testStopWatch() {
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            new RuntimeException(e);
+        }
+        stopWatch.stop();
+
+        System.out.println(stopWatch.getTime());
+    }
+
+    private static void testEscapte() {
+        String str = "<select id=\"id_select\" class=\"selectpicker bla bla bli input-sm\" multiple data-live-search=\"true\">\n" +
+                "\t\t        <option value=\"9\">序号</option>\n" +
+                "\t\t        <option value=\"abcd\">区域代码</option>\n" +
+                "\t\t        <option value=\"eeee\">统计日期</option>\n" +
+                "\t\t        <option>身份证号</option>\n" +
+                "\t\t        <option>出生日期</option>\n" +
+                "\t\t        <option>责任医生</option>\n" +
+                "\t\t    </select>";
+        System.out.println(str);
+        System.out.println(StringEscapeUtils.unescapeHtml(str));
+    }
+
+    /**
+     * 生成随机字符串的工具
+     */
+    public static void testRandomUtils() {
+        //产生5位长度的随机字符串，中文环境下是乱码
+        System.out.println(RandomStringUtils.random(5));
+
+        //使用指定的字符生成5位长度的随机字符串
+        System.out.println(RandomStringUtils.random(5, new char[]{'a', 'b', 'c', 'd', 'e', 'f', '1', '2', '3'}));
+
+        //生成指定长度的字母和数字的随机组合字符串
+        System.out.println(RandomStringUtils.randomAlphanumeric(5));
+
+        //生成随机数字字符串
+        System.out.println(RandomStringUtils.randomNumeric(5));
+
+        //生成随机[a-z]字符串，包含大小写
+        System.out.println(RandomStringUtils.randomAlphabetic(5));
+
+        //生成从ASCII 32到126组成的随机字符串
+        System.out.println(RandomStringUtils.randomAscii(4));
     }
 
     public static void printLogHeader(String title) {
