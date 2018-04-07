@@ -1,4 +1,4 @@
-package com.lzwing.testcode.deque;
+package com.lzwing.testcode.datastructor.deque;
 
 import java.util.LinkedHashMap;
 

@@ -67,6 +67,9 @@ public class Test {
 	}
 
 	public static void testMultiSet() {
+
+		//java 1.8 map.put(val, map.getOrDefault(val, 0) + 1);
+
 		List<String> list = Lists.newArrayList("10", "20", "hello", "hah", "hah", "hah");
 		Multiset<String> set = HashMultiset.create(list);
 		System.out.println(set.contains("hello"));
