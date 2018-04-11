@@ -4,6 +4,8 @@ import lombok.NonNull;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.Assert;
 
+import java.util.Objects;
+
 import static com.google.common.base.Preconditions.checkArgument;
 
 /**
@@ -16,10 +18,12 @@ import static com.google.common.base.Preconditions.checkArgument;
 public class DemoCheck {
     public static void main(String[] args) {
         String source = null;
-//        System.out.println(lowerFirstLetter(source));
+
+
+        System.out.println(lowerFirstLetter(source));
 
         //lombok
-        System.out.println(lowerFirstLetter4Lombok(source));
+//        System.out.println(lowerFirstLetter4Lombok(source));
     }
 
     private static String lowerFirstLetter4Lombok(@NonNull String source) {
@@ -32,7 +36,10 @@ public class DemoCheck {
 
 
         //spring utils
-        Assert.isTrue(StringUtils.isNotEmpty(source), "source should not null");
+        Assert.isTrue(StringUtils.isNotEmpty(source), "source should not null spring...");
+
+        //jdk
+        Objects.requireNonNull(null,"source should not null jdk...");
 
         char[] chars = source.toCharArray();
 
