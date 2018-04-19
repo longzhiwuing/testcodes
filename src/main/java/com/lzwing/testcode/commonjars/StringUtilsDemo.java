@@ -1,10 +1,12 @@
 package com.lzwing.testcode.commonjars;
 
+import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.time.StopWatch;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -17,7 +19,13 @@ import java.util.concurrent.TimeUnit;
 public class StringUtilsDemo {
     public static void main(String[] args) {
 
-        testSpringStopWatch();
+        testsubStringAfter();
+
+//        testSubStringBetween();
+
+//        testSplit();
+
+//        testSpringStopWatch();
 
 //        testStopWatch();
 
@@ -35,6 +43,36 @@ public class StringUtilsDemo {
 
         //补零 输出00123
 //      System.out.println(getLeftPad("123",5,"0"));
+    }
+
+    private static void testsubStringAfter() {
+        String demo = "name=zhangsan&age=18&gender=male";
+
+        String[] strings = StringUtils.splitByWholeSeparatorPreserveAllTokens(demo,"&");
+        String name = StringUtils.substringAfter(strings[0], "=");
+        String age = StringUtils.substringAfter(strings[1], "=");
+        String gender = StringUtils.substringAfter(strings[2], "=");
+
+        System.out.println(name + ":" + age + ":" + gender);
+    }
+
+    private static void testSubStringBetween() {
+        JSONObject obj = new JSONObject();
+        obj.put("aaa", "111");
+        obj.put("bbb", "222");
+        System.out.println(obj.toJSONString());
+        System.out.println(StringUtils.substringBetween(obj.toJSONString(), "\"aaa\":\"", "\",\"bbb\""));
+    }
+
+    private static void testSplit() {
+        /**
+            split()方法： 分割字符串过程中会自动忽略所有的空项；
+            splitByWholeSeparator方法：分割字符串过程中会忽略中间的空项，保留末尾的空项；
+            splitByWholeSeparatorPreserveAllToKens方法及splitPreserveAllToKens方法作用相同：分割字符串过程中会按照每个分隔符进行分割，不忽略任何空白项；
+            splitByCharacterType方法及splitByCharacterTypeCamelCase方法：按照字符类型进行分割。*/
+        String[] strings = StringUtils.splitByWholeSeparatorPreserveAllTokens("aaa|bbb|ccc", "|");
+
+        Arrays.stream(strings).forEach(System.out::println);
     }
 
     private static void testSpringStopWatch() {

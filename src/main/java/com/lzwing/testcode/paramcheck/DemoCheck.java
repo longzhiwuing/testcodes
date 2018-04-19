@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.Assert;
 
 import java.util.Objects;
+import java.util.Optional;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
@@ -19,11 +20,18 @@ public class DemoCheck {
     public static void main(String[] args) {
         String source = null;
 
+        checkNullAble(source);
 
-        System.out.println(lowerFirstLetter(source));
+
+//        System.out.println(lowerFirstLetter(source));
 
         //lombok
 //        System.out.println(lowerFirstLetter4Lombok(source));
+    }
+
+    private static void checkNullAble(String input) {
+        Optional<String> wrapped = Optional.ofNullable(input);
+        System.out.println(wrapped.orElse("default"));
     }
 
     private static String lowerFirstLetter4Lombok(@NonNull String source) {
