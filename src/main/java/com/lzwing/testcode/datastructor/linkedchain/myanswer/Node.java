@@ -1,4 +1,4 @@
-package com.lzwing.testcode.linkedchain.myanswer;
+package com.lzwing.testcode.datastructor.linkedchain.myanswer;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package com.lzwing.testcode.linkedchain;
+package com.lzwing.testcode.datastructor.linkedchain;
 
 /**
  * Created with IntelliJ IDEA.

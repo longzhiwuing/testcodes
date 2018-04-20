@@ -1,4 +1,4 @@
-package com.lzwing.testcode.linkedchain.internet;
+package com.lzwing.testcode.datastructor.linkedchain.internet;
 
 public class Node{
     //节点的值

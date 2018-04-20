@@ -1,10 +1,11 @@
-package com.lzwing.testcode.linkedchain.myanswer;
+package com.lzwing.testcode.datastructor.linkedchain.test;
 
+import com.lzwing.testcode.datastructor.linkedchain.myanswer.Node;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import static com.lzwing.testcode.datastructor.linkedchain.myanswer.Node.*;
 import static org.testng.Assert.assertEquals;
-import static com.lzwing.testcode.linkedchain.myanswer.Node.*;
 
 
 /**
@@ -58,7 +59,7 @@ public class NodeTest {
 
     @Test
     public void testGetLength() throws Exception {
-        assertEquals(Node.getLength(head),10);
+        assertEquals(getLength(head),10);
     }
 
     @Test
@@ -69,7 +70,7 @@ public class NodeTest {
 
     @Test
     public void testGetNodeIndex() throws Exception {
-        int nodeIndex = Node.getNodeIndex(head, 9);
+        int nodeIndex = getNodeIndex(head, 9);
         assertEquals(nodeIndex,0);
     }
 

@@ -1,4 +1,4 @@
-package com.lzwing.testcode.linkedchain.recursion;
+package com.lzwing.testcode.datastructor.linkedchain.recursion;
 
 import lombok.Data;
 

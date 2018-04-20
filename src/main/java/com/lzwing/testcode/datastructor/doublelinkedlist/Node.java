@@ -1,4 +1,4 @@
-package com.lzwing.testcode.linkedchain.doublelinkedlist;
+package com.lzwing.testcode.datastructor.doublelinkedlist;
 
 import lombok.Data;
 

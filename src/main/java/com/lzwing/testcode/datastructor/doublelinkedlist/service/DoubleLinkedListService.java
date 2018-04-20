@@ -1,5 +1,7 @@
-package com.lzwing.testcode.linkedchain.doublelinkedlist;
+package com.lzwing.testcode.datastructor.doublelinkedlist.service;
 
+import com.lzwing.testcode.datastructor.doublelinkedlist.DoubleLinkedList;
+import com.lzwing.testcode.datastructor.doublelinkedlist.Node;
 import lombok.NonNull;
 
 /**
