@@ -1,4 +1,4 @@
-package com.lzwing.testcode.commonjars;
+package com.lzwing.testcode.utils.commonjars;
 
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang.RandomStringUtils;
