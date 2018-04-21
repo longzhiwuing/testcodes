@@ -22,10 +22,13 @@ public class LogTest {
             log.debug("test....{}",executeLongTime());
         }
 
-        log.info("info.....{}",executeLongTime());
+//        log.debug("info.....{}",executeLongTime());
+
+        System.out.println("main logic");
     }
 
     private static String executeLongTime() {
+        log.info("executeLongTime....");
         try {
             TimeUnit.SECONDS.sleep(3);
         } catch (InterruptedException e) {
