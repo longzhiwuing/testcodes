@@ -6,8 +6,10 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -64,12 +66,14 @@ public class CustomRealm extends AuthorizingRealm {
 
         SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(username, password,this.getName());
 
+        simpleAuthenticationInfo.setCredentialsSalt(ByteSource.Util.bytes("Mark"));
+
         return simpleAuthenticationInfo;
     }
 
     private String getpwdfromDB(String username) {
         Map<String, String> map = new HashMap<>();
-        map.put("Mark", "123456");
+        map.put("Mark", new Md5Hash("123456","Mark").toString());
 
         return map.get(username);
     }
