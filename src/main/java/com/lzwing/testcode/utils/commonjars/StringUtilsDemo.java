@@ -19,7 +19,9 @@ import java.util.concurrent.TimeUnit;
 public class StringUtilsDemo {
     public static void main(String[] args) {
 
-        testsubStringAfter();
+        testMidAndDigits();
+
+//        testsubStringAfter();
 
 //        testSubStringBetween();
 
@@ -43,6 +45,14 @@ public class StringUtilsDemo {
 
         //补零 输出00123
 //      System.out.println(getLeftPad("123",5,"0"));
+    }
+
+    public static void testMidAndDigits() {
+        String str = "0123456789";
+        //从中间截到几位
+        System.out.println(StringUtils.mid(str,6,2));
+        System.out.println(StringUtils.getDigits("abc123weg653"));
+
     }
 
     private static void testsubStringAfter() {

@@ -1,4 +1,4 @@
-package com.lzwing.testcode.string;
+package com.lzwing.testcode.utils.string;
 
 import java.util.Date;
 import java.util.Locale;

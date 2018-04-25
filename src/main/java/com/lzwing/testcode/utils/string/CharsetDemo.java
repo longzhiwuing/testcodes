@@ -1,4 +1,4 @@
-package com.lzwing.testcode.string;
+package com.lzwing.testcode.utils.string;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -12,10 +12,9 @@ import java.nio.charset.Charset;
  * Date: 2018/3/31
  * Time: 11:38
  */
-public class StringUtilsDemo {
+public class CharsetDemo {
     public static void main(String[] args) throws Exception{
-//        demo();
-//        charsetDemo();
+        charsetDemo();
     }
 
     private static void charsetDemo() throws UnsupportedEncodingException {
@@ -28,8 +27,10 @@ public class StringUtilsDemo {
 
         System.out.printf("defaultCharset:%s%n", defaultCharset);
 
+        //使用StringUtils.repeat
         System.out.println(StringUtils.repeat("=",20));
 
+        //使用StringUtils.toEncodedString
         String str1 = StringUtils.toEncodedString(source.getBytes(gbkCharset), utf8Charset);
         System.out.printf("gbk=>utf-8：%s%n", str1);
 
@@ -49,10 +50,4 @@ public class StringUtilsDemo {
         System.out.printf("iso8859-1=>gbk：%s%n", str6);
     }
 
-    public static void demo() {
-        String str = "zhangsan";
-        System.out.println(StringUtils.mid(str,4,str.length()-1));
-        System.out.println(StringUtils.getDigits("abc123weg653"));
-
-    }
 }

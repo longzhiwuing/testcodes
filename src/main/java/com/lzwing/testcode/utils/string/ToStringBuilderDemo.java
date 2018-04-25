@@ -1,4 +1,4 @@
-package com.lzwing.testcode.string;
+package com.lzwing.testcode.utils.string;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
