@@ -1,4 +1,4 @@
-package com.lzwing.testcode.random;
+package com.lzwing.testcode.utils.random;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
