@@ -1,0 +1,36 @@
+### 创建用户信息
+POST {{url}}/v1/m/users
+Accept : application/json
+Content-Type : application/json;charset=UTF-8
+Authorization: {{token}}
+{
+    "username": "xiaoyue",
+    "realname": "小岳",
+    "password": "111111",
+    "email": "lianggzone@163.com",
+    "tel": "18305930000",
+    "weixin": "LiangGzone",
+    "sex": 1
+}
+
+### 修改用户信息
+PUT {{url}}/v1/m/users/723181
+Accept : application/json
+Content-Type : application/json;charset=UTF-8
+Authorization: {{token}}
+CachePATCH-Control : no-cache
+{
+    "username": "xiaoyue"
+}
+
+### 查询用户信息
+GET {{url}}/v1/c/users/lgz/username
+Accept : application/json
+Content-Type : application/json;charset=UTF-8
+Authorization: {{token}}
+
+### 查询用户信息列表
+GET {{url}}/v1/c/users?keyword=梁
+Accept : application/json
+Content-Type : application/json;charset=UTF-8
+Authorization: {{token}}
