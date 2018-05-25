@@ -15,7 +15,8 @@ public class Demo {
     private static JedisPool pool; //线程池对象
 //    private static String ADDR = "172.16.21.133";
     private static String ADDR = "10.1.11.109";
-    private static int PORT = 6379;
+//    private static int PORT = 6379;
+    private static int PORT = 19000;
     private static String AUTH = "";
     private static int MAX_IDLE = 10;
     private static int MAX_ACTIVE = 50;

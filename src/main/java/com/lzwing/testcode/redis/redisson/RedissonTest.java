@@ -11,7 +11,7 @@ public class RedissonTest {
 
         Config config = new Config();
         config.setCodec(new org.redisson.client.codec.StringCodec());
-        config.useSingleServer().setAddress("10.1.11.109:6379");
+        config.useSingleServer().setAddress("10.1.11.109:19000");
 
         RedissonClient redisson = Redisson.create(config);
         RBucket<String> keyObject = redisson.getBucket("k2");
