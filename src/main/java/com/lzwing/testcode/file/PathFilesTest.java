@@ -10,6 +10,7 @@
 package com.lzwing.testcode.file;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -39,6 +40,8 @@ public class PathFilesTest {
 
 	public static void main(String[] args) throws Exception {
 
+		testCode60();
+
 //		test1();
 
 //		testSed();
@@ -46,6 +49,32 @@ public class PathFilesTest {
 //		testHsTable();
 
 //		testReplaceAll();
+	}
+
+	private static void testCode60() {
+		String path = "C:\\Users\\Administrator\\Desktop\\test\\code.txt";
+		Path dir = Paths.get(path);
+
+		String desPath = "C:\\Users\\Administrator\\Desktop\\test\\result.txt";
+
+		Path des = Paths.get(desPath);
+
+		try {
+			Stream<String> lines = Files.lines(dir);
+			List<String> linesList = lines.filter(new Predicate<String>() {
+				@Override
+				public boolean test(String s) {
+					return !StringUtils.isEmpty(s)&&(!s.trim().startsWith("//"));
+				}
+			}).collect(Collectors.toList());
+
+			Path write = Files.write(des, linesList);
+
+			System.out.println(write);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	private static void testReplaceAll() throws Exception {

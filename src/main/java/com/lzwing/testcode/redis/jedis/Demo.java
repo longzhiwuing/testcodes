@@ -1,4 +1,4 @@
-package com.lzwing.testcode.jedis;
+package com.lzwing.testcode.redis.jedis;
 
 import redis.clients.jedis.*;
 
@@ -13,7 +13,8 @@ import java.util.List;
  */
 public class Demo {
     private static JedisPool pool; //线程池对象
-    private static String ADDR = "172.16.21.133";
+//    private static String ADDR = "172.16.21.133";
+    private static String ADDR = "10.1.11.109";
     private static int PORT = 6379;
     private static String AUTH = "";
     private static int MAX_IDLE = 10;
@@ -35,7 +36,17 @@ public class Demo {
 
     public static void main(String[] args) {
 //        demo();
-        demo2();
+//        demo2();
+        demo3();
+    }
+
+    private static void demo3() {
+        Jedis jedis = getJedisResource();
+
+        jedis.set("k1", "v1");
+        System.out.println(jedis.get("k1"));
+
+        jedis.close();
     }
 
     public static Jedis getJedisResource () {
