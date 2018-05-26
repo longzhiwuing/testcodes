@@ -20,11 +20,27 @@ import java.security.MessageDigest;
 public class FileMd5Demo {
 
     public static void main(String[] args) throws IOException {
-        File file = new File("D:\\test.txt");
+        /*File file = new File("D:\\test.txt");
 
         String md5 = getFileMD5(file);
 
-        System.out.println(md5);
+        System.out.println(md5);*/
+
+        System.out.println(jdkMd5("123456"));
+    }
+
+    public static String jdkMd5(String source) {
+        String md5Str = null;
+        try {
+            MessageDigest md5 = MessageDigest.getInstance("MD5");
+            byte[] md5Bytes = md5.digest(source.getBytes("utf-8"));
+//            md5Str = HexUtils.toHexString(md5Bytes);
+//            md5Str = HexUtil.encodeHexStr(md5Bytes);
+            md5Str = HexBytesUtils.toHex(md5Bytes);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return md5Str;
     }
 
     /**
