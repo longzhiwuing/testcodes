@@ -1,5 +1,7 @@
 package com.lzwing.testcode.jsonresp;
 
+import com.alibaba.fastjson.JSONObject;
+
 import java.io.Serializable;
 import java.util.Map;
 
@@ -247,5 +249,9 @@ public class Resp<T> implements Serializable {
     public static <T>Resp httpStatus(HttpStatus httpStatus, String message, T result, Map<String, Object> extra, Long total, Integer pageNo, Integer pageSize){
         PageInfo pageInfo = new PageInfo(total, pageNo, pageSize);
         return result(httpStatus.toString(),message,result, extra, total, pageNo, pageSize);
+    }
+
+    public JSONObject toJSON() {
+        return (JSONObject) JSONObject.toJSON(this);
     }
 }

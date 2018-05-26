@@ -37,6 +37,6 @@ public class Test {
 
 
         //这里分页信息，请自己从PageHelper返回的数据中得到。参看下面注释内容：
-        log.info("{}",Resp.success(data, 5L, 1, 3));
+        log.info("{}",Resp.success(data, 5L, 1, 3).toJSON());
     }
 }
