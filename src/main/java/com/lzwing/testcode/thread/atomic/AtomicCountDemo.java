@@ -1,4 +1,4 @@
-package com.lzwing.testcode.thread.countdemo;
+package com.lzwing.testcode.thread.atomic;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Date: 2018/4/21
  * Time: 12:03
  */
-public class TestDemo1 {
+public class AtomicCountDemo {
     public static int totalThreadCount = 200;
     public static int clientTotal = 5000;
 

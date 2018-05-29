@@ -1,6 +1,4 @@
-package com.lzwing.testcode.thread;
-
-import com.lzwing.testcode.thread.demo1.ThreadTest1;
+package com.lzwing.testcode.thread.threadlocal;
 
 class ThreadTest implements Runnable {
 

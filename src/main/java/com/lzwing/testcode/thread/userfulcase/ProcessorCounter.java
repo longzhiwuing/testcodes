@@ -7,13 +7,10 @@
  *
 */
 
-package com.lzwing.testcode.thread;
+package com.lzwing.testcode.thread.userfulcase;
 
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.FutureTask;
 
 /**
  * ClassName:ProcessorTest <br/>
@@ -24,7 +21,7 @@ import java.util.concurrent.FutureTask;
  * @since    JDK 1.8
  * @see 	 
  */
-public class ProcessorTest {
+public class ProcessorCounter {
 
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {

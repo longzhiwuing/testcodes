@@ -7,7 +7,7 @@
  *
 */
 
-package com.lzwing.testcode.thread.ConsumerProducer;
+package com.lzwing.testcode.thread.ConsumerProducer.synchronize;
 
 import java.util.ArrayList;
 import java.util.List;

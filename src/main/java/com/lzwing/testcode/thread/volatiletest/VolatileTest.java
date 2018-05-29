@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 美中不足的是多个Atomic类不具备原子性，还是需要synchronized 关键字帮忙。
  */
 @SuppressWarnings("ALL")
-public class ITDragonVolatile {
+public class VolatileTest {
 
     private volatile boolean flag = true;
     private static volatile int count;
@@ -78,7 +78,7 @@ public class ITDragonVolatile {
         System.out.println("flag : " + itDragonVolatile.isFlag());*/
 
 //      验证volatile 关键字不具备原子性 和 Atomic类具有原子性
-        final ITDragonVolatile itDragonVolatile = new ITDragonVolatile();
+        final VolatileTest itDragonVolatile = new VolatileTest();
         List<Thread> threads = new ArrayList<Thread>();
         for (int i = 0; i < 100; i++) {
             threads.add(new Thread(new Runnable() {

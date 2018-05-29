@@ -13,7 +13,7 @@ import java.util.concurrent.Executors;
  * 若有Thread1、Thread2、Thread3、Thread4四条线程分别统计C、D、E、F四个盘的大小，所有线程都统计完毕交给Thread5线程去做汇总，应当如何实现？
  * 思考：汇总，说明要把四个线程的结果返回给第五个线程，若要线程有返回值，推荐使用callable。Thread和Runnable都没返回值
  */
-public class ITDragonThreads {
+public class DiskSpaceChecker {
 
     public static void main(String[] args) throws Exception {
         // 无缓冲无界线程池

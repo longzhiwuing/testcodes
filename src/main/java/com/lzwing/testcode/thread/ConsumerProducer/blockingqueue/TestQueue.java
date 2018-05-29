@@ -1,4 +1,4 @@
-package com.lzwing.testcode.thread.ConsumerProducer;
+package com.lzwing.testcode.thread.ConsumerProducer.blockingqueue;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
