@@ -15,11 +15,14 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -40,7 +43,10 @@ public class PathFilesTest {
 
 	public static void main(String[] args) throws Exception {
 
-		testCode60();
+//		testCodeFromProj();
+		testCodeFromProjWithStream();
+
+//		testCode60();
 
 //		test1();
 
@@ -50,6 +56,48 @@ public class PathFilesTest {
 
 //		testReplaceAll();
 	}
+
+	private static void testCodeFromProj() throws IOException {
+		String pathDir = "D:\\Projects\\eclipseWorkSpace\\networksrc\\src\\com";
+
+        String destPath = "C:\\Users\\Administrator\\Desktop\\test\\code.txt";
+
+        File destFile = new File(destPath);
+
+        Collection collection = FileUtils.listFiles(new File(pathDir), new String[]{"java"}, true);
+        for (Object o : collection) {
+            File javaFile = (File) o;
+            doAppend(javaFile,destFile);
+        }
+    }
+
+    private static void doAppend(File javaFile,File destFile) throws IOException {
+        List<String> lines = FileUtils.readLines(javaFile, Charset.forName("utf-8"));
+
+        FileUtils.writeLines(destFile,"utf-8",lines,true);
+
+        System.out.println(javaFile.getPath()+" finished...");
+    }
+
+    private static void testCodeFromProjWithStream() throws IOException {
+        String pathDir = "D:\\Projects\\eclipseWorkSpace\\networksrc\\src\\com";
+
+        String destPath = "C:\\Users\\Administrator\\Desktop\\test\\code.txt";
+
+        File destFile = new File(destPath);
+
+        FileUtils.listFiles(new File(pathDir), new String[]{"java"}, true).stream().forEach(new Consumer<File>() {
+            @Override
+            public void accept(File file) {
+                try {
+                    doAppend(file,destFile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+    }
 
 	private static void testCode60() {
 		String path = "C:\\Users\\Administrator\\Desktop\\test\\code.txt";
