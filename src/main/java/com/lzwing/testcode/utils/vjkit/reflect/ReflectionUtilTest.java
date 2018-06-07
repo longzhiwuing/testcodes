@@ -1,3 +1,4 @@
+/*
 package com.lzwing.testcode.utils.vjkit.reflect;
 
 import static org.assertj.core.api.Assertions.*;
@@ -159,9 +160,13 @@ public class ReflectionUtilTest {
 	}
 
 	public static class TestBean extends ParentBean<String, Long> {
-		/** 没有getter/setter的field */
+		*/
+/** 没有getter/setter的field *//*
+
 		private int privateField = 1;
-		/** 有getter/setter的field */
+		*/
+/** 有getter/setter的field *//*
+
 		private int publicField = 1;
 
 		// 通過getter函數會比屬性值+1
@@ -227,3 +232,4 @@ public class ReflectionUtilTest {
 		}
 	}
 }
+*/
