@@ -63,9 +63,9 @@ public class LinkedListDemo {
     public static void main(String[] args) {
 //        testCreateLinkedList();
 
-//        testReserve();
+        testReserve();
 
-        testDeleteif();
+//        testDeleteif();
 
     }
 
@@ -112,7 +112,8 @@ public class LinkedListDemo {
     private static void testReserve() {
 //        Node linkedList = createLinkedList(Arrays.asList(1, 2, 3, 4, 5));
 //        Node linkedList = createLinkedList(Arrays.asList(1));
-        Node linkedList = createLinkedList(Arrays.asList());
+//        Node linkedList = createLinkedList(Arrays.asList());
+        Node linkedList = createLinkedList(Arrays.asList(1,2,3));
         Node reverseHead = reverseList(linkedList);
         showLinkedList(reverseHead);
     }
