@@ -3,11 +3,9 @@ package com.lzwing.testcode.utils.commonjars;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringEscapeUtils;
-import org.apache.commons.lang.time.StopWatch;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created with IntelliJ IDEA.
@@ -83,56 +81,6 @@ public class StringUtilsDemo {
         String[] strings = StringUtils.splitByWholeSeparatorPreserveAllTokens("aaa|bbb|ccc", "|");
 
         Arrays.stream(strings).forEach(System.out::println);
-    }
-
-    private static void testSpringStopWatch() {
-        org.springframework.util.StopWatch sw = new org.springframework.util.StopWatch();
-
-        sw.start("起床");
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        sw.stop();
-
-
-        sw.start("洗漱");
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        sw.stop();
-
-
-        sw.start("锁门");
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        sw.stop();
-
-
-        System.out.println(sw.prettyPrint());
-        System.out.println(sw.getTotalTimeMillis());
-        System.out.println(sw.getLastTaskName());
-        System.out.println(sw.getLastTaskInfo());
-        System.out.println(sw.getTaskCount());
-    }
-
-    private static void testStopWatch() {
-        StopWatch stopWatch = new StopWatch();
-        stopWatch.start();
-        try {
-            TimeUnit.SECONDS.sleep(3);
-        } catch (InterruptedException e) {
-            new RuntimeException(e);
-        }
-        stopWatch.stop();
-
-        System.out.println(stopWatch.getTime());
     }
 
     private static void testEscapte() {
