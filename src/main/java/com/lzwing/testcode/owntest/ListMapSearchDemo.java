@@ -1,4 +1,4 @@
-package com.lzwing.testcode.owndemo;
+package com.lzwing.testcode.owntest;
 
 import org.apache.commons.lang.time.StopWatch;
 import org.apache.commons.lang3.RandomUtils;
@@ -13,10 +13,14 @@ import java.util.Map;
  * Date: 2018/6/8
  * Time: 11:49
  */
-public class OwnDemos {
+public class ListMapSearchDemo {
 
     public static void main(String[] args) {
-        Integer n = Integer.MAX_VALUE;
+        testListMapSearch();
+    }
+
+    private static void testListMapSearch() {
+        Integer n = 5000000;
         Integer i = testListSearch(n);
         Map<Integer,Integer> map = generateMap(n);
         testMapSearch(i, map);
