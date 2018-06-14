@@ -16,7 +16,40 @@ import java.util.Map;
 public class ListMapSearchDemo {
 
     public static void main(String[] args) {
-        testListMapSearch();
+//        testListMapSearch();
+//        integerEqualsTest();
+        testTryFinally();
+
+    }
+
+    private static void testTryFinally() {
+        try {
+            tryFinally();
+        } catch (Exception e) {
+            System.out.println("exception");
+        }
+
+        System.out.println("finish");
+    }
+
+    private static void tryFinally() {
+        try{
+            throw new RuntimeException();
+        }finally {
+            System.out.println("finally");
+        }
+    }
+
+
+
+    private static void integerEqualsTest() {
+        /*Integer i = 1;
+        int j = 1;*/
+
+        Integer i = 128;
+        Integer j = 128;
+
+        System.out.println(i==j);
     }
 
     private static void testListMapSearch() {
