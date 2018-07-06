@@ -97,6 +97,12 @@
             <version>5.0.0.Alpha1</version>
         </dependency>-->
 
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-client</artifactId>
+            <version>1.2.0</version>
+        </dependency>
+
 
         <!-- test -->
         <!-- https://mvnrepository.com/artifact/junit/junit -->

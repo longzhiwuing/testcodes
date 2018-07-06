@@ -201,10 +201,10 @@ public class Test {
 		checkElementIndex(0, a.length);
 	}
 
-	public static void testObjects() {
+	/*public static void testObjects() {
 		System.out.println(MoreObjects.toStringHelper(new Test()).add("x", 1).toString());
 		;
-	}
+	}*/
 
 	public static void testCompare() {
 		/*

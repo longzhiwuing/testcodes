@@ -1,6 +1,6 @@
 package com.lzwing.testcode.ratelimiter;
 
-import com.google.common.util.concurrent.RateLimiter;
+import org.apache.curator.shaded.com.google.common.util.concurrent.RateLimiter;
 
 /**
  * Created with IntelliJ IDEA.
