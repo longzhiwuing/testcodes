@@ -175,4 +175,27 @@ public class NodeTest {
         int loopSize = getLoopSize(loopHead);
         System.out.println(loopSize);
     }
+
+    @Test
+    public void testReverse() {
+        Node<Integer> reverseHead = reverseChain(head);
+        showList(reverseHead);
+    }
+
+    private Node<Integer> reverseChain(Node<Integer> head) {
+        Node<Integer> pre = null;
+        Node<Integer> curr = head.getNext();
+
+        while (curr != null) {
+            Node<Integer> tmp = curr.getNext();
+            curr.setNext(pre);
+            pre = curr;
+            curr = tmp;
+        }
+
+        //添加head节点
+        head.setNext(pre);
+        return head;
+
+    }
 }
