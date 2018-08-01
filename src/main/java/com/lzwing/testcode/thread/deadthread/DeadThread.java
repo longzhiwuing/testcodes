@@ -1,17 +1,6 @@
-package com.lzwing.testcode.thread;
-public class DeadThreadTest {
-    public static void main(String[] args) {
-        DeadThread thread = new DeadThread();
-        Thread t1 = new Thread(thread);
-        t1.setName("a");
-        Thread t2 = new Thread(thread);
-        t2.setName("b");
-        t1.start();
-        t2.start();
-    }    
-}
+package com.lzwing.testcode.thread.deadthread;
 
-class DeadThread implements Runnable{
+public class DeadThread implements Runnable{
     private String o1= new String("o1");
     private String o2 = new String("o2");
     @Override
