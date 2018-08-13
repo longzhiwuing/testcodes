@@ -283,6 +283,15 @@
             <version>2.0.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.mozilla.intl</groupId>
+            <artifactId>chardet</artifactId>
+            <version>1.0</version>
+            <scope>system</scope> <!--system，类似provided，需要显式提供依赖的jar以后，Maven就不会在Repository中查找它-->
+            <systemPath>${basedir}/lib/chardet.jar</systemPath> <!--项目根目录下的lib文件夹下-->
+        </dependency>
+
+
 
 
     </dependencies>

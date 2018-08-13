@@ -1,5 +1,6 @@
-package com.lzwing.testcode.utils.string;
+package com.lzwing.testcode.utils.encode;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.UnsupportedEncodingException;
@@ -12,9 +13,12 @@ import java.nio.charset.Charset;
  * Date: 2018/3/31
  * Time: 11:38
  */
+
+@Slf4j
 public class CharsetDemo {
     public static void main(String[] args) throws Exception{
         charsetDemo();
+        test();
     }
 
     private static void charsetDemo() throws UnsupportedEncodingException {
@@ -48,6 +52,14 @@ public class CharsetDemo {
 
         String str6 = StringUtils.toEncodedString(source.getBytes(iso88591Charset), gbkCharset);
         System.out.printf("iso8859-1=>gbk：%s%n", str6);
+    }
+
+    public static void test() {
+        String source = "ÊµÕ½Ö¸ÄÏ(ÖìÐ¡ØË)";
+
+        String s = StringUtils.toEncodedString(source.getBytes(Charset.forName("iso-8859-1")), Charset.forName("gbk"));
+
+        log.info("s:{}",s);
     }
 
 }
