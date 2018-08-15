@@ -14,7 +14,13 @@ import java.util.List;
  */
 public class Tester {
     public static void main(String[] args) {
-        listDemos();
+//        listDemos();
+        testMaxMin();
+    }
+
+    private static void testMaxMin() {
+        System.out.println(Math.max(1, 10));
+        System.out.println(Math.min(1, 10));
     }
 
     /**
