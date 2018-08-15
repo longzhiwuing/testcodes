@@ -1,8 +1,12 @@
 package com.lzwing.testcode.java8.streamapi;
 
+import com.google.common.collect.Lists;
+
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,7 +24,21 @@ public class CollectorTest {
 //        groupByTest();
 //        joiningTest();
 //        countTest();
-        reduceTest();
+//        reduceTest();
+        compareTest();
+    }
+
+    private static void compareTest() {
+        List<Student> list = Lists.newArrayList(
+                new Student(1,"a","m",2),
+                new Student(1,"b","f",1),
+                new Student(1,"c","m",3)
+        );
+
+        list = list.stream()
+                .sorted(Comparator.comparingInt(student->(int) student.getHeight()))
+                .collect(toList());
+        System.out.println(list);
     }
 
     private static void reduceTest() {
@@ -76,7 +94,7 @@ public class CollectorTest {
 
     private static void listTest() {
         List<Integer> collectList = Stream.of(1, 2, 3, 4, 3, 1, 5)
-                .collect(Collectors.toList());
+                .collect(toList());
         System.out.println("collectList: " + collectList);
     }
 }

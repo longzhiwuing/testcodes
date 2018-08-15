@@ -3,6 +3,7 @@ package com.lzwing.testcode.gist;
 import com.google.common.collect.Lists;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -15,7 +16,40 @@ import java.util.List;
 public class Tester {
     public static void main(String[] args) {
 //        listDemos();
-        testMaxMin();
+//        testMaxMin();
+        testIterator();
+    }
+
+    private static void testIterator() {
+        List<String> list = Lists.newArrayList("aaa", "bbb", "ccc");
+
+        /*for (String itm : list) {
+            if (itm.equals("aaa")) {
+                list.remove(itm);
+            }
+        }*/
+
+        Iterator<String> it = list.iterator();
+        /*
+
+        for (int i=0;it.hasNext();i++) {
+            String next = it.next();
+            if (next.equals("bbb")) {
+                list.remove(i);
+            }
+        }*/
+
+        while(it.hasNext()){
+            String str = it.next();
+            System.out.println(str);
+            if(str.equals("aaa")){
+//                list.remove(str);
+                it.remove();
+            }
+        }
+
+        System.out.println(list);
+
     }
 
     private static void testMaxMin() {
@@ -27,9 +61,9 @@ public class Tester {
      * guava 方便声明、foreach lambda实现
      */
     private static void listDemos() {
-        List<String> list = Lists.newArrayList("aa","bb","cc");
+        List<String> list = Lists.newArrayList("aa", "bb", "cc");
 
-        list.forEach(s->{
+        list.forEach(s -> {
             System.out.println("s = " + s);
             System.out.println(new Date());
         });
