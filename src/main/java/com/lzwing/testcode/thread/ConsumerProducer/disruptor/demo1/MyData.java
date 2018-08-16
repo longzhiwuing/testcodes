@@ -1,4 +1,4 @@
-package com.lzwing.testcode.thread.ConsumerProducer.disruptor;
+package com.lzwing.testcode.thread.ConsumerProducer.disruptor.demo1;
 
 public class MyData {
     private long value;

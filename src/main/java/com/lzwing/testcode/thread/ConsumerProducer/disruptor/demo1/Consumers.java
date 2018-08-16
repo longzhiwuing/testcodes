@@ -1,4 +1,4 @@
-package com.lzwing.testcode.thread.ConsumerProducer.disruptor;
+package com.lzwing.testcode.thread.ConsumerProducer.disruptor.demo1;
 
 import com.lmax.disruptor.WorkHandler;
 
