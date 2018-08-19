@@ -5,6 +5,9 @@ import com.google.common.collect.Lists;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,7 +20,17 @@ public class Tester {
     public static void main(String[] args) {
 //        listDemos();
 //        testMaxMin();
-        testIterator();
+//        testIterator();
+        testFilter();
+    }
+
+    private static void testFilter() {
+        List<String> list = Lists.newArrayList("a","b","c");
+        Objects.requireNonNull(list);
+
+        List<String> filterList = list.stream().filter(s ->{int len = s.length()-1;return len%2==0;}).collect(toList());
+
+        System.out.println("filterList = " + filterList);
     }
 
     private static void testIterator() {
