@@ -1,11 +1,10 @@
 package com.lzwing.testcode.gist;
 
+import com.google.common.base.Stopwatch;
 import com.google.common.collect.Lists;
 
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 import static java.util.stream.Collectors.toList;
 
@@ -21,7 +20,32 @@ public class Tester {
 //        listDemos();
 //        testMaxMin();
 //        testIterator();
-        testFilter();
+//        testFilter();
+        testArrayListAndLinkedList();
+    }
+
+    private static void testArrayListAndLinkedList() {
+        int count = 100000;
+        Stopwatch stopwatch = new Stopwatch();
+        stopwatch.start();
+        List<String> list = new ArrayList<>(count);
+        for (int i = 0; i < list.size(); i++) {
+            String s = list.get(i);
+        }
+        stopwatch.stop();
+        System.out.println("Array time:"+stopwatch.elapsedTime(TimeUnit.MILLISECONDS));
+
+        list = new LinkedList<String>();
+        for(int i=0;i<count;i++) {
+            list.add(i+"");
+        }
+        stopwatch = new Stopwatch();
+        stopwatch.start();
+        for (int i = 0; i < list.size(); i++) {
+            String s = list.get(i);
+        }
+        stopwatch.stop();
+        System.out.println("linklist time:"+stopwatch.elapsedTime(TimeUnit.MILLISECONDS));
     }
 
     private static void testFilter() {
