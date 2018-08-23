@@ -2,6 +2,8 @@ package com.lzwing.testcode.gist;
 
 import com.google.common.base.Stopwatch;
 import com.google.common.collect.Lists;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.RandomUtils;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -15,13 +17,35 @@ import static java.util.stream.Collectors.toList;
  * Date: 2018/8/11
  * Time: 17:24
  */
+@Slf4j
 public class Tester {
     public static void main(String[] args) {
 //        listDemos();
 //        testMaxMin();
 //        testIterator();
 //        testFilter();
-        testArrayListAndLinkedList();
+//        testArrayListAndLinkedList();
+        testFinallyReturn();
+    }
+
+    private static void testFinallyReturn() {
+        for(int i=0;i<10;i++) {
+            int returnValue = getReturnValue();
+            log.info("return value:{}",returnValue);
+        }
+    }
+
+    private static int getReturnValue() {
+        try {
+            if (RandomUtils.nextInt()%2==0) {
+                throw new Exception("test");
+            }
+            return 1;
+        } catch (Exception e) {
+            return 2;
+        }finally {
+            return 3;
+        }
     }
 
     private static void testArrayListAndLinkedList() {
