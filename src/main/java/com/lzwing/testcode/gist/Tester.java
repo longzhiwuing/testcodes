@@ -1,8 +1,12 @@
 package com.lzwing.testcode.gist;
 
+import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.Stopwatch;
 import com.google.common.collect.Lists;
+import com.lzwing.testcode.java8.niceexample.Address;
+import com.lzwing.testcode.java8.niceexample.User;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.RandomUtils;
 
 import java.util.*;
@@ -19,13 +23,50 @@ import static java.util.stream.Collectors.toList;
  */
 @Slf4j
 public class Tester {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
 //        listDemos();
 //        testMaxMin();
 //        testIterator();
 //        testFilter();
 //        testArrayListAndLinkedList();
-        testFinallyReturn();
+//        testFinallyReturn();
+//        testJsonobj();
+        testBeanUtils();
+    }
+
+    private static void testBeanUtils() throws Exception{
+        /*Map<String, String> origin = new HashMap<>();
+        origin.put("111", "aaa");
+        origin.put("222", "bbb");
+        origin.put("444", "ccc");
+
+        Map<String, String> dest = new HashMap<>();
+        dest.put("111", "xxx");
+        dest.put("333", "yyy");
+        dest.put("444", "zzz");*/
+
+        User origin = new User();
+        origin.setName("zhangsan");
+        Address address = new Address();
+        address.setCity("beiing");
+        origin.setAddress(address);
+
+        User dest = new User();
+        dest.setName("lisi");
+        address = new Address();
+        address.setCity("shanghai");
+//        dest.setAddress(address);
+
+        BeanUtils.copyProperties(origin,dest);
+
+        System.out.println("origin = " + origin);
+        System.out.println("dest = " + dest);
+    }
+
+    private static void testJsonobj() {
+        JSONObject dataObj = new JSONObject();
+        String aaaa = dataObj.getString("aaaa");
+        System.out.println("aaaa = " + aaaa);
     }
 
     private static void testFinallyReturn() {
