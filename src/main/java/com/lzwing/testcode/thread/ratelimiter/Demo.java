@@ -1,4 +1,4 @@
-package com.lzwing.testcode.ratelimiter;
+package com.lzwing.testcode.thread.ratelimiter;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;

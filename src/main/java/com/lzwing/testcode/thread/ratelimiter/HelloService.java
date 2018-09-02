@@ -1,4 +1,4 @@
-package com.lzwing.testcode.ratelimiter;
+package com.lzwing.testcode.thread.ratelimiter;
 
 import org.apache.curator.shaded.com.google.common.util.concurrent.RateLimiter;
 
