@@ -11,6 +11,7 @@ package com.lzwing.testcode.time;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Date;
 
 /**
  * ClassName:Test <br/>
@@ -32,7 +33,7 @@ public class TimeTest {
 //		getDateCompare();
 //		timeCompute();
 //		dateCompute();
-		clockDemo();
+//		clockDemo();
 //      beforeAfterDate();
 //        changeTimeZone();
 //        yearMonthDemo();
@@ -40,6 +41,27 @@ public class TimeTest {
 //        periodDemo();
 //        timeStampDemo();
 //        formatDemo();
+        date2LocalDate();
+    }
+
+    private static void date2LocalDate() {
+
+        //Date转LocalDate
+        Date date = new Date();
+        Instant instant = date.toInstant();
+        ZoneId zoneId = ZoneId.systemDefault();
+        // atZone()方法返回在指定时区从此Instant生成的ZonedDateTime。
+        LocalDate localDate = instant.atZone(zoneId).toLocalDate();
+        System.out.println("Date = " + date);
+        System.out.println("LocalDate = " + localDate);
+
+        //LocalDate转Date
+        zoneId = ZoneId.systemDefault();
+        localDate = LocalDate.now();
+        ZonedDateTime zdt = localDate.atStartOfDay(zoneId);
+        date = Date.from(zdt.toInstant());
+        System.out.println("LocalDate = " + localDate);
+        System.out.println("Date = " + date);
     }
 
     private static void formatDemo() {
