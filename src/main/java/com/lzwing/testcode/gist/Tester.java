@@ -31,7 +31,17 @@ public class Tester {
 //        testArrayListAndLinkedList();
 //        testFinallyReturn();
 //        testJsonobj();
-        testBeanUtils();
+//        testBeanUtils();
+//        testLong();
+        testParam();
+    }
+
+    private static void testParam() {
+    }
+
+    private static void testLong() {
+        Long aLong = Long.valueOf("");
+        System.out.println("aLong = " + aLong);
     }
 
     private static void testBeanUtils() throws Exception{

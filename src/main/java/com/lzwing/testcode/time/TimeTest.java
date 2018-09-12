@@ -11,6 +11,7 @@ package com.lzwing.testcode.time;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Date;
 
 /**
@@ -41,7 +42,8 @@ public class TimeTest {
 //        periodDemo();
 //        timeStampDemo();
 //        formatDemo();
-        date2LocalDate();
+//        date2LocalDate();
+        getCustomDate();
     }
 
     private static void date2LocalDate() {
@@ -160,6 +162,23 @@ public class TimeTest {
         // Returns time based on system clock zone
         Clock defaultClock = Clock.systemDefaultZone();
         System.out.printf("china:%s%n", LocalDateTime.now(defaultClock).format(dateTimeFormatter));
+    }
+
+    private static void getCustomDate() {
+        LocalDate now = LocalDate.now();
+
+        //前一个周一
+        LocalDate previousMonday = now.with(TemporalAdjusters.previous(DayOfWeek.MONDAY));
+
+        LocalDate previousSunday = previousMonday.plus(6, ChronoUnit.DAYS);
+
+        System.out.println("previousSunday = " + previousSunday);
+
+        LocalDate thisWeekMonday = previousMonday.plus(1, ChronoUnit.WEEKS);
+
+        LocalDate nextWeekMonday = now.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
+
+        System.out.println("nextWeekMonday = " + nextWeekMonday);
     }
 
     private static void dateCompute() {
