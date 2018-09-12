@@ -2,6 +2,7 @@ package com.lzwing.testcode.utils.vjkit.collection;
 
 import com.vip.vjtools.vjkit.collection.ArrayUtil;
 import com.vip.vjtools.vjkit.number.RandomUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -10,8 +11,19 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
+@Slf4j
 public class ArrayUtilTest {
+
+	@Test
+	public void testArrayCopy() {
+		String[] arrays = new String[] { "d", "a", "c", "b", "e", "i", "g" };
+		String[] arraysClone = Arrays.copyOf(arrays, arrays.length);
+		String[] clone = arrays.clone();
+		assertTrue("should true",Arrays.equals(arraysClone,clone));
+		assertTrue("should false",Arrays.equals(arrays,arraysClone));
+	}
 
 	@Test
 	public void shuffle() {
