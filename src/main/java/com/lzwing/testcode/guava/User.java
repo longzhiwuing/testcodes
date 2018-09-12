@@ -8,6 +8,12 @@
 */
 
 package com.lzwing.testcode.guava;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * ClassName:User <br/>
  * Function: TODO ADD FUNCTION. <br/>
@@ -17,44 +23,15 @@ package com.lzwing.testcode.guava;
  * @since    JDK 1.8
  * @see 	 
  */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class User {
 
-	String name;
-	int age;
-	boolean isMale;
-	
-	public User() {
-	}
-	public User(String name) {
-		this.name = name;
-		System.out.println("contructor name:"+name);
-	}
-	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public int getAge() {
-		return age;
-	}
-	public void setAge(int age) {
-		this.age = age;
-	}
-	public boolean isMale() {
-		return isMale;
-	}
-	public void setMale(boolean isMale) {
-		this.isMale = isMale;
-	}
-	
-	@Override
-	public String toString() {
-		return "User [name=" + name + ", age=" + age + ", isMale=" + isMale + "]";
-	}
-	
-	
+	private String name;
+	private int age;
+	private boolean isMale;
 	
 }
 

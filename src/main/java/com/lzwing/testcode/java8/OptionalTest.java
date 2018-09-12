@@ -16,7 +16,7 @@ public class OptionalTest {
 //        t1();
 
         System.out.println(t2(Optional.empty()));
-        System.out.println(t2(Optional.of(new User("newUser"))));
+        System.out.println(t2(Optional.of(new User("newUser",0,false))));
 
 
     }
@@ -36,7 +36,7 @@ public class OptionalTest {
     }
 
     public static int t2(Optional<User> user) {
-        System.out.println(user.orElse(new User("defaultUser")));
+        System.out.println(user.orElse(new User("defaultUser",0,false)));
         user.ifPresent(System.out::println);
         return user.map(u -> u.getAge()).orElse(-100);
     }
