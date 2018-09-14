@@ -1,11 +1,13 @@
 package com.lzwing.testcode.utils.string;
 
 import com.alibaba.fastjson.JSONObject;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,10 +16,13 @@ import java.util.Arrays;
  * Date: 2018/3/27
  * Time: 16:04
  */
+@Slf4j
 public class StringUtilsDemo {
     public static void main(String[] args) {
 
-        testMidAndDigits();
+//        testchomp();
+
+//        testMidAndDigits();
 
 //        testsubStringAfter();
 
@@ -43,6 +48,27 @@ public class StringUtilsDemo {
 
         //补零 输出00123
 //      System.out.println(getLeftPad("123",5,"0"));
+
+        testcommaDelimitedListToStringArray();
+    }
+
+    private static void testcommaDelimitedListToStringArray() {
+        String[] dataArray = org.springframework.util.StringUtils.commaDelimitedListToStringArray("a,b,c");
+
+        List<String> dataList = Arrays.asList(dataArray);
+
+        for (String s : dataList) {
+            log.info("s:{}", s);
+        }
+
+
+    }
+
+    private static void testchomp() {
+//        String chomp = StringUtils.chomp(" 邱晓玲\n ".trim());
+        String chomp = StringUtils.strip("英二阅读真题详解（2014年Text 1+Text 2）\naaaa");
+        System.out.println("chomp = " + chomp);
+        System.out.println(StringUtils.strip("aa \t\r\n abc    "));
     }
 
     public static void testMidAndDigits() {
