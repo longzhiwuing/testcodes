@@ -13,10 +13,12 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.collect.*;
+import com.google.common.primitives.Ints;
 import com.google.common.reflect.Reflection;
 import com.google.common.util.concurrent.*;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.annotation.Nullable;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -66,8 +68,89 @@ public class Test {
 
 //		 testMultiCollection();
 
-        testGetOrDefualt();
+//        testGetOrDefualt();
 
+//        testJoinAndSplitterCharMatcher();
+//        testInts();
+        testCollection2();
+    }
+
+    private static void testCollection2() {
+        List<String> list = Lists.newArrayList("helloworld", "yes", "longzhiwuing");
+
+        Function<String,String> f1 = new Function<String, String>() {
+            @Nullable
+            @Override
+            public String apply(@Nullable String s) {
+                return s.length() <= 5 ? s : s.substring(0, 5);
+            }
+        };
+
+        Function<String,String> f2 = new Function<String, String>() {
+            @Nullable
+            @Override
+            public String apply(@Nullable String s) {
+                return s.toUpperCase();
+            }
+        };
+
+        Function<String, String> f3 = Functions.compose(f1, f2);
+
+        Collection<String> transform = Collections2.transform(list, f3);
+
+        transform.stream().forEach(System.out::println);
+    }
+
+    private static void testInts() {
+        List<Integer> list = Ints.asList(1, 2, 3, 4, 5, 5);
+
+
+        //list转int[]
+        int[] newInts = Ints.toArray(list);
+        System.out.println("newInts = " + Arrays.toString(newInts));
+
+        //list转Integer[]
+        Integer[] integers = list.toArray(new Integer[0]);
+        //将Integer[]转换为int[]数组
+        int[] ints = Arrays.stream(integers).mapToInt(Integer::valueOf).toArray();
+
+        System.out.println(Ints.join(",",ints));
+
+        int[] newIntArray = Ints.concat(new int[]{1, 2}, new int[]{2, 3, 4});
+
+        System.out.println(Arrays.toString(newIntArray));
+
+        //最大最小
+        System.out.printf("%d,%d%n", Ints.max(newIntArray), Ints.min(newIntArray));
+
+        //是否包含 不必循环
+        System.out.println(Ints.contains(newIntArray, 4));
+
+
+    }
+
+    private static void testJoinAndSplitterCharMatcher() {
+        //连接器
+        Joiner joiner = Joiner.on(",").skipNulls();
+
+        //分割器
+        Splitter splitter = Splitter.on(",").trimResults().omitEmptyStrings();
+
+        CharMatcher charMatcherDigit = CharMatcher.DIGIT;
+        CharMatcher charMatcherAny = CharMatcher.ANY;
+
+        String join = joiner.join(Lists.newArrayList("a", null, "b"));
+        System.out.println("join = " + join);
+
+        for (String tmp : splitter.split(" a,   ,b,,")) {
+            System.out.printf("|%s|%n", tmp);
+        }
+
+        System.out.println(charMatcherDigit.retainFrom("abc23423def435gh"));
+        System.out.println(charMatcherDigit.removeFrom("abc23423def435gh"));
+
+        //按规则隐藏字符
+        System.out.println(charMatcherAny.inRange('a', 'f').or(charMatcherAny.is('n')).replaceFrom("longzhiwuing", "*"));
     }
 
     private static void testGetOrDefualt() {
