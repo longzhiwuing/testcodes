@@ -33,10 +33,37 @@ public class Tester {
 //        testJsonobj();
 //        testBeanUtils();
 //        testLong();
-        testParam();
+        initListPutVal();
     }
 
-    private static void testParam() {
+    private static void initListPutVal() {
+        /*ConcurrentHashMap<String, List<String>> hashFilter = new ConcurrentHashMap<>({
+                put("pre",new ArrayList<String>())
+        });*/
+
+        Map<String, String> map = new HashMap<String,String>(){{
+            put("1","zs");
+            put("2","ls");
+            put("3","ww");
+        }};
+
+        System.out.println("map = " + map);
+
+        List<String> zs = new ArrayList<String>() {{
+            add("zs");
+            add("ls");
+            add("ww");
+        }};
+
+        System.out.println("zs = " + zs);
+
+        List<String> strings = new ArrayList<>(Arrays.asList("hello@world", "good@bye", "love@you"));
+
+        System.out.println("strings = " + strings);
+
+
+
+
     }
 
     private static void testLong() {
