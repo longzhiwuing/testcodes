@@ -2,7 +2,7 @@ package com.lzwing.testcode.gist;
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.Stopwatch;
-import com.google.common.collect.Lists;
+import com.google.common.collect.*;
 import com.lzwing.testcode.java8.niceexample.Address;
 import com.lzwing.testcode.java8.niceexample.User;
 import lombok.extern.slf4j.Slf4j;
@@ -33,8 +33,10 @@ public class Tester {
 //        testJsonobj();
 //        testBeanUtils();
 //        testLong();
-        initListPutVal();
+//        initListPutVal();
     }
+
+
 
     private static void initListPutVal() {
         /*ConcurrentHashMap<String, List<String>> hashFilter = new ConcurrentHashMap<>({

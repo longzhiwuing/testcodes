@@ -9,6 +9,7 @@
 package com.lzwing.testcode.guava;
 
 import com.google.common.base.*;
+import com.google.common.base.Optional;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
@@ -21,10 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 import javax.annotation.Nullable;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
@@ -72,7 +70,65 @@ public class Test {
 
 //        testJoinAndSplitterCharMatcher();
 //        testInts();
-        testCollection2();
+//        testCollection2();
+//        testMultiMapIndex();
+        testMultiMap();
+    }
+
+    private static void testMultiMap() {
+        //1.1 转化后具有唯一Key
+        List<Person> persons = Arrays.asList(
+                new Person("zhang", 15),
+                new Person("wang", 16),
+                new Person("lee", 18)
+        );
+        /**
+         * 转换后的Map具有唯一键
+         */
+        Map<String, Person> map = Maps.uniqueIndex(persons, new Function<Person, String>() {
+            @Override
+            public String apply(Person person) {
+                return person.getName();
+            }
+        });
+
+        System.out.println("map = " + map);
+
+        //1.2 转化后的Key不唯一
+        persons = Lists.newArrayList(
+                new Person("zhang", 15),
+                new Person("zhang", 16),
+                new Person("lee", 18)
+        );
+        /**
+         * 转换后的Map有重复键
+         */
+        Multimap<String, Person> multiMap = Multimaps.index(persons, new Function<Person, String>() {
+            public String apply(Person person) {
+                return person.getName();
+            }
+        });
+
+        System.out.println("multiMap = " + multiMap);
+
+    }
+
+    private static void testMultiMapIndex() {
+        ImmutableSet digits = ImmutableSet.of("zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine");
+        Function<String, Integer> lengthFunction = new Function<String, Integer>() {
+            public Integer apply(String string) {
+                return string.length();
+            }
+        };
+
+        ImmutableListMultimap<Integer, String> digitsByLength= Multimaps.index(digits, lengthFunction);
+        /*
+         *  digitsByLength maps:
+         *  3 => {"one", "two", "six"}
+         *  4 => {"zero", "four", "five", "nine"}
+         *  5 => {"three", "seven", "eight"}
+         */
+        System.out.println("digitsByLength = " + digitsByLength);
     }
 
     private static void testCollection2() {
