@@ -34,8 +34,59 @@ public class Tester {
 //        testBeanUtils();
 //        testLong();
 //        initListPutVal();
+//        testRuntimeException();
+//        testAlphaBeta();
+        testGuaFen();
     }
 
+    private static void testGuaFen() {
+        double total_money=50000.00;
+        int total_people=3172;
+        double min_money=12.61; // 每个人最少能收到0.05元、
+        double max_money=18.91; // 每个人最少能收到0.05元、
+        double lingjiezhi=(total_money/total_people)*100;
+        double allresult=0;
+        for (int i = 0; i <total_people; i++) {
+//保护值
+            double procte=(total_people-i-1)*min_money/100;;
+//可支配金额
+            double zpje=total_money-procte;
+            if(zpje*100<max_money){
+                max_money=zpje*100;
+            }
+            double result=restRound(min_money, max_money, i, zpje, total_people-1);
+            total_money=total_money-result;
+            allresult+=result;
+            System.out.format("红包  %.2f,余额  %.2f \n",result,total_money);
+        }
+        System.out.format("总金额%.2f",allresult);
+    }
+
+
+    public static double restRound(double min,double max,int i,double money,int count){
+        double redpac=0;
+        if(i==19){
+            redpac=money;
+        }else{
+            redpac=(Math.random()*(max-min)+min)/100;
+        }
+        return redpac;
+    }
+
+    private static void testAlphaBeta() {
+//        System.out.println((int) "A".charAt(0));
+        String str = "M10";
+
+        System.out.println(str.substring(str.length()-1));
+    }
+
+    private static void testRuntimeException() {
+        try {
+            throw new ArrayIndexOutOfBoundsException(3);
+        } catch (Exception e) {
+            System.out.println("exception:" + e);
+        }
+    }
 
 
     private static void initListPutVal() {
