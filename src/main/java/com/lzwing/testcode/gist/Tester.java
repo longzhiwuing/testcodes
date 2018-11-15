@@ -2,7 +2,7 @@ package com.lzwing.testcode.gist;
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.Stopwatch;
-import com.google.common.collect.*;
+import com.google.common.collect.Lists;
 import com.lzwing.testcode.java8.niceexample.Address;
 import com.lzwing.testcode.java8.niceexample.User;
 import lombok.extern.slf4j.Slf4j;
@@ -36,7 +36,55 @@ public class Tester {
 //        initListPutVal();
 //        testRuntimeException();
 //        testAlphaBeta();
-        testGuaFen();
+//        testGuaFen();
+//        testDivide();
+//        testVectorDelete();
+        testDeadLoopTest();
+    }
+
+    private static void testDeadLoopTest() throws Exception{
+        while (true) {
+            TimeUnit.SECONDS.sleep(1);
+            System.out.println(new Date());
+        }
+    }
+
+    private static void testVectorDelete() throws Exception{
+//        Vector<Integer> vector = new Vector<>();
+
+        List<Integer> vector = new ArrayList<>();
+
+        vector.add(1);
+        vector.add(2);
+        vector.add(3);
+        vector.add(4);
+        vector.add(5);
+        vector.add(6);
+        vector.add(7);
+        vector.add(8);
+        vector.add(9);
+        vector.add(10);
+
+
+        /*for (Integer itm : vector) {
+            vector.remove(itm);
+        }*/
+
+        Iterator<Integer> iterator = vector.iterator();
+
+        while (iterator.hasNext()) {
+            //vector.remove(iterator.next());
+            if (iterator.next() == 5) {
+                iterator.remove();
+            }
+        }
+
+        System.out.println(vector);
+
+    }
+
+    private static void testDivide() {
+        System.out.println((int)(((float)97.5/100)*100));
     }
 
     private static void testGuaFen() {
