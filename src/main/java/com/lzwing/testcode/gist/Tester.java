@@ -9,7 +9,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.RandomUtils;
 
+import java.io.File;
+import java.io.FileFilter;
+import java.math.BigInteger;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
 
 import static java.util.stream.Collectors.toList;
@@ -39,7 +43,96 @@ public class Tester {
 //        testGuaFen();
 //        testDivide();
 //        testVectorDelete();
-        testDeadLoopTest();
+//        testDeadLoopTest();
+//        testFileFilter();
+//        testDateFunc();
+//        testprobablePrime();
+//        testSplit();
+//        testX();
+//        testCalendar();
+        testless18Chars();
+    }
+
+    private static void testless18Chars() {
+        String content = "我今天打卡了，凑够18个字我今天打卡了，凑够18个字我今天打卡了，凑够18个字我今天打卡了，凑够18个字我今天打卡了，凑够18个字我今天打卡了，凑够18个字";
+
+        if (content.length() >= 18) {
+            content = String.format("%s...",content.substring(0, 18));
+        }
+
+        System.out.println(content);
+    }
+
+    private static void testCalendar() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2018, Calendar.NOVEMBER, 24,0,0,0);
+        Date dateTime = calendar.getTime();
+        Date now = new Date();
+        if (now.after(dateTime)) {
+            System.out.println("after...");
+        } else {
+            System.out.println("before...");
+        }
+    }
+
+    private static void testX() {
+
+        for (int i = 1; i <= 1000; i++) {
+            boolean f1 = (i-5)%5==0;
+            boolean f2 = (i-6)%6==0;
+            boolean f3 = (i-7)%7==0;
+            if (f1 && f2 && f3) {
+                System.out.println(i);
+            }
+        }
+    }
+
+    private static void testSplit() {
+
+        List<String> insertOpenIdList = new ArrayList<>();
+
+        for (int i = 0; i < 12345; i++) {
+            insertOpenIdList.add(i + "");
+        }
+
+        for (int i = 0; i < insertOpenIdList.size(); i += 100) {
+            int min = Math.min(i + 100, insertOpenIdList.size());
+            List<String> list2Insert = insertOpenIdList.subList(i, min);
+            System.out.println(list2Insert);
+        }
+
+
+
+        /*String str = "高等数学:::2018-11-23 11:30";
+
+        System.out.println(str.split(":::")[0]);
+        System.out.println(str.split(":::")[1]);*/
+
+        /*System.out.println(str.indexOf("x"));
+
+        System.out.println(str.split("\\?")[0]);*/
+    }
+
+    private static void testprobablePrime() throws Exception{
+        BigInteger p = BigInteger.ONE;
+        while (true) {
+            System.out.println("p:"+p);
+            p = p.nextProbablePrime();
+            TimeUnit.SECONDS.sleep(1);
+        }
+    }
+
+    private static void testDateFunc() {
+
+    }
+
+    private static void testFileFilter() {
+        FileFilter fileFilter = new FileFilter() {
+            @Override
+            public boolean accept(File pathname) {
+                return pathname.isFile();
+            }
+        };
     }
 
     private static void testDeadLoopTest() throws Exception{
@@ -52,7 +145,9 @@ public class Tester {
     private static void testVectorDelete() throws Exception{
 //        Vector<Integer> vector = new Vector<>();
 
-        List<Integer> vector = new ArrayList<>();
+//        List<Integer> vector = new ArrayList<>();
+//        List<Integer> vector = Collections.synchronizedList(new ArrayList<>());
+        List<Integer> vector = new CopyOnWriteArrayList<>();
 
         vector.add(1);
         vector.add(2);
@@ -65,21 +160,34 @@ public class Tester {
         vector.add(9);
         vector.add(10);
 
-
-        /*for (Integer itm : vector) {
-            vector.remove(itm);
-        }*/
-
         Iterator<Integer> iterator = vector.iterator();
 
         while (iterator.hasNext()) {
-            //vector.remove(iterator.next());
             if (iterator.next() == 5) {
-                iterator.remove();
+                //iterator.remove();
+                vector.remove(iterator.next());
             }
         }
 
+
         System.out.println(vector);
+/*
+//        Map<Integer, String> map = new HashMap<>();
+        Map<Integer, String> map = new ConcurrentHashMap<>();
+
+        map.put(1, "a");
+        map.put(2, "b");
+        map.put(3, "c");
+
+        for (Map.Entry<Integer, String> entry : map.entrySet()) {
+            if (entry.getKey() == 2) {
+                map.remove(entry.getKey());
+            }
+        }
+
+        System.out.println(map);*/
+
+
 
     }
 

@@ -45,7 +45,7 @@ public class ForkJoinPoolAction {
  * @version 1.0
  * @since JDK 1.7
  */
-class PrintTask extends RecursiveAction{
+class   PrintTask extends RecursiveAction{
     private static final int THRESHOLD = 50; //最多只能打印50个数
     private int start;
     private int end;
