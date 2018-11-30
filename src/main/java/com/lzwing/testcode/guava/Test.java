@@ -192,8 +192,8 @@ public class Test {
         //分割器
         Splitter splitter = Splitter.on(",").trimResults().omitEmptyStrings();
 
-        CharMatcher charMatcherDigit = CharMatcher.DIGIT;
-        CharMatcher charMatcherAny = CharMatcher.ANY;
+        CharMatcher charMatcherDigit = CharMatcher.digit();
+        CharMatcher charMatcherAny = CharMatcher.any();
 
         String join = joiner.join(Lists.newArrayList("a", null, "b"));
         System.out.println("join = " + join);
@@ -348,7 +348,7 @@ public class Test {
             public void onSuccess(Object result) {
                 System.out.println("start:" + result);
             }
-        });
+        },Executors.newSingleThreadExecutor());
     }
 
     public static void testOptionl() {

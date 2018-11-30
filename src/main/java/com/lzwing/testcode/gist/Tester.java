@@ -337,26 +337,26 @@ public class Tester {
 
     private static void testArrayListAndLinkedList() {
         int count = 100000;
-        Stopwatch stopwatch = new Stopwatch();
+        Stopwatch stopwatch = Stopwatch.createUnstarted();
         stopwatch.start();
         List<String> list = new ArrayList<>(count);
         for (int i = 0; i < list.size(); i++) {
             String s = list.get(i);
         }
         stopwatch.stop();
-        System.out.println("Array time:"+stopwatch.elapsedTime(TimeUnit.MILLISECONDS));
+        System.out.println("Array time:"+stopwatch.elapsed(TimeUnit.MILLISECONDS));
 
         list = new LinkedList<String>();
         for(int i=0;i<count;i++) {
             list.add(i+"");
         }
-        stopwatch = new Stopwatch();
+        stopwatch = Stopwatch.createUnstarted();
         stopwatch.start();
         for (int i = 0; i < list.size(); i++) {
             String s = list.get(i);
         }
         stopwatch.stop();
-        System.out.println("linklist time:"+stopwatch.elapsedTime(TimeUnit.MILLISECONDS));
+        System.out.println("linklist time:"+stopwatch.elapsed(TimeUnit.MILLISECONDS));
     }
 
     private static void testFilter() {
