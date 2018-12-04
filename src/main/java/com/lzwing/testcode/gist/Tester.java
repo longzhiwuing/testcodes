@@ -7,11 +7,13 @@ import com.lzwing.testcode.java8.niceexample.Address;
 import com.lzwing.testcode.java8.niceexample.User;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang.time.DurationFormatUtils;
 import org.apache.commons.lang3.RandomUtils;
 
 import java.io.File;
 import java.io.FileFilter;
 import java.math.BigInteger;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
@@ -50,7 +52,16 @@ public class Tester {
 //        testSplit();
 //        testX();
 //        testCalendar();
-        testless18Chars();
+//        testless18Chars();
+        testDJS();
+    }
+
+    private static void testDJS() throws Exception{
+        Date today = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date parse = sdf.parse("2018-12-23");
+        String dd = DurationFormatUtils.formatPeriod(today.getTime(), parse.getTime(), "dd");
+        System.out.println(dd);
     }
 
     private static void testless18Chars() {
