@@ -39,6 +39,27 @@ public class Tester {
 
         */
 
+
+
+    }
+
+    /**
+     * 统计map中相同的key的统计数量
+     * @param dateLists
+     * @return
+     */
+    private Map<String,Integer> getStatisticMap(List<Map<String,Integer>> dateLists){
+        Map<String,Integer> itmMap = new HashMap<>();
+        for(Map<String,Integer> map:dateLists){
+            for(Map.Entry<String,Integer> en:map.entrySet()){
+                int newCount = en.getValue();
+                if(itmMap.containsKey(en.getKey())){//结果map中有此key
+                    newCount += itmMap.get(en.getKey());
+                }
+                itmMap.put(en.getKey(),newCount);
+            }
+        }
+        return itmMap;
     }
 
     private static void newSetFromMap() {

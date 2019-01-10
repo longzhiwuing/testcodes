@@ -12,11 +12,14 @@ import org.apache.commons.lang3.RandomUtils;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static java.util.stream.Collectors.toList;
 
@@ -29,7 +32,29 @@ import static java.util.stream.Collectors.toList;
  */
 @Slf4j
 public class Tester {
-    public static void main(String[] args) throws Exception{
+    public static final Map<Integer, Integer> typeMap = new HashMap<Integer, Integer>() {
+        {
+            put(4, 1);
+            put(6, 1);
+            put(1, 1);
+            put(8, 1);
+            put(7, 2);
+            put(9, 2);
+            put(14, 2);
+            put(2, 2);
+            put(5, 3);
+            put(15, 3);
+            put(16, 3);
+            put(13, 3);
+            put(10, 4);
+            put(11, 4);
+            put(12, 4);
+            put(3, 4);
+        }
+    };
+    private static AtomicInteger totalCount = new AtomicInteger(0);
+
+    public static void main(String[] args) throws Exception {
 //        listDemos();
 //        testMaxMin();
 //        testIterator();
@@ -53,10 +78,109 @@ public class Tester {
 //        testX();
 //        testCalendar();
 //        testless18Chars();
-        testDJS();
+//        testDJS();
+//        testBigDecimal();
+//        testNumberConverter();
+//        testCountDown();
+//        testTypeMap();
+        testAtomic();
     }
 
-    private static void testDJS() throws Exception{
+
+    private static void testAtomic() {
+//        IOUtils.closeQuietly(oos);
+        List list = new ArrayList();
+        list.add("a");
+        list.add("a");
+        list.add("a");
+        list.add("a");
+        list.add("a");
+        totalCount.addAndGet(list.size());
+        list.size()
+        ;
+
+        System.out.println(totalCount.get());
+    }
+
+    private static void testTypeMap() {
+        System.out.println(typeMap.get(null));
+    }
+
+    private static void testCountDown() throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        String dd = DurationFormatUtils.formatPeriod(new Date().getTime(), sdf.parse("2018-12-11 00:00:00").getTime(), "dd");
+
+        System.out.println(dd);
+    }
+
+    public static String longto36(Long x) {
+        String[] a = new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+        Long b = x;
+        String nb = "";
+        while (b != 0) {
+            Long c = b % 36;
+            Long d = b / 36;
+            nb = a[c.intValue()] + nb;
+            b = Math.round(Math.floor(d));
+        }
+        switch (nb.length() % 6) {
+            case 0:
+                return nb;
+            case 1:
+                return "00000" + nb;
+            case 2:
+                return "0000" + nb;
+            case 3:
+                return "000" + nb;
+            case 4:
+                return "00" + nb;
+            case 5:
+                return "0" + nb;
+            default:
+                return "";
+        }
+    }
+
+    private static void testNumberConverter() {
+        /*System.out.println("把10进制，转化为2,8,16进制：");
+        System.out.println(Integer.toString(10));
+        System.out.println(Integer.toBinaryString(10));
+        System.out.println(Integer.toOctalString(10));
+        System.out.println(Integer.toHexString(10));*/
+        /*System.out.println(Integer.toString(100,36));
+
+        String s = longto36(Long.parseLong("100"));
+        System.out.println(s);*/
+
+        /*for (int i = 0; i < 100; i++) {
+            System.out.println(RandomUtils.nextInt(11, 21));
+        }*/
+
+        /*String favoriteTeacher = "";
+        System.out.println(StringUtils.defaultIfEmpty(favoriteTeacher, "某位老师"));
+        favoriteTeacher = null;
+        System.out.println(StringUtils.defaultIfEmpty(favoriteTeacher, "某位老师"));
+        favoriteTeacher = "张三";
+        System.out.println(StringUtils.defaultIfEmpty(favoriteTeacher, "某位老师"));*/
+
+        int inviteCount = 3;
+        int PRIZE_INVITE_COUNT = 10;
+        //int percent = (int) ((double) inviteCount / PRIZE_INVITE_COUNT) * 100;
+        NumberFormat percentFormat = NumberFormat.getPercentInstance();
+        String format = percentFormat.format((double) inviteCount / PRIZE_INVITE_COUNT);
+
+        System.out.println(format);
+    }
+
+    private static void testBigDecimal() {
+        BigDecimal totalLearningTime = new BigDecimal(1.99);
+        totalLearningTime = totalLearningTime.setScale(0, BigDecimal.ROUND_UP);
+
+        System.out.println(totalLearningTime);
+    }
+
+    private static void testDJS() throws Exception {
         Date today = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date parse = sdf.parse("2018-12-23");
@@ -68,7 +192,7 @@ public class Tester {
         String content = "我今天打卡了，凑够18个字我今天打卡了，凑够18个字我今天打卡了，凑够18个字我今天打卡了，凑够18个字我今天打卡了，凑够18个字我今天打卡了，凑够18个字";
 
         if (content.length() >= 18) {
-            content = String.format("%s...",content.substring(0, 18));
+            content = String.format("%s...", content.substring(0, 18));
         }
 
         System.out.println(content);
@@ -76,7 +200,7 @@ public class Tester {
 
     private static void testCalendar() {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(2018, Calendar.NOVEMBER, 24,0,0,0);
+        calendar.set(2018, Calendar.NOVEMBER, 24, 0, 0, 0);
         Date dateTime = calendar.getTime();
         Date now = new Date();
         if (now.after(dateTime)) {
@@ -89,9 +213,9 @@ public class Tester {
     private static void testX() {
 
         for (int i = 1; i <= 1000; i++) {
-            boolean f1 = (i-5)%5==0;
-            boolean f2 = (i-6)%6==0;
-            boolean f3 = (i-7)%7==0;
+            boolean f1 = (i - 5) % 5 == 0;
+            boolean f2 = (i - 6) % 6 == 0;
+            boolean f3 = (i - 7) % 7 == 0;
             if (f1 && f2 && f3) {
                 System.out.println(i);
             }
@@ -124,10 +248,10 @@ public class Tester {
         System.out.println(str.split("\\?")[0]);*/
     }
 
-    private static void testprobablePrime() throws Exception{
+    private static void testprobablePrime() throws Exception {
         BigInteger p = BigInteger.ONE;
         while (true) {
-            System.out.println("p:"+p);
+            System.out.println("p:" + p);
             p = p.nextProbablePrime();
             TimeUnit.SECONDS.sleep(1);
         }
@@ -146,14 +270,14 @@ public class Tester {
         };
     }
 
-    private static void testDeadLoopTest() throws Exception{
+    private static void testDeadLoopTest() throws Exception {
         while (true) {
             TimeUnit.SECONDS.sleep(1);
             System.out.println(new Date());
         }
     }
 
-    private static void testVectorDelete() throws Exception{
+    private static void testVectorDelete() throws Exception {
 //        Vector<Integer> vector = new Vector<>();
 
 //        List<Integer> vector = new ArrayList<>();
@@ -199,43 +323,43 @@ public class Tester {
         System.out.println(map);*/
 
 
-
     }
 
     private static void testDivide() {
-        System.out.println((int)(((float)97.5/100)*100));
+        System.out.println((int) (((float) 97.5 / 100) * 100));
     }
 
     private static void testGuaFen() {
-        double total_money=50000.00;
-        int total_people=3172;
-        double min_money=12.61; // 每个人最少能收到0.05元、
-        double max_money=18.91; // 每个人最少能收到0.05元、
-        double lingjiezhi=(total_money/total_people)*100;
-        double allresult=0;
-        for (int i = 0; i <total_people; i++) {
+        double total_money = 50000.00;
+        int total_people = 3172;
+        double min_money = 12.61; // 每个人最少能收到0.05元、
+        double max_money = 18.91; // 每个人最少能收到0.05元、
+        double lingjiezhi = (total_money / total_people) * 100;
+        double allresult = 0;
+        for (int i = 0; i < total_people; i++) {
 //保护值
-            double procte=(total_people-i-1)*min_money/100;;
+            double procte = (total_people - i - 1) * min_money / 100;
+            ;
 //可支配金额
-            double zpje=total_money-procte;
-            if(zpje*100<max_money){
-                max_money=zpje*100;
+            double zpje = total_money - procte;
+            if (zpje * 100 < max_money) {
+                max_money = zpje * 100;
             }
-            double result=restRound(min_money, max_money, i, zpje, total_people-1);
-            total_money=total_money-result;
-            allresult+=result;
-            System.out.format("红包  %.2f,余额  %.2f \n",result,total_money);
+            double result = restRound(min_money, max_money, i, zpje, total_people - 1);
+            total_money = total_money - result;
+            allresult += result;
+            System.out.format("红包  %.2f,余额  %.2f \n", result, total_money);
         }
-        System.out.format("总金额%.2f",allresult);
+        System.out.format("总金额%.2f", allresult);
     }
 
 
-    public static double restRound(double min,double max,int i,double money,int count){
-        double redpac=0;
-        if(i==19){
-            redpac=money;
-        }else{
-            redpac=(Math.random()*(max-min)+min)/100;
+    public static double restRound(double min, double max, int i, double money, int count) {
+        double redpac = 0;
+        if (i == 19) {
+            redpac = money;
+        } else {
+            redpac = (Math.random() * (max - min) + min) / 100;
         }
         return redpac;
     }
@@ -244,7 +368,7 @@ public class Tester {
 //        System.out.println((int) "A".charAt(0));
         String str = "M10";
 
-        System.out.println(str.substring(str.length()-1));
+        System.out.println(str.substring(str.length() - 1));
     }
 
     private static void testRuntimeException() {
@@ -261,10 +385,10 @@ public class Tester {
                 put("pre",new ArrayList<String>())
         });*/
 
-        Map<String, String> map = new HashMap<String,String>(){{
-            put("1","zs");
-            put("2","ls");
-            put("3","ww");
+        Map<String, String> map = new HashMap<String, String>() {{
+            put("1", "zs");
+            put("2", "ls");
+            put("3", "ww");
         }};
 
         System.out.println("map = " + map);
@@ -282,8 +406,6 @@ public class Tester {
         System.out.println("strings = " + strings);
 
 
-
-
     }
 
     private static void testLong() {
@@ -291,7 +413,7 @@ public class Tester {
         System.out.println("aLong = " + aLong);
     }
 
-    private static void testBeanUtils() throws Exception{
+    private static void testBeanUtils() throws Exception {
         /*Map<String, String> origin = new HashMap<>();
         origin.put("111", "aaa");
         origin.put("222", "bbb");
@@ -314,7 +436,7 @@ public class Tester {
         address.setCity("shanghai");
 //        dest.setAddress(address);
 
-        BeanUtils.copyProperties(origin,dest);
+        BeanUtils.copyProperties(origin, dest);
 
         System.out.println("origin = " + origin);
         System.out.println("dest = " + dest);
@@ -327,21 +449,21 @@ public class Tester {
     }
 
     private static void testFinallyReturn() {
-        for(int i=0;i<10;i++) {
+        for (int i = 0; i < 10; i++) {
             int returnValue = getReturnValue();
-            log.info("return value:{}",returnValue);
+            log.info("return value:{}", returnValue);
         }
     }
 
     private static int getReturnValue() {
         try {
-            if (RandomUtils.nextInt()%2==0) {
+            if (RandomUtils.nextInt() % 2 == 0) {
                 throw new Exception("test");
             }
             return 1;
         } catch (Exception e) {
             return 2;
-        }finally {
+        } finally {
             return 3;
         }
     }
@@ -355,11 +477,11 @@ public class Tester {
             String s = list.get(i);
         }
         stopwatch.stop();
-        System.out.println("Array time:"+stopwatch.elapsed(TimeUnit.MILLISECONDS));
+        System.out.println("Array time:" + stopwatch.elapsed(TimeUnit.MILLISECONDS));
 
         list = new LinkedList<String>();
-        for(int i=0;i<count;i++) {
-            list.add(i+"");
+        for (int i = 0; i < count; i++) {
+            list.add(i + "");
         }
         stopwatch = Stopwatch.createUnstarted();
         stopwatch.start();
@@ -367,14 +489,17 @@ public class Tester {
             String s = list.get(i);
         }
         stopwatch.stop();
-        System.out.println("linklist time:"+stopwatch.elapsed(TimeUnit.MILLISECONDS));
+        System.out.println("linklist time:" + stopwatch.elapsed(TimeUnit.MILLISECONDS));
     }
 
     private static void testFilter() {
-        List<String> list = Lists.newArrayList("a","b","c");
+        List<String> list = Lists.newArrayList("a", "b", "c");
         Objects.requireNonNull(list);
 
-        List<String> filterList = list.stream().filter(s ->{int len = s.length()-1;return len%2==0;}).collect(toList());
+        List<String> filterList = list.stream().filter(s -> {
+            int len = s.length() - 1;
+            return len % 2 == 0;
+        }).collect(toList());
 
         System.out.println("filterList = " + filterList);
     }
@@ -398,10 +523,10 @@ public class Tester {
             }
         }*/
 
-        while(it.hasNext()){
+        while (it.hasNext()) {
             String str = it.next();
             System.out.println(str);
-            if(str.equals("aaa")){
+            if (str.equals("aaa")) {
 //                list.remove(str);
                 it.remove();
             }
