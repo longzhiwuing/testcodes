@@ -15,6 +15,7 @@ import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.collect.*;
 import com.google.common.primitives.Ints;
+import com.google.common.primitives.Longs;
 import com.google.common.reflect.Reflection;
 import com.google.common.util.concurrent.*;
 import lombok.extern.slf4j.Slf4j;
@@ -72,7 +73,18 @@ public class Test {
 //        testInts();
 //        testCollection2();
 //        testMultiMapIndex();
-        testMultiMap();
+//        testMultiMap();
+        testLongParse();
+    }
+
+    private static void testLongParse() {
+        Long aLong = Longs.tryParse("123");
+
+        Long aLong1 = Long.valueOf("123");
+        long l = Long.parseLong("123");
+
+        log.info("aLong:{}", aLong);
+        log.info("aLong1:{}", aLong1);
     }
 
     private static void testMultiMap() {

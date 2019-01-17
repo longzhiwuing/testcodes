@@ -2,7 +2,10 @@ package com.lzwing.testcode.mockito;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import org.mockito.Mockito;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -46,5 +49,15 @@ public class Tester {
         System.out.println(mockedList.get(0));
         // the following prints "null" because get(999) was not stubbed
         System.out.println(mockedList.get(999));
+    }
+
+    @Test
+    public void test2() throws Exception{
+        MultipartFile multipartFile = Mockito.mock(MultipartFile.class);
+        multipartFile.transferTo(new File("/"));
+
+//        Mockito.when(multipartFile.transferTo(new File("/")));
+
+        Mockito.verify(multipartFile).transferTo(new File("/"));
     }
 }

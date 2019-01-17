@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang.time.DurationFormatUtils;
 import org.apache.commons.lang3.RandomUtils;
+import org.mockito.Mockito;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -83,7 +85,22 @@ public class Tester {
 //        testNumberConverter();
 //        testCountDown();
 //        testTypeMap();
-        testAtomic();
+//        testAtomic();
+//        testFileTransferTo();
+        testProperties();
+    }
+
+    private static void testProperties() {
+        //vm options: -Daaa=bbb
+        String property = System.getProperty("aaa");
+        System.out.println(property);
+    }
+
+    private static void testFileTransferTo() throws Exception{
+        MultipartFile multipartFile = Mockito.mock(MultipartFile.class);
+        multipartFile.transferTo(new File("/"));
+
+        Mockito.verify(multipartFile).transferTo(new File("/"));
     }
 
 
