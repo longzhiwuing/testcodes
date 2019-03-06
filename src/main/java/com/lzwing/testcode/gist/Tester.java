@@ -5,8 +5,11 @@ import com.google.common.base.Stopwatch;
 import com.google.common.collect.Lists;
 import com.lzwing.testcode.java8.niceexample.Address;
 import com.lzwing.testcode.java8.niceexample.User;
+import com.lzwing.testcode.utils.other.DateTimeUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.time.DurationFormatUtils;
 import org.apache.commons.lang3.RandomUtils;
 import org.mockito.Mockito;
@@ -18,6 +21,11 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjusters;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
@@ -87,7 +95,92 @@ public class Tester {
 //        testTypeMap();
 //        testAtomic();
 //        testFileTransferTo();
-        testProperties();
+//        testProperties();
+//        testTime();
+
+//        testGetData();
+
+        testMapUtils();
+    }
+
+    private static void testMapUtils() {
+        Map<String, Object> map = new HashMap<>();
+        List<String> lists = new ArrayList<>();
+        System.out.println(CollectionUtils.isEmpty(lists));
+
+        System.out.println(MapUtils.isEmpty(map));
+    }
+
+    private static void testGetData() {
+        Calendar c = Calendar.getInstance();
+        c.set(2019,0,21);
+        Date start = c.getTime();
+        c.set(2019, 0, 28);
+        Date end = c.getTime();
+
+        Map<String, Object> data = getData(start, end);
+
+        System.out.println(data);
+    }
+
+    public static Map<String, Object> getData(Date startTime,Date endTime) {
+        Map<String, Object> dataMap = new HashMap<>();
+        LocalDate stLocalDate = DateTimeUtil.date2localDate(startTime);
+        LocalDate edLocalDate = DateTimeUtil.date2localDate(endTime);
+
+        LocalDate stNextWeekMonday = stLocalDate.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
+
+        //获取开始日期当周的星期一
+        LocalDate stWeekMonday = stNextWeekMonday.plus(-1, ChronoUnit.WEEKS);
+        //获取结束日期当周的星期天
+        LocalDate edWeekSunday = edLocalDate.with(TemporalAdjusters.next(DayOfWeek.SUNDAY));
+
+        Period p = Period.between(stWeekMonday, edWeekSunday);
+
+        long periodDays = p.get(ChronoUnit.DAYS);
+        long weekCount = periodDays / 7 + 1;
+
+        dataMap.put("weekCount", weekCount);
+        LocalDate itm = stWeekMonday;
+        LocalDate lastDay = edWeekSunday.plus(1, ChronoUnit.DAYS);
+        List<List<String>> dateWeekList = new ArrayList<>();
+        List<String> weekList = null;
+        int dayCount = 0;
+        while (itm.compareTo(lastDay) != 0) {
+            if (dayCount == 0) {
+                weekList = new ArrayList<>();
+            }
+            weekList.add(DateTimeUtil.getDate(DateTimeUtil.localDate2Date(itm)));
+            dayCount++;
+            if (dayCount == 7) {
+                dateWeekList.add(weekList);
+                dayCount = 0;
+            }
+            itm = itm.plus(1, ChronoUnit.DAYS);
+        }
+
+        dataMap.put("dateWeekList", dateWeekList);
+
+        return dataMap;
+    }
+
+    private static void testTime() {
+        LocalDate now = LocalDate.now();
+        LocalDate nextWeekMonday = now.with(TemporalAdjusters.next(DayOfWeek.SATURDAY));
+        LocalDate nextWeekMonday1 = now.with(TemporalAdjusters.next(DayOfWeek.SUNDAY));
+
+        System.out.println(nextWeekMonday.compareTo(nextWeekMonday1));
+
+        /*//获取开始日期当周的星期一
+        LocalDate thisWeekMonday = nextWeekMonday.plus(-1, ChronoUnit.WEEKS);
+        //获取开始日期当周的星期天
+        LocalDate thisWeekSunday = nextWeekMonday.plus(-1, ChronoUnit.DAYS);
+        Period p = Period.between(thisWeekMonday, thisWeekSunday);
+        long periodDays = p.get(ChronoUnit.DAYS);
+        long week = periodDays / 7;
+
+
+        System.out.println(week);*/
     }
 
     private static void testProperties() {
