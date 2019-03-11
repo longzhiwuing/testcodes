@@ -100,7 +100,21 @@ public class Tester {
 
 //        testGetData();
 
-        testMapUtils();
+//        testMapUtils();
+        testStringJoiner();
+    }
+
+    private static void testStringJoiner() {
+        StringJoiner sj = new StringJoiner("Hollis");
+
+        sj.add("hollischuang");
+        sj.add("Java干货");
+        System.out.println(sj.toString());
+
+        StringJoiner sj1 = new StringJoiner(":","[","]");
+
+        sj1.add("Hollis").add("hollischuang").add("Java干货");
+        System.out.println(sj1.toString());
     }
 
     private static void testMapUtils() {
