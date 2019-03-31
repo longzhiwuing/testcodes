@@ -43,7 +43,7 @@ public class TimeTest {
 //        timeStampDemo();
 //        formatDemo();
 //        date2LocalDate();
-        getCustomDate();
+//        getCustomDate();
     }
 
     private static void date2LocalDate() {
