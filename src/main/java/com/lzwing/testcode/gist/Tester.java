@@ -2,7 +2,6 @@ package com.lzwing.testcode.gist;
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.Stopwatch;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.lzwing.testcode.java8.niceexample.Address;
 import com.lzwing.testcode.java8.niceexample.User;
@@ -31,7 +30,6 @@ import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -103,25 +101,6 @@ public class Tester {
 //        testGetData();
 
 //        testMapUtils();
-        testStringJoiner();
-    }
-
-    private static void testStringJoiner() {
-        StringJoiner sj = new StringJoiner("Hollis");
-
-        sj.add("hollischuang");
-        sj.add("Java干货");
-        System.out.println(sj.toString());
-
-        StringJoiner sj1 = new StringJoiner(":","[","]");
-
-        sj1.add("Hollis").add("hollischuang").add("Java干货");
-        System.out.println(sj1.toString());
-
-
-        List<String> list = ImmutableList.of("Hollis","hollischuang","Java干货");
-
-        System.out.println(list.stream().collect(Collectors.joining(",")));
     }
 
     private static void testMapUtils() {
