@@ -101,6 +101,42 @@ public class Tester {
 //        testGetData();
 
 //        testMapUtils();
+
+//        testDebug();
+
+//        testFilePath();
+
+        testStringFormat();
+    }
+
+    private static void testStringFormat() {
+        System.out.println(String.format("%s.%%", "n"));
+    }
+
+    private static void testFilePath() {
+        File file = new File("/Users/longzhiwu/Resources/研词/wordmp3");
+
+        if (file.exists() && file.isDirectory()) {
+            for (File f : file.listFiles()) {
+                if (Objects.equals(f.getName(), ".DS_Store")) {
+                    continue;
+                }
+                //System.out.println(f.getName());
+            }
+        }
+    }
+
+    private static void testDebug() {
+        System.out.println("begin...");
+        int a = 0;
+        System.out.println("init");
+        if (a == 1) {
+            System.out.println("a==1");
+        }
+
+        if (a == 2) {
+            System.out.println("a==2");
+        }
     }
 
     private static void testMapUtils() {

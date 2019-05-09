@@ -1,4 +1,4 @@
-package com.lzwing.testcode.thread.threadpoll;
+package com.lzwing.testcode.thread.threadpool;
 
 import java.util.concurrent.*;
 
