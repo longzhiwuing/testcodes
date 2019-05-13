@@ -36,7 +36,9 @@ public class Tester {
 
         System.out.println(Arrays.toString(arr));
 
-        int[] tempArr = new int[20];
+        //answer 1
+
+        /*int[] tempArr = new int[20];
 
         for (int i = 0; i < 20; i++) {
             if (i < arr.length) {
@@ -52,6 +54,19 @@ public class Tester {
             }
         }
 
-        System.out.println(resList);
+        System.out.println(resList);*/
+
+
+        //answer 2
+        /*int[] temp = new int[21];
+        for (int i = 0; i < arr.length; i++) {
+            temp[arr[i]]++;
+        }
+
+        for (int i = 0; i < 21; i++) {
+            for (int j = 0; j < temp[i]; j++) {
+                System.out.println(i);
+            }
+        }*/
     }
 }
