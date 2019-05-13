@@ -1,4 +1,4 @@
-package com.lzwing.testcode.fanxing;
+package com.lzwing.testcode.clone.deepclone;
 
 /**
  * Created with IntelliJ IDEA.

@@ -1,13 +1,13 @@
 /**
  * Project Name:TestCodes
  * File Name:TestDao.java
- * Package Name:com.test.fanxing
+ * Package Name:com.test.clone
  * Date:2017年7月28日下午4:39:07
  * Copyright (c) 2017, chenzhongyong@cecdat.com All Rights Reserved.
  *
 */
 
-package com.lzwing.testcode.fanxing;
+package com.lzwing.testcode.clone.deepclone;
 
 import java.util.List;
 
