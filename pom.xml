@@ -5,6 +5,9 @@
     <groupId>com.lzwing</groupId>
     <artifactId>testcode</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <modules>
+        <module>spdemo</module>
+    </modules>
     <packaging>jar</packaging>
 
     <name>testcode</name>

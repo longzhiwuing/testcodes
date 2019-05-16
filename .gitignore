@@ -5,3 +5,6 @@
 /testcode.iml
 /.idea/
 /log.home_IS_UNDEFINED/
+/spdemo/target/
+/spdemo/spdemo.iml
+/.gitignore
