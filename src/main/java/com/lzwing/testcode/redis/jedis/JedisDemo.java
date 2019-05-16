@@ -14,7 +14,8 @@ import java.util.List;
 public class JedisDemo {
     private static JedisPool pool; //线程池对象
 //    private static String ADDR = "172.16.21.133";
-    private static String ADDR = "10.1.11.169";
+//    private static String ADDR = "10.1.11.169";
+    private static String ADDR = "127.0.0.1";
     private static int PORT = 6379;
 //    private static int PORT = 19000;
     private static String AUTH = "";
