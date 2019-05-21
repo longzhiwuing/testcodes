@@ -106,10 +106,24 @@ public class Tester {
 
 //        testFilePath();
 
-        testStringFormat();
+//        testStringFormat();
+
+        testTreeMap();
+    }
+
+    private static void testTreeMap() {
+        ComapreObj comapreObj1 = new ComapreObj(1);
+        ComapreObj comapreObj2 = new ComapreObj(2);
+
+        TreeMap<ComapreObj, String> treeMap = new TreeMap<>();
+        treeMap.put(comapreObj1, "aaa");
+        treeMap.put(comapreObj2, "bbb");
+
+        System.out.println(treeMap);
     }
 
     private static void testStringFormat() {
+        CollectionUtils.isEmpty(new ArrayList());
         System.out.println(String.format("%s.%%", "n"));
     }
 
