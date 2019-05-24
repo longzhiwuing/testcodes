@@ -108,7 +108,14 @@ public class Tester {
 
 //        testStringFormat();
 
-        testTreeMap();
+//        testTreeMap();
+        testStringBuffterReverse();
+    }
+
+    private static void testStringBuffterReverse() {
+        String test = "abcdefg";
+        StringBuffer reverse = new StringBuffer(test).reverse();
+        System.out.println(reverse.toString());
     }
 
     private static void testTreeMap() {
