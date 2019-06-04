@@ -351,6 +351,12 @@
             <artifactId>spring-test</artifactId>
             <version>5.0.9.RELEASE</version>
         </dependency>
+        <!--用来测量对象所占内存大小-->
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-core</artifactId>
+            <version>4.0.0</version>
+        </dependency>
 
 
     </dependencies>
