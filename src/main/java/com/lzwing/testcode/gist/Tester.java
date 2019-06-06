@@ -30,6 +30,8 @@ import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 import static java.util.stream.Collectors.toList;
 
@@ -110,6 +112,20 @@ public class Tester {
 
 //        testTreeMap();
 //        testStringBuffterReverse();
+
+        testJarFile();
+    }
+
+    private static void testJarFile() throws Exception{
+        String jarFilePath = "/Users/longzhiwu/softwares/devtools/mavenJars/repository/cn/afterturn/easypoi-base/3.2.0/easypoi-base-3.2.0.jar";
+        JarFile jarFile = new JarFile(jarFilePath);
+
+        Enumeration<JarEntry> entries = jarFile.entries();
+        int i=0;
+        while (entries.hasMoreElements()) {
+            JarEntry entry = entries.nextElement();
+            System.out.println(entry.getName());
+        }
     }
 
     private static void testStringBuffterReverse() {
