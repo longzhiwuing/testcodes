@@ -3,7 +3,7 @@ package com.lzwing.testcode.thread.threadlocal;
 class ThreadTest implements Runnable {
 
     // private int count = 5;
-    ThreadLocal<Integer> count = new ThreadLocal<Integer>() {
+    private static ThreadLocal<Integer> count = new ThreadLocal<Integer>() {
         public Integer initialValue() {
             return 5;
         }

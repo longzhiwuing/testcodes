@@ -8,11 +8,11 @@ import com.lzwing.testcode.java8.niceexample.User;
 import com.lzwing.testcode.utils.other.DateTimeUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.time.DurationFormatUtils;
 import org.apache.commons.lang3.RandomUtils;
 import org.mockito.Mockito;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -113,7 +113,18 @@ public class Tester {
 //        testTreeMap();
 //        testStringBuffterReverse();
 
-        testJarFile();
+//        testJarFile();
+        testInteger();
+    }
+
+    private static void testInteger() {
+        System.out.println(Integer.SIZE);
+
+        int[] a = {1, 2, 3};
+        List list = CollectionUtils.arrayToList(a);
+
+        System.out.println(list);
+
     }
 
     private static void testJarFile() throws Exception{
