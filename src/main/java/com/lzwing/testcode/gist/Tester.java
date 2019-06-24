@@ -114,7 +114,33 @@ public class Tester {
 //        testStringBuffterReverse();
 
 //        testJarFile();
-        testInteger();
+//        testInteger();
+
+        testTryCatchOrder();
+    }
+
+
+    private static void testTryCatchOrder() {
+        Integer integer = testObjectRequireNonNull();
+        log.info("integer:{}", integer);
+    }
+
+    private static Integer testObjectRequireNonNull() {
+        /*File f = null;
+        File file = Objects.requireNonNull(f);
+
+        log.info("file:{}", file);*/
+
+
+        try {
+            log.info("try...");
+        } catch (Exception e) {
+            log.info("catch...");
+        }finally {
+            log.info("finally...");
+        }
+
+        return 3;
     }
 
     private static void testInteger() {
