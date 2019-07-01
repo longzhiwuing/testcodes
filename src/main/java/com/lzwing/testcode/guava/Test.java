@@ -69,12 +69,12 @@ public class Test {
 
 //        testGetOrDefualt();
 
-//        testJoinAndSplitterCharMatcher();
+        testJoinAndSplitterCharMatcher();
 //        testInts();
 //        testCollection2();
 //        testMultiMapIndex();
 //        testMultiMap();
-        testLongParse();
+//        testLongParse();
     }
 
     private static void testLongParse() {
@@ -198,7 +198,7 @@ public class Test {
     }
 
     private static void testJoinAndSplitterCharMatcher() {
-        //连接器
+        /*//连接器
         Joiner joiner = Joiner.on(",").skipNulls();
 
         //分割器
@@ -218,7 +218,15 @@ public class Test {
         System.out.println(charMatcherDigit.removeFrom("abc23423def435gh"));
 
         //按规则隐藏字符
-        System.out.println(charMatcherAny.inRange('a', 'f').or(charMatcherAny.is('n')).replaceFrom("longzhiwuing", "*"));
+        System.out.println(charMatcherAny.inRange('a', 'f').or(charMatcherAny.is('n')).replaceFrom("longzhiwuing", "*"));*/
+
+        Splitter splitter = Splitter.on("|").trimResults().omitEmptyStrings();
+
+        Iterable<String> split = splitter.split("a|b|c");
+
+        System.out.println(split);
+
+
     }
 
     private static void testGetOrDefualt() {

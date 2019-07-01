@@ -11,6 +11,8 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.time.DurationFormatUtils;
 import org.apache.commons.lang3.RandomUtils;
+import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
 import org.mockito.Mockito;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -116,7 +118,56 @@ public class Tester {
 //        testJarFile();
 //        testInteger();
 
-        testTryCatchOrder();
+//        testTryCatchOrder();
+
+//        testListRemove();
+
+
+//        testJodaTime();
+
+        testBinaryInteger();
+    }
+
+    private static void testBinaryInteger() {
+        Integer type = 2;
+        String s = Integer.toBinaryString(type);
+
+
+
+        /*System.out.println(Integer.toBinaryString(1).charAt(1));
+        System.out.println(Integer.toBinaryString(2).charAt(1));
+        System.out.println(Integer.toBinaryString(3).charAt(1));*/
+
+        /*System.out.println((type&0b10)==2);
+
+        System.out.println((type&0b01)==1);*/
+
+        Integer a = 0;
+
+        Integer b = 0;
+
+        System.out.println(a.equals(b));
+    }
+
+    private static void testJodaTime() {
+        Date now = new Date();
+        LocalDateTime courseStartDateTime = new DateTime(now).withTimeAtStartOfDay().toLocalDateTime();
+        Date courseStartDate =  courseStartDateTime.toDate();
+        Date courseEndDate = courseStartDateTime.plusDays(1).toDate();
+
+        System.out.println(courseStartDate);
+        System.out.println(courseEndDate);
+    }
+
+    private static void testListRemove() {
+        List<String> list = new ArrayList<>();
+        list.add("1");
+        list.add("2");
+        for (String item : list) {
+            if ("2".equals(item)) {
+                list.remove(item);
+            }
+        }
     }
 
 
