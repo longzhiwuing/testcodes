@@ -1,4 +1,4 @@
-package com.lzwing.testcode.gof23.Decorator;
+package com.lzwing.testcode.gof23.decorator;
 
 /**
  * Created with IntelliJ IDEA.

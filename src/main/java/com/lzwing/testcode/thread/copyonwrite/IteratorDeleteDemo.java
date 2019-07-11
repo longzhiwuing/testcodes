@@ -17,15 +17,15 @@ import java.util.List;
  */
 public class IteratorDeleteDemo {
     public static void main(String[] args) {
-//        exceptionDemo();
-        iteratorDemo();
+        exceptionDemo();
+//        iteratorDemo();
     }
 
     private static void exceptionDemo() {
 //        List<Integer> list = Lists.newArrayList(1,2,3,4,5,6);
-        List<Integer> list = Lists.newArrayList();
+//        List<Integer> list = Lists.newArrayList();
 
-//        List<Integer> list = Lists.newCopyOnWriteArrayList();
+        List<Integer> list = Lists.newCopyOnWriteArrayList();
         for (int i = 1; i <= 6; i++) {
             list.add(i);
         }
@@ -51,7 +51,8 @@ public class IteratorDeleteDemo {
 
         while (iterator.hasNext()) {
             if (iterator.next() == 4) {
-                list.remove(iterator.next());
+                //list.remove(iterator.next());
+                iterator.remove();
             }
         }
 

@@ -125,7 +125,36 @@ public class Tester {
 
 //        testJodaTime();
 
-        testBinaryInteger();
+//        testBinaryInteger();
+
+//        testRandom();
+        testNan();
+    }
+
+    private static void testNan() {
+        Float a = 1f;
+        Float b = 1f;
+
+        System.out.println(a != a);
+        System.out.println(Float.isNaN(a));
+    }
+
+    private static void testRandom() {
+
+        String baseUrl = "https://yueke.neibu.koolearn.com";
+
+        baseUrl = baseUrl.split("://")[1];
+        System.out.println(baseUrl);
+
+        Random random = new Random(100);
+        System.out.println(random.nextInt(10) + "," + random.nextInt(30) + "," + random.nextInt(50));
+
+        random = new Random(100);
+        System.out.println(random.nextInt(10) + "," + random.nextInt(30) + "," + random.nextInt(50));
+
+        random = new Random(100);
+        System.out.println(random.nextInt(10) + "," + random.nextInt(30) + "," + random.nextInt(50));
+
     }
 
     private static void testBinaryInteger() {

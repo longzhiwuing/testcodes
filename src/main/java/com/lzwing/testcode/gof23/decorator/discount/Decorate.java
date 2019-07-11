@@ -1,4 +1,4 @@
-package com.lzwing.testcode.gof23.Decorator.discount;
+package com.lzwing.testcode.gof23.decorator.discount;
 
 /**
  * @see io.netty.buffer.WrappedByteBuf;
