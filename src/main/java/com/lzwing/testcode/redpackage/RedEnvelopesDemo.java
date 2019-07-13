@@ -1,4 +1,4 @@
-package com.lzwing.testcode.gist;
+package com.lzwing.testcode.redpackage;
 
 import java.util.ArrayList;
 import java.util.List;

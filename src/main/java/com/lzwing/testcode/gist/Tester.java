@@ -1,5 +1,6 @@
 package com.lzwing.testcode.gist;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.Stopwatch;
 import com.google.common.collect.Lists;
@@ -128,7 +129,19 @@ public class Tester {
 //        testBinaryInteger();
 
 //        testRandom();
-        testNan();
+//        testNan();
+        testJsArray();
+    }
+
+    private static void testJsArray() {
+//        String str = "[\"https://cdn-zky.neibu.koo.cn/club/picture/b31ac2a4927c4a758f4a5742b77d67e0.jpg\",\"https://cdn-zky.neibu.koo.cn/club/picture/2c814a183b23430686e78768463add95.jpg\"]";
+
+        String str = "sdfasdf";
+        JSONArray jsonArray = JSONArray.parseArray(str);
+
+        for (int i = 0; i < jsonArray.size(); i++) {
+            System.out.println(jsonArray.get(i));
+        }
     }
 
     private static void testNan() {
