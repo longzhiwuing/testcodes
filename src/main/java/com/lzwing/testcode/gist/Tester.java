@@ -10,6 +10,7 @@ import com.lzwing.testcode.utils.other.DateTimeUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.MapUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.time.DurationFormatUtils;
 import org.apache.commons.lang3.RandomUtils;
 import org.joda.time.DateTime;
@@ -130,7 +131,27 @@ public class Tester {
 
 //        testRandom();
 //        testNan();
-        testJsArray();
+//        testJsArray();
+        testCommonJars();
+    }
+
+    private static void testCommonJars() {
+
+        //参考：https://juejin.im/post/5d4a25b351882505c105cc6e?utm_source=gold_browser_extension
+
+        String downloadPath = "/Users/longzhiwu/Downloads/test.txt";
+        System.out.println(FilenameUtils.getExtension(downloadPath));
+        System.out.println(FilenameUtils.getBaseName(downloadPath));
+        System.out.println(FilenameUtils.getName(downloadPath));
+        System.out.println(FilenameUtils.removeExtension(downloadPath));
+        System.out.println(FilenameUtils.getFullPath(downloadPath));
+        System.out.println(FilenameUtils.separatorsToUnix(downloadPath));
+        System.out.println(FilenameUtils.isExtension(downloadPath,"txt"));
+        System.out.println(FilenameUtils.concat(downloadPath,"add"));
+        System.out.println(FilenameUtils.normalize(downloadPath));
+        System.out.println(FilenameUtils.wildcardMatch(downloadPath,"*.txt"));
+
+
     }
 
     private static void testJsArray() {

@@ -17,9 +17,9 @@ public class TimeStringUtils {
 
     public static void main(String[] args) {
 //         testStopWatch();
-//        testSpringStopWatch();
+        testSpringStopWatch();
 //        dateTest();
-        timeStrTest();
+//        timeStrTest();
     }
 
     private static void testStopWatch() {
