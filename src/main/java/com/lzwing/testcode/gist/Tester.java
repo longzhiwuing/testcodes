@@ -132,7 +132,8 @@ public class Tester {
 //        testRandom();
 //        testNan();
 //        testJsArray();
-        testCommonJars();
+//        testCommonJars();
+        testLong();
     }
 
     private static void testCommonJars() {
@@ -743,8 +744,12 @@ public class Tester {
     }
 
     private static void testLong() {
-        Long aLong = Long.valueOf("");
-        System.out.println("aLong = " + aLong);
+        /*Long aLong = Long.valueOf("");
+        System.out.println("aLong = " + aLong);*/
+
+        long interval = 1000_000_000;
+
+        System.out.println(interval);
     }
 
     private static void testBeanUtils() throws Exception {
