@@ -1,4 +1,4 @@
-package com.lzwing.testcode.utils.other;
+package com.lzwing.testcode.utils.common;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;

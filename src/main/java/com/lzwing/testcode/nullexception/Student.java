@@ -40,7 +40,7 @@ public class Student {
             return false;  
           
         Student other = (Student) obj;  
-        //if (age != other.age)  
+        //if (age != common.age)
         //  return false;  
         if (name == null) {  
             if (other.name != null)  

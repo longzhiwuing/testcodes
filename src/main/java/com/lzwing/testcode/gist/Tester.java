@@ -6,7 +6,7 @@ import com.google.common.base.Stopwatch;
 import com.google.common.collect.Lists;
 import com.lzwing.testcode.java8.niceexample.Address;
 import com.lzwing.testcode.java8.niceexample.User;
-import com.lzwing.testcode.utils.other.DateTimeUtil;
+import com.lzwing.testcode.utils.common.DateTimeUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.MapUtils;
@@ -32,6 +32,8 @@ import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.jar.JarEntry;
@@ -133,7 +135,34 @@ public class Tester {
 //        testNan();
 //        testJsArray();
 //        testCommonJars();
-        testLong();
+//        testLong();
+//        testLoop();
+        testLoopThreadPool();
+    }
+
+    private static void testLoopThreadPool() {
+        ExecutorService executor = Executors.newFixedThreadPool(20);
+        for (int i = 0; i < 16; i++) {
+            int finalI = i;
+            executor.execute(()->{
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(finalI);
+            });
+        }
+        executor.shutdown();
+
+    }
+
+    private static void testLoop() {
+        List list = null;
+
+        for (Object obj : list) {
+            System.out.println(obj);
+        }
     }
 
     private static void testCommonJars() {
