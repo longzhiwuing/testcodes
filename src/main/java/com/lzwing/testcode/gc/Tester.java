@@ -15,6 +15,7 @@ public class Tester {
             Foo foo = new Foo();
             foo.out();
         }
-        Thread.currentThread().join();
+        System.gc();
+//        Thread.currentThread().join();
     }
 }
