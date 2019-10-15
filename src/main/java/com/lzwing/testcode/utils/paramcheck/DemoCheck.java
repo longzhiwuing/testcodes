@@ -1,4 +1,4 @@
-package com.lzwing.testcode.paramcheck;
+package com.lzwing.testcode.utils.paramcheck;
 
 import lombok.NonNull;
 import org.apache.commons.lang3.StringUtils;
@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkElementIndex;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,15 +19,35 @@ import static com.google.common.base.Preconditions.checkArgument;
  */
 public class DemoCheck {
     public static void main(String[] args) {
-        String source = null;
 
-        checkNullAble(source);
+        //        testCheck();
+
+//        testCheckArg();
 
 
 //        System.out.println(lowerFirstLetter(source));
 
         //lombok
 //        System.out.println(lowerFirstLetter4Lombok(source));
+    }
+
+    private static void testCheck() {
+        String source = null;
+
+        checkNullAble(source);
+    }
+
+    public static void testCheckArg() {
+        int i = -10;
+
+        checkArgument(i >= 0, "Argument was %s but expected nonnegative", i);
+
+        int[] a = new int[3];
+        a[0] = 1;
+        a[1] = 1;
+        a[2] = 1;
+
+        checkElementIndex(0, a.length);
     }
 
     private static void checkNullAble(String input) {

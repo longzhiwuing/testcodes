@@ -1,4 +1,4 @@
-package com.lzwing.testcode.nullexception;
+package com.lzwing.testcode.utils.nullexception;
 
 import java.util.Comparator;
 import java.util.Objects;  

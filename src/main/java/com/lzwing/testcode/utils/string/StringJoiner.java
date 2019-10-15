@@ -1,4 +1,4 @@
-package com.lzwing.testcode.gist.string;
+package com.lzwing.testcode.utils.string;
 
 import com.google.common.base.Joiner;
 import com.google.common.collect.ImmutableList;

@@ -137,7 +137,110 @@ public class Tester {
 //        testCommonJars();
 //        testLong();
 //        testLoop();
-        testLoopThreadPool();
+//        testLoopThreadPool();
+//        testPriorityQueue();
+//        testHashCode();
+//        testThread();
+        testThreadCount();
+
+    }
+
+    private static void testThreadCount() {
+
+//        BeanValidators.validateWithException
+
+        System.out.println("hello world");
+        ThreadGroup group = Thread.currentThread().getThreadGroup();
+        ThreadGroup topGroup = group;
+        while (group != null) {
+            topGroup = group;
+            group = group.getParent();
+        }
+        int nowThreads = topGroup.activeCount();
+        Thread[] lstThreads = new Thread[nowThreads];
+        topGroup.enumerate(lstThreads);
+        for (int i = 0; i < nowThreads; i++) {
+            System.out.println("线程number:" + i + " = " + lstThreads[i].getName());
+        }
+    }
+
+    private static void testThread() {
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("aaa");
+            }
+        });
+
+        t.start();
+        t.start();
+    }
+
+    private static void testHashCode() {
+
+        String url = "http://www.baiduhttp.com";
+
+        //String replace = url.replace("http", "https");
+        String substring = String.format("https%s", url.substring(4));
+
+        System.out.println(substring);
+
+        /*Integer key = 96;
+        int h;
+        int val = (key == null) ? 0 : (h = key.hashCode()) ^ (h >>>16);
+
+        System.out.println(val);*/
+
+
+        /*System.out.println("a".hashCode());
+        System.out.println("b".hashCode());
+        System.out.println("c".hashCode());
+        System.out.println("1".hashCode());
+        System.out.println("2".hashCode());
+        System.out.println("3".hashCode());
+        System.out.println((int)"a".charAt(0));
+        System.out.println((int)"b".charAt(0));
+        System.out.println((int)"c".charAt(0));
+        System.out.println((int)"1".charAt(0));
+        System.out.println((int)"2".charAt(0));
+        System.out.println((int)"3".charAt(0));*/
+    }
+
+    private static void testPriorityQueue() {
+        /*Integer a = 1;
+        Integer b = 2;
+        System.out.println(a.compareTo(b));*/
+
+        //小顶堆，默认容量为11
+        PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>();
+
+        minHeap.add(5);
+        minHeap.add(1);
+        minHeap.add(3);
+        minHeap.add(2);
+        minHeap.add(4);
+
+        while (!minHeap.isEmpty()) {
+            System.out.println(minHeap.poll());
+        }
+
+        //大顶堆，容量11
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(11,new Comparator<Integer>(){
+            @Override
+            public int compare(Integer i1,Integer i2){
+                return i2-i1;
+            }
+        });
+
+        maxHeap.add(5);
+        maxHeap.add(1);
+        maxHeap.add(3);
+        maxHeap.add(2);
+        maxHeap.add(4);
+
+        /*for (int i = 0; i < 5; i++) {
+            System.out.println(maxHeap.poll());
+        }*/
     }
 
     private static void testLoopThreadPool() {

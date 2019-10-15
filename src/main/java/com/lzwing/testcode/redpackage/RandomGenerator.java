@@ -1,4 +1,4 @@
-package com.lzwing.testcode.guava.redpackage;
+package com.lzwing.testcode.redpackage;
 
 /* n个随机数，总和为sum，每个随机数的范围为[min,max]。
     前n-1个用rand函数随机产生，第n个数设为val=sum-（前n-1数之和）。

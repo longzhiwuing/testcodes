@@ -1,4 +1,4 @@
-package com.lzwing.testcode.nullexception;
+package com.lzwing.testcode.utils.nullexception;
 
 public class Student {
     private String name;  
