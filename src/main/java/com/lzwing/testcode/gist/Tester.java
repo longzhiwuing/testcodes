@@ -17,6 +17,7 @@ import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
 import org.mockito.Mockito;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StopWatch;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -141,8 +142,46 @@ public class Tester {
 //        testPriorityQueue();
 //        testHashCode();
 //        testThread();
-        testThreadCount();
+//        testThreadCount();
+//        testGetDigit();
+//        testTryCatchOrder();
 
+        testStopWatch();
+    }
+
+    private static void testStopWatch() throws Exception{
+        StopWatch sw = new StopWatch();
+
+
+        for (int i = 0; i < 10; i++) {
+            sw.start("i:"+i);
+            System.out.println("before");
+            Thread.sleep(500);
+            sw.stop();
+            sw.start("i:"+i);
+            System.out.println("after");
+            Thread.sleep(500);
+            sw.stop();
+        }
+
+        StopWatch sw1 = new StopWatch();
+        sw1.start("another");
+        System.out.println("another");
+        Thread.sleep(500);
+        sw1.stop();
+        System.out.println(sw1.prettyPrint());
+
+
+        System.out.println("###----###");
+        System.out.println(sw.prettyPrint());
+        System.out.println("###----###");
+
+//        System.out.println(new DateTime(new Date()).toString("yyyy-MM-dd"));
+    }
+
+    private static void testGetDigit() {
+        String s = String.valueOf(111);
+        System.out.println(s);
     }
 
     private static void testThreadCount() {
@@ -381,6 +420,7 @@ public class Tester {
 
         try {
             log.info("try...");
+            return 1;
         } catch (Exception e) {
             log.info("catch...");
         }finally {

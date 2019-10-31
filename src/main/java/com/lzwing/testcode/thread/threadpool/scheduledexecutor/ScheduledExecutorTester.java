@@ -19,5 +19,6 @@ public class ScheduledExecutorTester {
         executorService.scheduleAtFixedRate(()->{
             System.out.println(new DateTime());
         }, 0, 1000, TimeUnit.MILLISECONDS);
+
     }
 }
