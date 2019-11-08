@@ -6,7 +6,7 @@ import com.google.common.base.Stopwatch;
 import com.google.common.collect.Lists;
 import com.lzwing.testcode.java8.niceexample.Address;
 import com.lzwing.testcode.java8.niceexample.User;
-import com.lzwing.testcode.utils.common.DateTimeUtil;
+import com.lzwing.testcode.time.DateTimeUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.MapUtils;
@@ -146,7 +146,13 @@ public class Tester {
 //        testGetDigit();
 //        testTryCatchOrder();
 
-        testStopWatch();
+//        testStopWatch();
+//        testDivide();
+        testLoadClassFile();
+    }
+
+    private static void testLoadClassFile() {
+
     }
 
     private static void testStopWatch() throws Exception{
@@ -616,7 +622,7 @@ public class Tester {
     private static void testCountDown() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        String dd = DurationFormatUtils.formatPeriod(new Date().getTime(), sdf.parse("2018-12-11 00:00:00").getTime(), "dd");
+        String dd = DurationFormatUtils.formatPeriod(System.currentTimeMillis(), sdf.parse("2018-12-11 00:00:00").getTime(), "dd");
 
         System.out.println(dd);
     }
@@ -833,7 +839,13 @@ public class Tester {
     }
 
     private static void testDivide() {
+
+
         System.out.println((int) (((float) 97.5 / 100) * 100));
+
+        double price = 100d;
+        int num = 0;
+        System.out.println(price / num);
     }
 
     private static void testGuaFen() {

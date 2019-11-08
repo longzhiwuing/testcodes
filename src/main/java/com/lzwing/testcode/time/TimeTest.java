@@ -8,6 +8,9 @@
 
 package com.lzwing.testcode.time;
 
+import org.apache.commons.lang.time.DurationFormatUtils;
+
+import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -26,7 +29,7 @@ import java.util.Date;
  */
 public class TimeTest {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
 //		getToday();
 //		getNow();
 //		getYearMonthDay();
@@ -44,6 +47,19 @@ public class TimeTest {
 //        formatDemo();
 //        date2LocalDate();
 //        getCustomDate();
+        commonUtilsTest();
+    }
+
+    private static void commonUtilsTest() throws Exception{
+        testCountDown();
+    }
+
+    private static void testCountDown() throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        String dd = DurationFormatUtils.formatPeriod(System.currentTimeMillis(), sdf.parse("2019-12-11 00:00:00").getTime(), "dd");
+
+        System.out.println(dd);
     }
 
     private static void date2LocalDate() {
