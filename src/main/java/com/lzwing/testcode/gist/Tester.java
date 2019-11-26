@@ -148,11 +148,10 @@ public class Tester {
 
 //        testStopWatch();
 //        testDivide();
-        testLoadClassFile();
+        testIOUtils();
     }
 
-    private static void testLoadClassFile() {
-
+    private static void testIOUtils() {
     }
 
     private static void testStopWatch() throws Exception{

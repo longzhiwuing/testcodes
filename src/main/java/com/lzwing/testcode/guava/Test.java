@@ -69,7 +69,7 @@ public class Test {
 
 //        testGetOrDefualt();
 
-        testJoinAndSplitterCharMatcher();
+//        testJoinAndSplitterCharMatcher();
 //        testInts();
 //        testCollection2();
 //        testMultiMapIndex();
@@ -197,43 +197,11 @@ public class Test {
 
     }
 
-    private static void testJoinAndSplitterCharMatcher() {
-        /*//连接器
-        Joiner joiner = Joiner.on(",").skipNulls();
-
-        //分割器
-        Splitter splitter = Splitter.on(",").trimResults().omitEmptyStrings();
-
-        CharMatcher charMatcherDigit = CharMatcher.digit();
-        CharMatcher charMatcherAny = CharMatcher.any();
-
-        String join = joiner.join(Lists.newArrayList("a", null, "b"));
-        System.out.println("join = " + join);
-
-        for (String tmp : splitter.split(" a,   ,b,,")) {
-            System.out.printf("|%s|%n", tmp);
-        }
-
-        System.out.println(charMatcherDigit.retainFrom("abc23423def435gh"));
-        System.out.println(charMatcherDigit.removeFrom("abc23423def435gh"));
-
-        //按规则隐藏字符
-        System.out.println(charMatcherAny.inRange('a', 'f').or(charMatcherAny.is('n')).replaceFrom("longzhiwuing", "*"));*/
-
-        Splitter splitter = Splitter.on("|").trimResults().omitEmptyStrings();
-
-        Iterable<String> split = splitter.split("a|b|c");
-
-        System.out.println(split);
-
-
-    }
-
     private static void testGetOrDefualt() {
 
         //java 1.8 map.put(val, map.getOrDefault(val, 0) + 1);
 
-        Multimap<String, User> userMultimap = ArrayListMultimap.create();
+        /*Multimap<String, User> userMultimap = ArrayListMultimap.create();
 
         User u1 = new User().builder().isMale(false).name("zs").build();
         User u2 = new User().builder().isMale(true).name("lisi").build();
@@ -253,7 +221,7 @@ public class Test {
             userMultimap.put(gender, user);
         }
 
-        log.info("userMultimap:{}",userMultimap.asMap());
+        log.info("userMultimap:{}",userMultimap.asMap());*/
 
     }
 
@@ -347,6 +315,7 @@ public class Test {
         final AtomicInteger atomicInteger = new AtomicInteger(0);
         ListeningExecutorService service = MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(10));
         ListenableFuture explosion = service.submit(new Callable() {
+            @Override
             public Integer call() {
                 try {
                     Thread.sleep(500);
@@ -360,6 +329,7 @@ public class Test {
         Futures.addCallback(explosion, new FutureCallback() {
             // we want this handler to run immediately after we push the big red
             // button!
+            @Override
             public void onFailure(Throwable thrown) {
                 System.out.println("failure......" + thrown); // escaped the explosion!
             }
