@@ -148,10 +148,24 @@ public class Tester {
 
 //        testStopWatch();
 //        testDivide();
-        testIOUtils();
+//        testZhengZe();
+        testIpp();
     }
 
-    private static void testIOUtils() {
+    private static void testIpp() {
+        int i = 0;
+        i=i++;
+//        int j=i++;
+        System.out.println(i);
+//        System.out.println(j);
+    }
+
+    private static void testZhengZe() {
+        String str = "2122,133,23423";
+        String regex = "^[0-9,]+$";
+
+        System.out.println(str.matches(regex));
+
     }
 
     private static void testStopWatch() throws Exception{
