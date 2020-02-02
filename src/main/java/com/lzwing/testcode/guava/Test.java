@@ -87,44 +87,6 @@ public class Test {
         log.info("aLong1:{}", aLong1);
     }
 
-    private static void testMultiMap() {
-        //1.1 转化后具有唯一Key
-        List<Person> persons = Arrays.asList(
-                new Person("zhang", 15),
-                new Person("wang", 16),
-                new Person("lee", 18)
-        );
-        /**
-         * 转换后的Map具有唯一键
-         */
-        Map<String, Person> map = Maps.uniqueIndex(persons, new Function<Person, String>() {
-            @Override
-            public String apply(Person person) {
-                return person.getName();
-            }
-        });
-
-        System.out.println("map = " + map);
-
-        //1.2 转化后的Key不唯一
-        persons = Lists.newArrayList(
-                new Person("zhang", 15),
-                new Person("zhang", 16),
-                new Person("lee", 18)
-        );
-        /**
-         * 转换后的Map有重复键
-         */
-        Multimap<String, Person> multiMap = Multimaps.index(persons, new Function<Person, String>() {
-            public String apply(Person person) {
-                return person.getName();
-            }
-        });
-
-        System.out.println("multiMap = " + multiMap);
-
-    }
-
     private static void testMultiMapIndex() {
         ImmutableSet digits = ImmutableSet.of("zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine");
         Function<String, Integer> lengthFunction = new Function<String, Integer>() {
@@ -459,33 +421,6 @@ public class Test {
         System.out.println(" add null list:" + list);
         System.out.println("nullsFirst list :" + naturalOrdering.nullsFirst().sortedCopy(list));
         System.out.println("nullsLast list :" + naturalOrdering.nullsLast().sortedCopy(list));
-    }
-
-    public static void testMultiCollection() {
-        Multimap<String, User> scoreMultimap = ArrayListMultimap.create();
-        for (int i = 0; i < 10; i++) {
-            User user = new User();
-            user.setName("user" + i);
-            user.setAge(i);
-            user.setMale(i % 2 == 0);
-            scoreMultimap.put("0user", user);
-        }
-        for (int i = 10; i < 15; i++) {
-            User user = new User();
-            user.setName("user" + i);
-            user.setAge(i);
-            user.setMale(i % 2 == 0);
-            scoreMultimap.put("10user", user);
-        }
-
-        Collection<User> values = scoreMultimap.values();
-
-        System.out.println(values);
-
-        Collection<User> collection = scoreMultimap.asMap().get("10user");
-
-        System.out.println(collection);
-
     }
 
     public static LoadingCache<String, User> getCache() throws ExecutionException {

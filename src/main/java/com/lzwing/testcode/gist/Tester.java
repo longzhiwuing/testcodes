@@ -1,5 +1,6 @@
 package com.lzwing.testcode.gist;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.Stopwatch;
@@ -14,10 +15,8 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.time.DurationFormatUtils;
 import org.apache.commons.lang3.RandomUtils;
 import org.joda.time.DateTime;
-import org.joda.time.LocalDateTime;
 import org.mockito.Mockito;
 import org.springframework.util.CollectionUtils;
-import org.springframework.util.StopWatch;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -73,7 +72,41 @@ public class Tester {
     };
     private static AtomicInteger totalCount = new AtomicInteger(0);
 
+
+    public static Map<Integer,Map<Integer, Date>> timeMap;
+
+    static {
+        timeMap = getTimeMap();
+    }
+
+    public static Map<Integer,Map<Integer, Date>> getTimeMap() {
+
+        Map<Integer,Map<Integer, Date>> timeMap = new LinkedHashMap<>();
+
+        int year = 2019;
+        int month = 12;
+        int dayBegin = 21;
+        int dayEnd = 26;
+
+        for (int i = dayBegin; i < dayEnd; i++) {
+            Map<Integer, Date> dayTimeMap = new LinkedHashMap<>();
+            dayTimeMap.put(10, new DateTime(year, month, i, 10, 0, 0).toDate());
+            dayTimeMap.put(12, new DateTime(year, month, i, 12, 0, 0).toDate());
+            dayTimeMap.put(18, new DateTime(year, month, i, 18, 0, 0).toDate());
+            dayTimeMap.put(20, new DateTime(year, month, i, 20, 0, 0).toDate());
+            dayTimeMap.put(22, new DateTime(year, month, i, 22, 0, 0).toDate());
+            timeMap.put(i, dayTimeMap);
+        }
+
+        return timeMap;
+
+    }
+
     public static void main(String[] args) throws Exception {
+
+        testReplaceAll();
+
+//        testTimeMap();
 //        listDemos();
 //        testMaxMin();
 //        testIterator();
@@ -149,7 +182,93 @@ public class Tester {
 //        testStopWatch();
 //        testDivide();
 //        testZhengZe();
-        testIpp();
+//        testIpp();
+//        testJSONParse();
+//        testAtomicTest();
+//        testJodaTime();
+//        testTime();
+//        testIndexOf();
+    }
+
+    private static void testReplaceAll() {
+        String s = "hello,world";
+
+        System.out.println(s.replace("l", "d"));
+        //效果一样，支持正则
+        System.out.println(s.replaceAll("l", "d"));
+    }
+
+    public static void testIndexOf() {
+        String name = "pel, aaa";
+        String first = "pel";
+
+        System.out.println(name.indexOf(first));
+
+        System.out.println("ok");
+    }
+
+    public static String getCode() {
+        DateTime nowDateTime = new DateTime(Calendar.getInstance().getTime());
+        int dayOfMonth = nowDateTime.getDayOfMonth();
+        log.info("dayOfMonth:{}", dayOfMonth);
+
+        Map<Integer, Date> dayTimeMap = timeMap.get(dayOfMonth);
+
+        if (dayTimeMap == null) {
+            return null;
+        }
+
+        int hourOfDay = nowDateTime.getHourOfDay();
+        log.info("hourOfDay:{}", hourOfDay);
+
+        for (Map.Entry<Integer, Date> entry : dayTimeMap.entrySet()) {
+            Integer hour = entry.getKey();
+            //获取下一个要参与的活动时间
+            if (hour > hourOfDay) {
+                DateTime hourTime = new DateTime(dayTimeMap.get(hour));
+                //拼出code规则
+                String code = String.format("%d%d%d", hourTime.getMonthOfYear(), hourTime.getDayOfMonth(), hourTime.getHourOfDay());
+                return code;
+            }
+        }
+        return null;
+    }
+
+    private static void testTimeMap() {
+
+        String code = getCode();
+
+        System.out.println(code);
+
+
+
+
+
+        /*for (Map.Entry<Integer,Map<Integer, Date>> entry : timeMap.entrySet()) {
+
+            Map<Integer, Date> dayTimeMap = entry.getValue();
+            for (Map.Entry<Integer, Date> timeEntry : dayTimeMap.entrySet()) {
+                //System.out.println(DateTimeUtil.getDateStr(timeEntry.getValue()));
+                Date dateValue = timeEntry.getValue();
+
+            }
+        }*/
+    }
+
+    private static void testAtomicTest() {
+        AtomicInteger atomicInteger = new AtomicInteger();
+        System.out.println(atomicInteger.compareAndSet(0, 1));
+        System.out.println(atomicInteger.compareAndSet(2, 1));
+        System.out.println(atomicInteger.compareAndSet(1, 3));
+        System.out.println(atomicInteger.compareAndSet(2, 4));
+        System.out.println(atomicInteger.get());
+    }
+
+    private static void testJSONParse() {
+        String industryId = "";
+        List list = JSON.parseObject(industryId, List.class);
+
+        System.out.println(list);
     }
 
     private static void testIpp() {
@@ -168,7 +287,7 @@ public class Tester {
 
     }
 
-    private static void testStopWatch() throws Exception{
+    /*private static void testStopWatch() throws Exception{
         StopWatch sw = new StopWatch();
 
 
@@ -196,7 +315,7 @@ public class Tester {
         System.out.println("###----###");
 
 //        System.out.println(new DateTime(new Date()).toString("yyyy-MM-dd"));
-    }
+    }*/
 
     private static void testGetDigit() {
         String s = String.valueOf(111);
@@ -404,13 +523,18 @@ public class Tester {
     }
 
     private static void testJodaTime() {
-        Date now = new Date();
+        /*Date now = new Date();
         LocalDateTime courseStartDateTime = new DateTime(now).withTimeAtStartOfDay().toLocalDateTime();
         Date courseStartDate =  courseStartDateTime.toDate();
         Date courseEndDate = courseStartDateTime.plusDays(1).toDate();
 
         System.out.println(courseStartDate);
-        System.out.println(courseEndDate);
+        System.out.println(courseEndDate);*/
+
+        DateTime start = new DateTime(2019, 12, 21, 10, 0, 0);
+
+        System.out.println(start.toString("yyyy-MM-dd HH:mm:ss"));
+        System.out.println(start.toDate());
     }
 
     private static void testListRemove() {
@@ -581,11 +705,12 @@ public class Tester {
     }
 
     private static void testTime() {
-        LocalDate now = LocalDate.now();
+//        System.out.println(new Date().getTime());
+        /*LocalDate now = LocalDate.now();
         LocalDate nextWeekMonday = now.with(TemporalAdjusters.next(DayOfWeek.SATURDAY));
         LocalDate nextWeekMonday1 = now.with(TemporalAdjusters.next(DayOfWeek.SUNDAY));
 
-        System.out.println(nextWeekMonday.compareTo(nextWeekMonday1));
+        System.out.println(nextWeekMonday.compareTo(nextWeekMonday1));*/
 
         /*//获取开始日期当周的星期一
         LocalDate thisWeekMonday = nextWeekMonday.plus(-1, ChronoUnit.WEEKS);
@@ -689,6 +814,8 @@ public class Tester {
         System.out.println(StringUtils.defaultIfEmpty(favoriteTeacher, "某位老师"));
         favoriteTeacher = "张三";
         System.out.println(StringUtils.defaultIfEmpty(favoriteTeacher, "某位老师"));*/
+
+        RandomUtils.nextInt();
 
         int inviteCount = 3;
         int PRIZE_INVITE_COUNT = 10;

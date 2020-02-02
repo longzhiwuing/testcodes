@@ -17,6 +17,7 @@ import java.util.stream.Stream;
  * Date: 2019/8/3
  * Time: 08:35
  */
+@SuppressWarnings("Duplicates")
 public class Tester {
     public static void main(String[] args) {
 //        test_Consumer();
