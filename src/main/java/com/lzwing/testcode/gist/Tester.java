@@ -191,11 +191,15 @@ public class Tester {
     }
 
     private static void testReplaceAll() {
-        String s = "hello,world";
+        String s = "n. [ˈprəʊses]①过程，进程 ②工序，制作法；工艺";
 
-        System.out.println(s.replace("l", "d"));
+       /* System.out.println(s.replace("l", "d"));
         //效果一样，支持正则
-        System.out.println(s.replaceAll("l", "d"));
+        System.out.println(s.replaceAll("l", "d"));*/
+
+        String s1 = s.replaceAll("\\[.*\\]", "###");
+
+        System.out.println(s1);
     }
 
     public static void testIndexOf() {
