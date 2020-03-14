@@ -4,7 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.Stopwatch;
+import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Multimap;
 import com.lzwing.testcode.java8.niceexample.Address;
 import com.lzwing.testcode.java8.niceexample.User;
 import com.lzwing.testcode.time.DateTimeUtil;
@@ -14,6 +16,8 @@ import org.apache.commons.collections.MapUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.time.DurationFormatUtils;
 import org.apache.commons.lang3.RandomUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.joda.time.DateTime;
 import org.mockito.Mockito;
 import org.springframework.util.CollectionUtils;
@@ -38,6 +42,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static java.util.stream.Collectors.toList;
 
@@ -104,7 +110,15 @@ public class Tester {
 
     public static void main(String[] args) throws Exception {
 
-        testReplaceAll();
+        testMultiMap();
+
+//        testCount();
+//        testContains();
+
+//        testColorPattern();
+//        testOmmit();
+
+//        testReplaceAll();
 
 //        testTimeMap();
 //        listDemos();
@@ -188,6 +202,109 @@ public class Tester {
 //        testJodaTime();
 //        testTime();
 //        testIndexOf();
+    }
+
+    private static void testMultiMap() {
+        Multimap<Integer, String> multimap = ArrayListMultimap.create();
+
+        multimap.put(1, "111");
+        multimap.put(1, "222");
+        multimap.put(1, "333");
+        multimap.put(2, "aaa");
+        multimap.put(2, "bbb");
+        multimap.put(3, "CCC");
+
+        Set<Integer> yearSet = multimap.keySet();
+
+        if (CollectionUtils.isEmpty(yearSet)) {
+            return;
+        }
+
+        Map<Integer, Map> dataMap = new HashMap<>();
+        for (Integer year : yearSet) {
+            Map<String, Integer> yearMap = new HashMap<>();
+            Collection<String> yearNames = multimap.get(year);
+            for (String yearName : yearNames) {
+                yearMap.put(yearName, year);
+            }
+            dataMap.put(year, yearMap);
+        }
+
+        System.out.println(dataMap);
+    }
+
+    private static void testContains() {
+        /*String url = "//m.neibu.koolearn.com/product/c_2_104036.html?_mobile=true";
+
+        if (url.contains("//")) {
+            url = url.replace("//", "");
+            System.out.println(url);
+        }*/
+
+        List<Integer> idList = Lists.newArrayList(14853,14852,14851,14849,14848,14847,14846,14845,14844,14843,14842,14841,14840,14839,14838,14837,14836,14835,14834,14833,14832,14525,14524,14522,14520,14517,14516,14028,14023,13331,12855,8625,8624,8623,8622,8621,8605,8604,8603,8520,8453,8352,8351,8264,8263,8250,8249,8248,8247,7942,7641,7940,7939,7938,7937,7936,7934,7933,7904,7903,7902,24426,24311,24274,24267,18157,18156,18155,18153,18152,18151,18150,18149,18148,18147,18146,18145,18144,18143,18142,18141,18140,18115,18114,18113,18112,18111,18110,14033,14032,14031,14030,14029,9385,9384,9383,7929,7928,7927,7926,7924,7946, 7948, 7950, 7951, 7953, 7955, 8286, 24725, 7956);
+
+
+        List<Integer> checkIdList = Lists.newArrayList(14976, 16257, 14274, 48195, 11847, 16712, 14348, 16076, 16716, 17676, 9998, 13263, 8655, 18129, 40660, 15957, 48533, 48917, 14422, 18074, 48413, 19167, 13472, 15905, 48547, 48548, 18088, 12586, 17963, 14447, 40560, 12535, 16248, 48888, 14201, 15545, 17274, 13695,18149);
+
+
+        for (Integer checkId : checkIdList) {
+            if (idList.contains(checkId)) {
+                System.out.println("ok");
+                return;
+            }
+        }
+
+        System.out.println("none");
+
+
+
+
+
+        System.out.println(idList.size());
+    }
+
+    private static void testCount() {
+        String count = "1";
+        System.out.println(NumberUtils.isDigits(count));
+
+        count = "a";
+
+        System.out.println(NumberUtils.isDigits(count));
+
+        count = "23,324,234";
+
+        System.out.println(NumberUtils.isDigits(count));
+
+        count = "23.3423";
+
+        System.out.println(NumberUtils.isDigits(count));
+
+        count = "23.abc";
+
+        System.out.println(NumberUtils.isDigits(count));
+    }
+
+    private static void testOmmit() {
+        List<Object> list = new ArrayList<>();
+        for (int i = 0; i < 300; i++) {
+            list.add(i);
+        }
+        String paramInfo = JSON.toJSONString(list);
+        if (StringUtils.isNotBlank(paramInfo) && paramInfo.length() > 200) {
+            paramInfo = String.format("%s...", paramInfo.substring(0, 200));
+        }
+
+        System.out.println(paramInfo);
+    }
+
+    private static void testColorPattern() {
+        Pattern compile = Pattern.compile("#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})");
+
+        Matcher matcher = compile.matcher("#000000");
+        System.out.println(matcher.matches());
+        matcher = compile.matcher("123456");
+        System.out.println(matcher.matches());
+
     }
 
     private static void testReplaceAll() {
