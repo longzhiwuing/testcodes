@@ -16,6 +16,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * ClassName:Test <br/>
@@ -47,7 +48,17 @@ public class TimeTest {
 //        formatDemo();
 //        date2LocalDate();
 //        getCustomDate();
-        commonUtilsTest();
+//        commonUtilsTest();
+        testCommon();
+
+
+    }
+
+    private static void testCommon() {
+        GregorianCalendar c = new GregorianCalendar();
+        c.set(2020, 0, 6, 12, 0, 9);
+
+        System.out.println(c.toZonedDateTime());
     }
 
     private static void commonUtilsTest() throws Exception{

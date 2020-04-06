@@ -6,16 +6,16 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by lilong01 on 2018/5/18.
+ * @author chenzhongyong
  */
-public class Lunar {
+public class LunarUtil {
     private int year;
     private int month;
     private int day;
     private boolean leap;
-    final static String chineseNumber[] = {"一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二"};
-    static SimpleDateFormat chineseDateFormat = new SimpleDateFormat("yyyy年MM月dd日");
-    final static long[] lunarInfo = new long[]
+    final static String[] CHINESE_NUMBER = {"一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二"};
+    final static SimpleDateFormat CHINESE_DATE_FORMAT = new SimpleDateFormat("yyyy年MM月dd日");
+    final static long[] LUNAR_INFO = new long[]
             {0x04bd8, 0x04ae0, 0x0a570, 0x054d5, 0x0d260, 0x0d950, 0x16554, 0x056a0, 0x09ad0, 0x055d2,
                     0x04ae0, 0x0a5b6, 0x0a4d0, 0x0d250, 0x1d255, 0x0b540, 0x0d6a0, 0x0ada2, 0x095b0, 0x14977,
                     0x04970, 0x0a4b0, 0x0b4b5, 0x06a50, 0x06d40, 0x1ab54, 0x02b60, 0x09570, 0x052f2, 0x04970,
@@ -32,53 +32,85 @@ public class Lunar {
                     0x05aa0, 0x076a3, 0x096d0, 0x04bd7, 0x04ad0, 0x0a4d0, 0x1d0b6, 0x0d250, 0x0d520, 0x0dd45,
                     0x0b5a0, 0x056d0, 0x055b2, 0x049b0, 0x0a577, 0x0a4b0, 0x0aa50, 0x1b255, 0x06d20, 0x0ada0};
 
-    //====== 传回农历 y年的总天数
+    /**
+     * 传回农历 y年的总天数
+     * @param y
+     * @return
+     */
     final private static int yearDays(int y) {
         int i, sum = 348;
         for (i = 0x8000; i > 0x8; i >>= 1) {
-            if ((lunarInfo[y - 1900] & i) != 0) sum += 1;
+            if ((LUNAR_INFO[y - 1900] & i) != 0) {
+                sum += 1;
+            }
         }
         return (sum + leapDays(y));
     }
 
-    //====== 传回农历 y年闰月的天数
+    /**
+     * 传回农历 y年闰月的天数
+     * @param y
+     * @return
+     */
     final private static int leapDays(int y) {
         if (leapMonth(y) != 0) {
-            if ((lunarInfo[y - 1900] & 0x10000) != 0)
+            if ((LUNAR_INFO[y - 1900] & 0x10000) != 0) {
                 return 30;
-            else
+            } else {
                 return 29;
-        } else
+            }
+        } else {
             return 0;
+        }
     }
 
-    //====== 传回农历 y年闰哪个月 1-12 , 没闰传回 0
+    /**
+     * 传回农历 y年闰哪个月 1-12 , 没闰传回 0
+     * @param y
+     * @return
+     */
     final private static int leapMonth(int y) {
-        return (int) (lunarInfo[y - 1900] & 0xf);
+        return (int) (LUNAR_INFO[y - 1900] & 0xf);
     }
 
-    //====== 传回农历 y年m月的总天数
+    /**
+     * 传回农历 y年m月的总天数
+     * @param y
+     * @param m
+     * @return
+     */
     final private static int monthDays(int y, int m) {
-        if ((lunarInfo[y - 1900] & (0x10000 >> m)) == 0)
+        if ((LUNAR_INFO[y - 1900] & (0x10000 >> m)) == 0) {
             return 29;
-        else
+        } else {
             return 30;
+        }
     }
 
-    //====== 传回农历 y年的生肖
+    /**
+     * 传回农历 y年的生肖
+     * @return
+     */
     final public String animalsYear() {
-        final String[] Animals = new String[]{"鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪"};
-        return Animals[(year - 4) % 12];
+        final String[] animals = new String[]{"鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪"};
+        return animals[(year - 4) % 12];
     }
 
-    //====== 传入 月日的offset 传回干支, 0=甲子
+    /**
+     * 传入 月日的offset 传回干支, 0=甲子
+     * @param num
+     * @return
+     */
     final private static String cyclicalm(int num) {
-        final String[] Gan = new String[]{"甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"};
-        final String[] Zhi = new String[]{"子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"};
-        return (Gan[num % 10] + Zhi[num % 12]);
+        final String[] tianGan = new String[]{"甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"};
+        final String[] diZhi = new String[]{"子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"};
+        return (tianGan[num % 10] + diZhi[num % 12]);
     }
 
-    //====== 传入 offset 传回干支, 0=甲子
+    /**
+     * 传入 offset 传回干支, 0=甲子
+     * @return
+     */
     final public String cyclical() {
         int num = year - 1900 + 36;
         return (cyclicalm(num));
@@ -92,12 +124,12 @@ public class Lunar {
      * @param cal
      * @return
      */
-    public Lunar(Calendar cal) {
+    public LunarUtil(Calendar cal) {
         @SuppressWarnings("unused") int yearCyl, monCyl, dayCyl;
         int leapMonth = 0;
         Date baseDate = null;
         try {
-            baseDate = chineseDateFormat.parse("1900年1月31日");
+            baseDate = CHINESE_DATE_FORMAT.parse("1900年1月31日");
         } catch (ParseException e) {
             e.printStackTrace();  //To change body of catch statement use Options | File Templates.
         }
@@ -126,7 +158,8 @@ public class Lunar {
         year = iYear;
 
         yearCyl = iYear - 1864;
-        leapMonth = leapMonth(iYear); //闰哪个月,1-12
+        //闰哪个月,1-12
+        leapMonth = leapMonth(iYear);
         leap = false;
 
         //用当年的天数offset,逐个减去每月（农历）的天数，求出当天是本月的第几天
@@ -137,13 +170,18 @@ public class Lunar {
                 --iMonth;
                 leap = true;
                 daysOfMonth = leapDays(year);
-            } else
+            } else{
                 daysOfMonth = monthDays(year, iMonth);
+            }
 
             offset -= daysOfMonth;
             //解除闰月
-            if (leap && iMonth == (leapMonth + 1)) leap = false;
-            if (!leap) monCyl++;
+            if (leap && iMonth == (leapMonth + 1)) {
+                leap = false;
+            }
+            if (!leap) {
+                monCyl++;
+            }
         }
         //offset为0时，并且刚才计算的月份是闰月，要校正
         if (offset == 0 && leapMonth > 0 && iMonth == leapMonth + 1) {
@@ -166,24 +204,28 @@ public class Lunar {
     }
 
     public static String getChinaDayString(int day) {
-        String chineseTen[] = {"初", "十", "廿", "卅"};
+        String[] chineseTen = {"初", "十", "廿", "卅"};
         int n = day % 10 == 0 ? 9 : day % 10 - 1;
-        if (day > 30)
+        if (day > 30) {
+
             return "";
-        if (day == 10)
+        }
+        if (day == 10) {
             return "初十";
-        else
-            return chineseTen[day / 10] + chineseNumber[n];
+        } else {
+            return chineseTen[day / 10] + CHINESE_NUMBER[n];
+        }
     }
 
+    @Override
     public String toString() {
-        return cyclical() + "年" + (leap ? "闰" : "") + chineseNumber[month - 1] + "月" + getChinaDayString(day);
+        return year + "年" + (leap ? "闰" : "") + CHINESE_NUMBER[month - 1] + "月" + getChinaDayString(day);
     }
 
     public static void main(String[] args) throws ParseException {
         Calendar today = Calendar.getInstance();
         today.setTime(new Date());
-        Lunar lunar = new Lunar(today);
-        System.out.println("北京时间：" + chineseDateFormat.format(today.getTime()) + "　农历 " + lunar);
+        LunarUtil lunar = new LunarUtil(today);
+        System.out.println("北京时间：" + CHINESE_DATE_FORMAT.format(today.getTime()) + "　农历" + lunar);
     }
 }
