@@ -110,7 +110,8 @@ public class Tester {
 
     public static void main(String[] args) throws Exception {
 
-        testMultiMap();
+//        testMultiMap();
+        testCommonJars();
 
 //        testCount();
 //        testContains();
@@ -234,7 +235,7 @@ public class Tester {
     }
 
     private static void testContains() {
-        /*String url = "//m.neibu.koolearn.com/product/c_2_104036.html?_mobile=true";
+        /*String url = "";
 
         if (url.contains("//")) {
             url = url.replace("//", "");
@@ -606,7 +607,7 @@ public class Tester {
 
     private static void testRandom() {
 
-        String baseUrl = "https://yueke.neibu.koolearn.com";
+        String baseUrl = "https://www.baidu.com";
 
         baseUrl = baseUrl.split("://")[1];
         System.out.println(baseUrl);
