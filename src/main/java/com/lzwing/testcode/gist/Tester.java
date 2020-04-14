@@ -587,7 +587,7 @@ public class Tester {
     }
 
     private static void testJsArray() {
-//        String str = "[\"https://cdn-zky.neibu.koo.cn/club/picture/b31ac2a4927c4a758f4a5742b77d67e0.jpg\",\"https://cdn-zky.neibu.koo.cn/club/picture/2c814a183b23430686e78768463add95.jpg\"]";
+//        String str = "";
 
         String str = "sdfasdf";
         JSONArray jsonArray = JSONArray.parseArray(str);
