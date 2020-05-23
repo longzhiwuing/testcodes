@@ -9,11 +9,11 @@
 
 package com.lzwing.testcode.time;
 
-import java.util.Calendar;
-import java.util.Date;
-
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
+
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * ClassName:JodaTest <br/>
@@ -60,9 +60,10 @@ public class JodaTest {
 	}
 
 	public static void main(String[] args) {
+
+		testBeforeDayAndAfterDay();
 		
-		
-		jodaTimeCase();
+//		jodaTimeCase();
 		
 //		DateTime dt = new DateTime();
 		
@@ -117,5 +118,26 @@ public class JodaTest {
 //		DateTime dt = new DateTime().plusMonths(1).dayOfMonth().withMinimumValue()
 //		        .plusDays(6).withDayOfWeek(1).withMillisOfDay(0).withHourOfDay(17);
 	}
+
+	private static void testBeforeDayAndAfterDay() {
+		Date day = new Date();
+
+		DateTime dayJodaTime = new DateTime(day).withHourOfDay(0)
+                .withMinuteOfHour(0)
+                .withSecondOfMinute(0);
+
+        DateTime beforeToday = dayJodaTime.minusSeconds(1);
+        DateTime beforeTomorrow = dayJodaTime.plusDays(1).minusSeconds(1);
+
+        System.out.println(beforeToday.toDate());
+        System.out.println(beforeTomorrow.toDate());
+
+        //System.out.println(dayJodaTime.toString("yyyy-MM-dd HH:mm:ss"));
+
+//        System.out.println(dayJodaTime.plusDays(1).minusSeconds(1).toString("yyyy-MM-dd HH:mm:ss"));
+
+
+
+    }
 }
 
