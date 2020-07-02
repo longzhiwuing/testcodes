@@ -110,8 +110,10 @@ public class Tester {
 
     public static void main(String[] args) throws Exception {
 
+        testerjinzhi();
+
 //        testMultiMap();
-        testCommonJars();
+//        testCommonJars();
 
 //        testCount();
 //        testContains();
@@ -203,6 +205,13 @@ public class Tester {
 //        testJodaTime();
 //        testTime();
 //        testIndexOf();
+    }
+
+    private static void testerjinzhi() {
+        int COUNT_BITS = Integer.SIZE - 3;
+        int CAPACITY   = (1 << COUNT_BITS) - 1;
+
+        System.out.println(1 << 2);
     }
 
     private static void testMultiMap() {

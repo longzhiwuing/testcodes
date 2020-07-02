@@ -20,6 +20,8 @@ import java.util.List;
 public class StringUtilsDemo {
     public static void main(String[] args) {
 
+        testEmojo();
+
 //        testchomp();
 
 //        testMidAndDigits();
@@ -50,6 +52,13 @@ public class StringUtilsDemo {
 //      System.out.println(getLeftPad("123",5,"0"));
 
         testcommaDelimitedListToStringArray();
+    }
+
+    private static void testEmojo() {
+
+//        IOUtils.toString(inputMessage.getBody());
+
+//        StringUtil.parseEmojiUnicodeToAlias(content);
     }
 
     private static void testcommaDelimitedListToStringArray() {

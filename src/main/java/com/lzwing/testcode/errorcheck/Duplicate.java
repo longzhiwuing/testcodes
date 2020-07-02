@@ -1,5 +1,6 @@
 package com.lzwing.testcode.errorcheck;
 
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
 import java.net.URL;
@@ -17,7 +18,7 @@ public final class Duplicate {
         checkDuplicate(cls.getName().replace('.', '/') + ".class");
     }
 
-    public static void checkDuplicate(String path) {
+    public static void checkDuplicate(@NonNull String path) {
         try {
             // 在ClassPath搜文件  
             Enumeration<URL> urls = Thread.currentThread().getContextClassLoader().getResources(path);
@@ -38,6 +39,11 @@ public final class Duplicate {
         } catch (Throwable e) { // 防御性容错  
             log.error(e.getMessage(), e);
         }
+    }
+
+    public static void main(String[] args) {
+        String s = null;
+         checkDuplicate(s);
     }
 
 }  
