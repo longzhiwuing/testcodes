@@ -110,7 +110,9 @@ public class Tester {
 
     public static void main(String[] args) throws Exception {
 
-        testerjinzhi();
+        testLangInject();
+
+//        testerjinzhi();
 
 //        testMultiMap();
 //        testCommonJars();
@@ -205,6 +207,10 @@ public class Tester {
 //        testJodaTime();
 //        testTime();
 //        testIndexOf();
+    }
+
+    private static void testLangInject() {
+        String json = "";
     }
 
     private static void testerjinzhi() {
