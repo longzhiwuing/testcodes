@@ -29,9 +29,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.Period;
+import java.time.*;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
 import java.util.*;
@@ -110,7 +108,11 @@ public class Tester {
 
     public static void main(String[] args) throws Exception {
 
-        testLangInject();
+        testPeriod();
+
+//        testDivide();
+
+//        testLangInject();
 
 //        testerjinzhi();
 
@@ -207,6 +209,20 @@ public class Tester {
 //        testJodaTime();
 //        testTime();
 //        testIndexOf();
+    }
+
+    private static void testPeriod() {
+        /*DateTime createDateTime = new DateTime(2020, 7, 1, 15, 0);
+        org.joda.time.Period period = new org.joda.time.Period(createDateTime, new DateTime());
+        int days = period.getDays();
+
+        System.out.println("days:" + days);*/
+
+        DateTime createDateTime = new DateTime(2020, 8, 12, 15, 0);
+        Instant start = Instant.ofEpochMilli(createDateTime.toDate().getTime());
+
+        Instant end = Instant.now();
+        System.out.println(Duration.between(start, end).toDays());
     }
 
     private static void testLangInject() {
@@ -1118,11 +1134,15 @@ public class Tester {
     private static void testDivide() {
 
 
-        System.out.println((int) (((float) 97.5 / 100) * 100));
+        /*System.out.println((int) (((float) 97.5 / 100) * 100));
 
         double price = 100d;
         int num = 0;
-        System.out.println(price / num);
+        System.out.println(price / num);*/
+
+        int pageSize = 13234 / 1000 + 1;
+
+        System.out.println(pageSize);
     }
 
     private static void testGuaFen() {
