@@ -1,5 +1,7 @@
 package com.lzwing.testcode.java8.niceexample;
 
+import com.lzwing.testcode.utils.common.ByteUtils;
+
 import java.util.Optional;
 
 /**
@@ -10,6 +12,19 @@ import java.util.Optional;
  * Time: 15:42
  */
 public class OptionalExamples {
+
+    public static void main(String[] args) {
+        User key = new User();
+        byte[] bytes = ByteUtils.objectToBytes(key).get();
+
+        System.out.println(bytes);
+
+        key = null;
+
+        bytes = ByteUtils.objectToBytes(key).get();
+
+        System.out.println(bytes);
+    }
 
     //参考 https://www.cnblogs.com/rjzheng/p/9163246.html
 

@@ -2,6 +2,8 @@ package com.lzwing.testcode.java8.niceexample;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * Created with IntelliJ IDEA.
  *
@@ -10,7 +12,7 @@ import lombok.Data;
  * Time: 15:43
  */
 @Data
-public class User {
+public class User implements Serializable {
     private String name;
     private Address address;
 }

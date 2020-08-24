@@ -1,5 +1,7 @@
 package com.lzwing.testcode.time;
 
+import org.joda.time.DateTime;
+
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -120,6 +122,11 @@ public class DateTimeUtil {
         LocalDateTime localDate = instant.atZone(zoneId).toLocalDateTime();
 
         return localDate.format(nomalFormat);
+    }
+
+    public static String getDateStr(Date date,String format) {
+        DateTime dateTime = new DateTime(date);
+        return dateTime.toString(format);
     }
 
     public static String getTime(Date date) {

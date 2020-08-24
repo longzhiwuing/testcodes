@@ -8,13 +8,16 @@
 
 package com.lzwing.testcode.time;
 
+import org.apache.commons.lang.time.DateUtils;
 import org.apache.commons.lang.time.DurationFormatUtils;
+import org.joda.time.DateTime;
 
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -31,6 +34,10 @@ import java.util.GregorianCalendar;
 public class TimeTest {
 
     public static void main(String[] args) throws Exception{
+
+        testCommonDateUtils();
+
+
 //		getToday();
 //		getNow();
 //		getYearMonthDay();
@@ -49,9 +56,42 @@ public class TimeTest {
 //        date2LocalDate();
 //        getCustomDate();
 //        commonUtilsTest();
-        testCommon();
+//        testCommon();
 
 
+    }
+
+    private static void testCommonDateUtils() {
+        DateTime dateTime = new DateTime(2020, 8, 23, 23, 59);
+
+        getShowTime(dateTime.toDate());
+    }
+
+    protected static String getShowTime(Date beginTime) {
+        if (beginTime == null) {
+            return null;
+        }
+
+        DateTime beginDateTime = new DateTime(beginTime);
+
+        String showTime = beginDateTime.toString("MM-dd HH:mm");
+
+        DateTime nowTime = DateTime.now();
+        DateTime yestedayTime = nowTime.minusDays(1);
+        DateTime tomorowTime = nowTime.plusDays(1);
+
+        String timeStr = beginDateTime.toString("HH:mm");
+        //判断直播开始日期是否是昨天，今天，明天，用来特殊展示
+        if (DateUtils.truncatedCompareTo(beginTime,nowTime.toDate(),Calendar.DATE)==0) {
+            showTime = String.format("今天 %s", timeStr);
+        } else if (DateUtils.truncatedCompareTo(beginTime,yestedayTime.toDate(),Calendar.DATE)==0) {
+            showTime = String.format("昨天 %s", timeStr);
+        } else if (DateUtils.truncatedCompareTo(beginTime,tomorowTime.toDate(),Calendar.DATE)==0) {
+            showTime = String.format("明天 %s", timeStr);
+        }
+
+        System.out.println(showTime);
+        return showTime;
     }
 
     private static void testCommon() {
