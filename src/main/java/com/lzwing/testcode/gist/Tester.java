@@ -21,6 +21,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.joda.time.DateTime;
 import org.mockito.Mockito;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -108,7 +109,19 @@ public class Tester {
 
     public static void main(String[] args) throws Exception {
 
-        testPeriod();
+//        testCacheInfo();
+
+        testSign();
+
+//        testDays();
+
+//        testFileExtesion();
+
+//        testMapCapacity();
+
+//        testString();
+
+//        testPeriod();
 
 //        testDivide();
 
@@ -209,6 +222,122 @@ public class Tester {
 //        testJodaTime();
 //        testTime();
 //        testIndexOf();
+    }
+
+    private static void testCacheInfo() {
+        String CRLF = "\r\n";
+        String key = "kaoyan-cms-res-list-CmsListReqVo(super=PageRequestVo(pageNo=1, pageSize=10), categoryId=26)";
+        String value = "{\n" +
+                "\t\"categoryId\":26,\n" +
+                "\t\"pageNo\":1,\n" +
+                "\t\"pageSize\":10\n" +
+                "}";
+        StringBuilder cacheInfoBuilder = new StringBuilder();
+        cacheInfoBuilder.append(CRLF);
+        cacheInfoBuilder.append(org.apache.commons.lang3.StringUtils.center("@@@读取缓存数据@@@", 100, "="));
+        cacheInfoBuilder.append(CRLF);
+        cacheInfoBuilder.append(String.format(">>>>>>>> 缓存key:%s", key));
+        cacheInfoBuilder.append(CRLF);
+        cacheInfoBuilder.append(String.format(">>>>>>>> 缓存value:%s%s", CRLF, value));
+        cacheInfoBuilder.append(CRLF);
+        cacheInfoBuilder.append(org.apache.commons.lang3.StringUtils.center("@@@END@@@", 100, "="));
+
+        log.info(cacheInfoBuilder.toString());
+    }
+
+    private static void testSign() {
+        int productId = 76185;
+
+        String phone = "13811158907";
+
+        Integer kooUserId = null;
+
+        //long ts = 1599460713503L;
+        long ts = System.currentTimeMillis();
+
+        System.out.println("ts:" + ts);
+
+        String SIGN_KEY = "XDF-LC-666";
+
+        //处理拼装字符串
+        if (StringUtils.isBlank(phone)) {
+            phone = "";
+        }
+
+        String kooUserIdStr = "";
+        if (kooUserId != null) {
+            kooUserIdStr = String.valueOf(kooUserId);
+        }
+
+        String origin = String.format("productId=%s&phone=%s&kooUserId=%s&ts=%s&key=%s", productId, phone, kooUserIdStr, ts, SIGN_KEY);
+        String sign = DigestUtils.md5DigestAsHex(origin.getBytes());
+
+
+        System.out.println("origin:" + origin);
+        System.out.println("sign:" + sign);
+    }
+
+    private static void testDays() {
+        Date examTime = new DateTime(2020, 9, 3, 0, 0).toDate();
+        Date now = Calendar.getInstance().getTime();
+        Duration between = Duration.between(now.toInstant(), examTime.toInstant());
+        long days = 0;
+        if (between != null) {
+            double ceilVal = Math.ceil(between.toHours() / 24.0);
+            days = new Double(ceilVal).longValue();
+        }
+
+        System.out.println(days);
+    }
+
+    private static void testFileExtesion() {
+        String fileName = null;
+        String extName = FilenameUtils.getExtension(fileName);
+
+        System.out.println("extName:" + extName);
+    }
+
+    private static void testMapCapacity() {
+        Map<String,String> dataMap = new HashMap<>(2);
+
+        dataMap.put("aaa", "bbb");
+        dataMap.put("ccc", "ccc");
+        dataMap.put("ddd", "bbb");
+        dataMap.put("eee", "eee");
+
+        System.out.println(dataMap.size());
+
+
+        String cast = String.class.cast(1);
+
+        System.out.println(cast);
+    }
+
+    private static void testString() {
+
+        int productId = 117701;
+
+        String phone = "13811158902";
+
+        Integer kooUserId = null;
+
+        /*String phone = null;
+
+        Integer kooUserId = 4527540;*/
+
+        long ts = System.currentTimeMillis();
+
+        System.out.println("ts:" + ts);
+
+        String SIGN_KEY = "XDF-LC-666";
+
+        String origin = String.format("productId=%s&phone=%s&kooUserId=%s&ts=%s&key=%s", productId, phone, kooUserId, ts, SIGN_KEY);
+        String sign = DigestUtils.md5DigestAsHex(origin.getBytes());
+
+
+        System.out.println("origin:" + origin);
+        System.out.println("sign:" + sign);
+
     }
 
     private static void testPeriod() {
