@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.Stopwatch;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
 import com.lzwing.testcode.java8.niceexample.Address;
 import com.lzwing.testcode.java8.niceexample.User;
@@ -108,10 +109,15 @@ public class Tester {
     }
 
     public static void main(String[] args) throws Exception {
+        
+        testOutBox();
+
+//        testMapPutReturnValue();
+        
 
 //        testCacheInfo();
 
-        testSign();
+//        testSign();
 
 //        testDays();
 
@@ -222,6 +228,27 @@ public class Tester {
 //        testJodaTime();
 //        testTime();
 //        testIndexOf();
+    }
+
+    private static void testOutBox() {
+        Integer i = null;
+        System.out.println(1 == 1 ? Optional.ofNullable(i) : 0);
+        //可以替换
+        Optional.ofNullable(i).ifPresent(System.out::println);
+
+    }
+
+
+    private static void testMapPutReturnValue() {
+        Map<String, Object> testMap = Maps.newHashMap();
+
+        Object val = testMap.put("1", 1);
+
+        System.out.println(val);
+
+        val = testMap.put("1", 2);
+
+        System.out.println(val);
     }
 
     private static void testCacheInfo() {

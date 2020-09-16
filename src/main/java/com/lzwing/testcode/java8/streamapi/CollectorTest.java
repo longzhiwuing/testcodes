@@ -25,7 +25,22 @@ public class CollectorTest {
 //        joiningTest();
 //        countTest();
 //        reduceTest();
-        compareTest();
+//        compareTest();
+        testMapAndFlatMap();
+    }
+
+    public static void testMapAndFlatMap() {
+        List<String> words = new ArrayList<String>();
+        words.add("hello");
+        words.add("word");
+
+        //将words数组中的元素再按照字符拆分，然后字符去重，最终达到["h", "e", "l", "o", "w", "r", "d"]
+        //如果使用map，是达不到直接转化成List<String>的结果
+        List<String> stringList = words.stream()
+                .flatMap(word -> Arrays.stream(word.split("")))
+                .distinct()
+                .collect(Collectors.toList());
+        stringList.forEach(e -> System.out.println(e));
     }
 
     private static void compareTest() {
