@@ -20,6 +20,8 @@ import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.joda.time.DateTime;
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
 import org.mockito.Mockito;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.DigestUtils;
@@ -109,8 +111,10 @@ public class Tester {
     }
 
     public static void main(String[] args) throws Exception {
+
+        testJsoup();
         
-        testOutBox();
+//        testOutBox();
 
 //        testMapPutReturnValue();
         
@@ -230,11 +234,28 @@ public class Tester {
 //        testIndexOf();
     }
 
+    private static void testJsoup() {
+        String html = "<p style=\"text-indent: 2em;\"><span style=\";font-family:宋体;color:#333333;background:white\">本专业培养具有一定</span><a href=\"https://baike.so.com/doc/5207917-24826104.html\" target=\"_blank\"><span style=\"font-family: 宋体;color: rgb(19, 110, 194);background: white\">马克思主义哲学</span></a><span style=\";font-family:宋体;color:#333333;background:white\">理论素养和系统的专业基础知识，有进一步培养潜质的哲学专门人才，以及能在国家机关、文教事业、新闻出版、企业等部门从事实际工作的应用型、复合型高级专门人才。</span></p><p style=\"text-indent: 2em;\"><span style=\";font-family:宋体;color:#333333;background:white\">学生主要学习马克思主义的基本理论与历史，以及社会科学、自然科学和思维科学的基础知识，受到中西方哲学的基本理论和发展线索的系统教育，以及创造性思维的培养和业务能力的训练。</span></p><p><br/></p><p><br/></p>";
+
+        String clean = Jsoup.clean(html, Whitelist.none());
+
+
+        System.out.println(clean);
+    }
+
     private static void testOutBox() {
-        Integer i = null;
+        /*Integer i = null;
         System.out.println(1 == 1 ? Optional.ofNullable(i) : 0);
         //可以替换
-        Optional.ofNullable(i).ifPresent(System.out::println);
+        Optional.ofNullable(i).ifPresent(System.out::println);*/
+
+        int result = 3 / 2;
+
+        double res = 3.0 / 2;
+
+        System.out.println(res);
+
+        System.out.println(result);
 
     }
 

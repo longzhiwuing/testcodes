@@ -1,18 +1,5 @@
 package com.lzwing.testcode.reflection;
 
-import com.lzwing.testcode.reflection.ReflectUtils;
-
-import org.junit.Assert;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-
 /**
  * <pre>
  *     author: Blankj
@@ -434,7 +421,7 @@ public class ReflectUtilsTest {
         assertEquals(ReflectUtils.reflect(object).hashCode(), object.hashCode());
     }
 
-    @Test
+    @Test·
     public void _toString() throws Exception {
         Object object = new Object() {
             @Override

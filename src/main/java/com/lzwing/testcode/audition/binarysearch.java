@@ -1,6 +1,13 @@
 package com.lzwing.testcode.audition;
 
+import com.google.common.collect.Lists;
+import org.apache.commons.lang.math.RandomUtils;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
 
@@ -62,11 +69,12 @@ public class binarysearch {
 
     /**
      * 二分查找 如果有相同的元素返回第一个值
+     *
      * @param a
      * @param find
      * @return
      */
-    public static int getIndex(int[] a, int find) {
+    /*public static int getIndex(int[] a, int find) {
 
         if (a == null) {
             return -1;
@@ -96,5 +104,46 @@ public class binarysearch {
         }
 
         return -1;
+    }*/
+    @Test
+    public void testGenerial() {
+        int[] a = new int[]{1, 2, 5, 7, 9, 11, 13};
+
+        int find = a[RandomUtils.nextInt(a.length)];
+
+        int index = getIndex(a, find);
+
+        int answer = Arrays.binarySearch(a, find);
+
+        System.out.println(index);
+        System.out.println(answer);
+
+
+    }
+
+
+    public static int getIndex(int[] a, int find) {
+        if (a == null) {
+            return -1;
+        }
+
+        if (a[a.length - 1] < find) {
+            return -1;
+        }
+
+        int left = 0;
+
+        int right = a.length - 1;
+
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (a[mid] < find) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+
+        return left;
     }
 }
