@@ -4,10 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.Stopwatch;
-import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.google.common.collect.Multimap;
 import com.lzwing.testcode.java8.niceexample.Address;
 import com.lzwing.testcode.java8.niceexample.User;
 import com.lzwing.testcode.time.DateTimeUtil;
@@ -411,35 +409,6 @@ public class Tester {
         int CAPACITY   = (1 << COUNT_BITS) - 1;
 
         System.out.println(1 << 2);
-    }
-
-    private static void testMultiMap() {
-        Multimap<Integer, String> multimap = ArrayListMultimap.create();
-
-        multimap.put(1, "111");
-        multimap.put(1, "222");
-        multimap.put(1, "333");
-        multimap.put(2, "aaa");
-        multimap.put(2, "bbb");
-        multimap.put(3, "CCC");
-
-        Set<Integer> yearSet = multimap.keySet();
-
-        if (CollectionUtils.isEmpty(yearSet)) {
-            return;
-        }
-
-        Map<Integer, Map> dataMap = new HashMap<>();
-        for (Integer year : yearSet) {
-            Map<String, Integer> yearMap = new HashMap<>();
-            Collection<String> yearNames = multimap.get(year);
-            for (String yearName : yearNames) {
-                yearMap.put(yearName, year);
-            }
-            dataMap.put(year, yearMap);
-        }
-
-        System.out.println(dataMap);
     }
 
     private static void testContains() {
