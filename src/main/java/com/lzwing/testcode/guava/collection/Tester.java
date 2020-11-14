@@ -1,14 +1,11 @@
-package com.lzwing.testcode.utils.mergemap.guava;
+package com.lzwing.testcode.guava.collection;
 
 import com.google.common.base.Function;
 import com.google.common.collect.*;
 import com.lzwing.testcode.guava.Person;
 import com.lzwing.testcode.guava.User;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,8 +18,23 @@ import java.util.Map;
 public class Tester {
     public static void main(String[] args) {
 
+        testCapacityMap();
+
 //        testMultiMap();
-        testMultiCollection();
+//        testMultiCollection();
+    }
+
+    private static void testCapacityMap() {
+        HashMap<Object, Object> dataMap = Maps.newHashMapWithExpectedSize(2);
+
+        dataMap.put("aaa", "111");
+        dataMap.put("bbb", "222");
+        dataMap.put("ccc", "333");
+        dataMap.put("ddd", "444");
+        dataMap.put("eee", "555");
+        dataMap.put("fff", "666");
+
+        System.out.println(dataMap);
     }
 
 
