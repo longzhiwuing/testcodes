@@ -1,4 +1,4 @@
-package com.lzwing.testcode.guava.collection;
+package com.lzwing.testcode.utils.guava.collection;
 
 import com.google.common.base.Function;
 import com.google.common.collect.*;

@@ -1,4 +1,4 @@
-package com.lzwing.testcode.guava.retry;
+package com.lzwing.testcode.utils.guava.retry;
 
 import com.github.rholder.retry.RetryException;
 import com.github.rholder.retry.Retryer;

@@ -1,4 +1,4 @@
-package com.lzwing.testcode.guava.listenablefuture;
+package com.lzwing.testcode.utils.guava.listenablefuture;
 
 import com.google.common.util.concurrent.*;
 

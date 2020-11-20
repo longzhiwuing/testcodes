@@ -6,7 +6,7 @@
  * Copyright (c) 2017, chenzhongyong@cecdat.com All Rights Reserved.
  */
 
-package com.lzwing.testcode.guava;
+package com.lzwing.testcode.utils.guava;
 
 import com.google.common.base.*;
 import com.google.common.base.Optional;
@@ -24,10 +24,7 @@ import javax.annotation.Nullable;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.*;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static com.google.common.base.Preconditions.checkArgument;
@@ -44,9 +41,16 @@ import static com.google.common.base.Preconditions.checkElementIndex;
  * @see
  */
 @Slf4j
-public class Test {
+public class GuavaCommonTest {
 
     public static void main(String[] args) throws Exception {
+
+        testListenableFuture2();
+
+//          testInts();
+
+        // testCharMatcher();
+        
         // testCheckArg();
 
         // testObjects();
@@ -70,11 +74,24 @@ public class Test {
 //        testGetOrDefualt();
 
 //        testJoinAndSplitterCharMatcher();
-//        testInts();
+
 //        testCollection2();
 //        testMultiMapIndex();
 //        testMultiMap();
 //        testLongParse();
+    }
+
+    private static void testCharMatcher() {
+        CharMatcher charMatcherDigit = CharMatcher.digit();
+        CharMatcher charMatcherBlank = CharMatcher.whitespace();
+
+        System.out.println(charMatcherBlank.removeFrom(" good \t"));
+
+        System.out.println(charMatcherDigit.retainFrom("abc2def1234f~"));
+
+        System.out.println(charMatcherDigit.removeFrom("yes,i love u 1314"));
+
+        System.out.println(CharMatcher.inRange('a','f').or(CharMatcher.is('n')).replaceFrom("zhangfengzhe","*"));
     }
 
     private static void testLongParse() {
@@ -133,6 +150,8 @@ public class Test {
 
     private static void testInts() {
         List<Integer> list = Ints.asList(1, 2, 3, 4, 5, 5);
+
+        System.out.println(Ints.join(",", 1, 3, 1, 4));
 
 
         //list转int[]
@@ -266,10 +285,11 @@ public class Test {
         aaa.sayGoodBye();
     }
 
-    public static void testString() {
+    public static void testCaseFormatString() {
         byte[] bytes = "string".getBytes(Charsets.UTF_8);
 
-        CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, "CONSTANT_NAME"); // returns "constantName"
+        // returns "constantName"
+        CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, "CONSTANT_NAME");
     }
 
     @SuppressWarnings("unchecked")
@@ -293,7 +313,8 @@ public class Test {
             // button!
             @Override
             public void onFailure(Throwable thrown) {
-                System.out.println("failure......" + thrown); // escaped the explosion!
+                // escaped the explosion!
+                System.out.println("failure......" + thrown);
             }
 
             @Override
@@ -301,6 +322,37 @@ public class Test {
                 System.out.println("start:" + result);
             }
         },Executors.newSingleThreadExecutor());
+    }
+
+    public static void testListenableFuture2() {
+        ExecutorService es = Executors.newFixedThreadPool(3);
+        ListeningExecutorService listeningExecutorService = MoreExecutors.listeningDecorator(es);
+
+        ListenableFuture<Integer> listenableFuture = listeningExecutorService.submit(new Callable<Integer>() {
+            @Override
+            public Integer call() throws Exception {
+                Uninterruptibles.sleepUninterruptibly(1,TimeUnit.SECONDS);
+                if (new Random().nextInt(3) == 2) {
+                    throw new NullPointerException();
+                }
+                return 1;
+            }
+        });
+
+        //回掉
+        FutureCallback futureCallback = new FutureCallback<Integer>() {
+            @Override
+            public void onSuccess(final  Integer result) {
+                System.out.println("success---:" + result);
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                System.err.println("fail---:" + t);
+            }
+        };
+
+        Futures.addCallback(listenableFuture,futureCallback,listeningExecutorService);
     }
 
     public static void testOptionl() {

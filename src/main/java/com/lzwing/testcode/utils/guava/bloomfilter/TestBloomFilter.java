@@ -1,4 +1,4 @@
-package com.lzwing.testcode.guava.bloomfilter;
+package com.lzwing.testcode.utils.guava.bloomfilter;
 
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;

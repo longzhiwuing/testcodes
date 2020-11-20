@@ -1,9 +1,9 @@
-package com.lzwing.testcode.guava.collection;
+package com.lzwing.testcode.utils.guava.collection;
 
 import com.google.common.base.Function;
 import com.google.common.collect.*;
-import com.lzwing.testcode.guava.Person;
-import com.lzwing.testcode.guava.User;
+import com.lzwing.testcode.utils.guava.Person;
+import com.lzwing.testcode.utils.guava.User;
 
 import java.util.*;
 

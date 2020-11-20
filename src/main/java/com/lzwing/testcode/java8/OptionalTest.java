@@ -1,6 +1,6 @@
 package com.lzwing.testcode.java8;
 
-import com.lzwing.testcode.guava.User;
+import com.lzwing.testcode.utils.guava.User;
 
 import java.util.Optional;
 

@@ -1,4 +1,4 @@
-package com.lzwing.testcode.guava;
+package com.lzwing.testcode.utils.guava;
 
 public class Person {
 

@@ -7,7 +7,7 @@
  *
 */
 
-package com.lzwing.testcode.guava;
+package com.lzwing.testcode.utils.guava;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
