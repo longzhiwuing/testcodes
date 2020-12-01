@@ -332,6 +332,9 @@ public class GuavaCommonTest {
             @Override
             public Integer call() throws Exception {
                 Uninterruptibles.sleepUninterruptibly(1,TimeUnit.SECONDS);
+
+                TimeUnit.SECONDS.sleep(100);
+
                 if (new Random().nextInt(3) == 2) {
                     throw new NullPointerException();
                 }
