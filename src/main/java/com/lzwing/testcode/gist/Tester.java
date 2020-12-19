@@ -110,7 +110,11 @@ public class Tester {
 
     public static void main(String[] args) throws Exception {
 
-        testJsoup();
+        testRegex();
+
+//        testHashCode();
+
+//        testJsoup();
         
 //        testOutBox();
 
@@ -230,6 +234,178 @@ public class Tester {
 //        testJodaTime();
 //        testTime();
 //        testIndexOf();
+    }
+
+    /**
+     * 转义正则特殊字符 （$()*+.[]?\^{},|）
+     *
+     * @param keyword
+     * @return
+     */
+    public static String escapeExprSpecialWord(String keyword) {
+        if (StringUtils.isNotBlank(keyword)) {
+            String[] fbsArr = { "\\", "$", "(", ")", "*", "+", ".", "[", "]", "?", "^", "{", "}", "|","," };
+            for (String key : fbsArr) {
+                if (keyword.contains(key)) {
+                    keyword = keyword.replace(key, "\\" + key);
+                }
+            }
+        }
+        return keyword;
+    }
+
+    public static void findIndex(String info, String findStr) {
+        String input = "\\b" + findStr + "\\b";
+
+        Pattern p = Pattern.compile(input);
+        Matcher m = p.matcher(info);
+
+        while (m.find()) {
+            System.out.println("start:" + m.start() + ",end:" + m.end());
+        }
+    }
+
+    public static String replace4Cnj(String textContext, String replace,String newReplace) {
+        if (StringUtils.isEmpty(textContext)) {
+            return null;
+        }
+
+        if (StringUtils.isEmpty(replace)) {
+            return textContext;
+        }
+
+        int idx = textContext.indexOf(replace);
+
+        if (idx < 0) {
+            return textContext;
+        }
+
+        //处在中间状态
+        if (idx > 0 && idx < textContext.length()) {
+            //前一个字符
+            String beforeStr = textContext.substring(idx - 1, idx);
+
+        }
+
+        return null;
+
+
+    }
+
+    private static void testRegex() {
+
+//        String s = "This island is beautiful. it is good";
+/*        String textContext = " in the form of solid lumber or burned as biofuel in vehicles";
+
+        Pattern compile = Pattern.compile("\\bor\\b");
+        Matcher matcher = compile.matcher(textContext);
+
+
+        while (matcher.find()) {
+            System.out.println(matcher.start());
+        }*/
+
+
+        String a3 = "";
+        String replace3 = "";
+
+        /*a3 = "The power and ambition of the giants of the digital economy is astonishing —Amazon has just announced the purchase of the upmarket grocery chain Whole Foods for $13.5bn,";
+
+        replace3 = "$13.5bn,";*/
+
+        /*a3 = "Among the annoying challenges facing the middle class is one that will probably go unmentioned in the next presidential campaign: #@0# when the robots come for their jobs?";
+
+        replace3 = "when the robots come for their jobs?";*/
+
+        a3 = " in the form of solid lumber or burned as biofuel in vehicles";
+
+        replace3 = "or";
+
+        /*a3 = "aaa for $13.5bn,";
+
+        replace3 = "$13.5bn,";*/
+
+        replace3 = escapeExprSpecialWord(replace3);
+
+        replace3 = "(?<![\\w\\d])"+replace3+"(?![\\w\\d])";
+
+        String info = a3.replaceFirst(replace3, "@1");
+
+        System.out.println(info);
+
+        System.out.println("done");
+
+
+
+
+        /*String a2 = "Among the annoying challenges facing the middle class is one that will probably go unmentioned in the next presidential campaign: #@0# when the robots come for their jobs?";
+        a2 = escapeExprSpecialWord(a2);
+        String replace2 = "when the robots come for their jobs?";
+        replace2 = escapeExprSpecialWord(replace2);
+        String b2 = StringUtils.replaceOnce(a2,replace2,"@" + 1);
+        String c2 = a2.replaceFirst(
+                "\\b"+replace2+"\\b", "@" + 1);
+        System.out.println(b2);
+        System.out.println(c2);
+
+        System.out.println("done");*/
+
+//        */
+
+        /*String s = "This island is beautiful";
+
+        s.matches("\\bis\\b");
+
+        String info = s.replaceFirst("\\bis\\b", "@1");
+
+        System.out.println(info);*/
+
+        /*String a1 = " in the form of solid lumber or burned as biofuel in vehicles";
+        a1 = escapeExprSpecialWord(a1);
+        String replace1 = "or";
+        replace1 = escapeExprSpecialWord(replace1);
+        //String b1 = StringUtils.replaceOnce(a1,replace1,"@" + 1);
+        String c1 = a1.replaceFirst(
+                "\\b"+replace1+"\\b", "@" + 1);
+        //System.out.println(b1);
+        System.out.println(c1);
+
+
+        String a2 = "Among the annoying challenges facing the middle class is one that will probably go unmentioned in the next presidential campaign: #@0# when the robots come for their jobs?";
+        a2 = escapeExprSpecialWord(a2);
+        String replace2 = "when the robots come for their jobs?";
+        replace2 = escapeExprSpecialWord(replace2);
+        String b2 = StringUtils.replaceOnce(a2,replace2,"@" + 1);
+        String c2 = a2.replaceFirst(
+                "\\b"+replace2+"\\b", "@" + 1);
+        System.out.println(b2);
+        System.out.println(c2);*/
+
+        /*String a3 = "The power and ambition of the giants of the digital economy is astonishing —Amazon has just announced the purchase of the upmarket grocery chain Whole Foods for $13.5bn,";
+        String replace3 = "$13.5bn,";
+        String b3 = StringUtils.replaceOnce(a2,replace3,"@" + 1);
+        String c3 = a3.replaceFirst(
+                "(?<![\\w\\d])"+replace3+"(?![\\w\\d])", "@" + 1);
+        System.out.println(b3);
+        System.out.println(c3);*/
+
+
+
+        /*String origin = " in the form of solid lumber or bur.ned as biofuel in vehicles";
+
+        String handleStr = escapeExprSpecialWord(origin);
+
+        String c = handleStr.replaceFirst(
+                "(?<![\\w\\d])"+"or"+"(?![\\w\\d])", "@" + 1);
+
+        System.out.println(c);*/
+
+//        String escape
+
+
+
+
+//        String b = StringUtil.replaceOnce(a," or ","@" + 1);
     }
 
     private static void testJsoup() {
@@ -654,21 +830,20 @@ public class Tester {
 
     private static void testHashCode() {
 
-        String url = "http://www.baiduhttp.com";
+        System.out.println("ab".hashCode());
+        System.out.println("abc".hashCode());
+        System.out.println("abcd".hashCode());
+        System.out.println("abcde".hashCode());
+        System.out.println(new Integer(1).hashCode());
 
-        //String replace = url.replace("http", "https");
-        String substring = String.format("https%s", url.substring(4));
-
-        System.out.println(substring);
-
-        /*Integer key = 96;
+        Integer key = 96;
         int h;
         int val = (key == null) ? 0 : (h = key.hashCode()) ^ (h >>>16);
 
-        System.out.println(val);*/
+        System.out.println(val);
 
 
-        /*System.out.println("a".hashCode());
+        System.out.println("a".hashCode());
         System.out.println("b".hashCode());
         System.out.println("c".hashCode());
         System.out.println("1".hashCode());
@@ -679,7 +854,8 @@ public class Tester {
         System.out.println((int)"c".charAt(0));
         System.out.println((int)"1".charAt(0));
         System.out.println((int)"2".charAt(0));
-        System.out.println((int)"3".charAt(0));*/
+        System.out.println((int)"3".charAt(0));
+
     }
 
     private static void testPriorityQueue() {
