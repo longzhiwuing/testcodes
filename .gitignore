@@ -9,3 +9,7 @@
 /spdemo/spdemo.iml
 /.gitignore
 /src/main/resources/rebel.xml
+*.iml
+rebel.xml
+/demo-codes/target/
+/demo-codes/demo-codes.iml

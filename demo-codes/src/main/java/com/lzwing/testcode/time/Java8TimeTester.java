@@ -3,6 +3,7 @@ package com.lzwing.testcode.time;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.FormatStyle;
 import java.time.temporal.ChronoUnit;
 
 import static java.time.temporal.ChronoUnit.YEARS;
@@ -16,6 +17,8 @@ import static java.time.temporal.ChronoUnit.YEARS;
  */
 public class Java8TimeTester {
     public static void main(String[] args) {
+
+        testShowTime();
 //        t1();
 //        t2();
 //        t3();
@@ -25,7 +28,30 @@ public class Java8TimeTester {
 //        t7();
 //        t8();
 //        t9();
-        t10();
+//        t10();
+    }
+
+    private static void testShowTime() {
+        LocalDateTime now = LocalDateTime.now();
+
+        String s1 = now.format(DateTimeFormatter.ISO_DATE);
+        String s2 = now.format(DateTimeFormatter.ISO_DATE_TIME);
+        String s3 = now.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL));
+        String s4 = now.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG));
+        String s5 = now.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
+        String s6 = now.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
+        String s7 = now.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss:SSS"));
+
+        System.out.println("ISO_DATE:  " + s1);
+        System.out.println("ISO_DATE_TIME:  " + s2);
+        System.out.println("FULL:  " + s3);
+        System.out.println("LONG:  " + s4);
+        System.out.println("MEDIUM:  " + s5);
+        System.out.println("SHORT:  " + s6);
+        System.out.println("yyyy/MM/dd HH:mm:ss:SSS:  " + s7);
+
+        LocalDateTime time = LocalDateTime.parse(s2);
+        System.out.println(time);
     }
 
     private static void t10() {
