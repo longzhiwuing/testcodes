@@ -1,4 +1,4 @@
-package com.lzwing.testcode.thread.ExecutorCompletionService;
+package com.lzwing.testcode.thread.executor.executorCompletionService;
 
 import org.apache.commons.lang3.RandomUtils;
 

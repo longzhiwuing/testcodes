@@ -18,7 +18,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Component
+//@Component
 public class RunTest implements ApplicationRunner {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RunTest.class);
