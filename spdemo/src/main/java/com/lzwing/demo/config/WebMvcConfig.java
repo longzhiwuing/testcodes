@@ -1,9 +1,14 @@
 package com.lzwing.demo.config;
 
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.HandlerTypePredicate;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -33,5 +38,27 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .build();
 */
         configurer.addPathPrefix("/api/v2", predicate);
+    }
+
+    @Bean
+    public FilterRegistrationBean helloFilter() {
+        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
+        HelloFilter helloFilter = new HelloFilter();
+        filterRegistrationBean.setFilter(helloFilter);
+        List<String> urls = new ArrayList<>();
+        urls.add("/api/v2/test2/*");
+        filterRegistrationBean.setUrlPatterns(urls);//配置过滤规则
+        return filterRegistrationBean;
+    }
+
+    @Bean
+    public FilterRegistrationBean logFilter() {
+        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
+        RequestLogFilter logFilter = new RequestLogFilter();
+        filterRegistrationBean.setFilter(logFilter);
+        List<String> urls = new ArrayList<>();
+        urls.add("/api/v2/test/*");
+        filterRegistrationBean.setUrlPatterns(urls);//配置过滤规则
+        return filterRegistrationBean;
     }
 }

@@ -26,6 +26,12 @@ import java.util.stream.Collectors;
 public class TestController extends WebApplicationObjectSupport {
 
     @ResponseBody
+    @GetMapping("/test2")
+    public String test2(@RequestParam("id") int id) {
+        return String.format("test2,id=%d", id);
+    }
+
+    @ResponseBody
     @GetMapping("/test")
 //    public Object test(@PathVariable List<Object> objects) {
     public Object test(Model model, String[] objects) {
@@ -38,9 +44,6 @@ public class TestController extends WebApplicationObjectSupport {
 
         bdList.removeAll(bnList);
 
-        System.out.println(bdList);
-
-        System.out.println(Arrays.equals(beanNames, beanDefinitionNames));
         System.out.println(Arrays.toString(objects));
         return objects;
     }
