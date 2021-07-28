@@ -45,9 +45,9 @@ public class CollectorTest {
 
     private static void compareTest() {
         List<Student> list = Lists.newArrayList(
-                new Student(1,"a","m",2),
-                new Student(1,"b","f",1),
-                new Student(1,"c","m",3)
+                new Student(1,"a","m",2,null),
+                new Student(1,"b","f",1,null),
+                new Student(1,"c","m",3,null)
         );
 
         list = list.stream()

@@ -1568,13 +1568,13 @@ public class Tester {
 
         User origin = new User();
         origin.setName("zhangsan");
-        Address address = new Address();
+        Address address = new Address("");
         address.setCity("beiing");
         origin.setAddress(address);
 
         User dest = new User();
         dest.setName("lisi");
-        address = new Address();
+        address = new Address("");
         address.setCity("shanghai");
 //        dest.setAddress(address);
 

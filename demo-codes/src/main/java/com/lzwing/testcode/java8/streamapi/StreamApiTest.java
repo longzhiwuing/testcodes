@@ -142,11 +142,11 @@ public class StreamApiTest {
     }
 
     private static void studentTest() {
-        Student stuA = new Student(1, "A", "M", 184);
-        Student stuB = new Student(2, "B", "G", 163);
-        Student stuC = new Student(3, "C", "M", 175);
-        Student stuD = new Student(4, "D", "G", 158);
-        Student stuE = new Student(5, "E", "M", 170);
+        Student stuA = new Student(1, "A", "M", 184,null);
+        Student stuB = new Student(2, "B", "G", 163,null);
+        Student stuC = new Student(3, "C", "M", 175,null);
+        Student stuD = new Student(4, "D", "G", 158,null);
+        Student stuE = new Student(5, "E", "M", 170,null);
 
         List<Student> list = new ArrayList<>();
         list.add(stuA);

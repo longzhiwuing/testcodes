@@ -1,5 +1,6 @@
 package com.lzwing.testcode.java8.niceexample;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
@@ -10,6 +11,7 @@ import lombok.Data;
  * Time: 15:45
  */
 @Data
+@AllArgsConstructor
 public class Address {
     private String city;
 }
