@@ -8,6 +8,7 @@
     <modules>
         <module>spdemo</module>
         <module>demo-codes</module>
+        <module>algorithm</module>
     </modules>
     <packaging>pom</packaging>
 
