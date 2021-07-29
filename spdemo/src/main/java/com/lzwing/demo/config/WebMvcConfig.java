@@ -37,7 +37,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .basePackageClass()
                 .build();
 */
-        configurer.addPathPrefix("/api/v2", predicate);
+//        configurer.addPathPrefix("/api/v2", predicate);
     }
 
     @Bean
@@ -57,7 +57,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         RequestLogFilter logFilter = new RequestLogFilter();
         filterRegistrationBean.setFilter(logFilter);
         List<String> urls = new ArrayList<>();
-        urls.add("/api/v2/test/*");
+        urls.add("/*");
         filterRegistrationBean.setUrlPatterns(urls);//配置过滤规则
         return filterRegistrationBean;
     }

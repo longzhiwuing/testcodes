@@ -31,6 +31,11 @@ public class TestController extends WebApplicationObjectSupport {
         return String.format("test2,id=%d", id);
     }
 
+    @GetMapping("/love")
+    public String love() {
+        return "index";
+    }
+
     @ResponseBody
     @GetMapping("/test")
 //    public Object test(@PathVariable List<Object> objects) {
