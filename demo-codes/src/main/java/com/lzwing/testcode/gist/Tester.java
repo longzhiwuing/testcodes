@@ -110,7 +110,9 @@ public class Tester {
 
     public static void main(String[] args) throws Exception {
 
-        testRegex();
+        testListDelete();
+
+//        testRegex();
 
 //        testHashCode();
 
@@ -234,6 +236,24 @@ public class Tester {
 //        testJodaTime();
 //        testTime();
 //        testIndexOf();
+    }
+
+    private static void testListDelete() {
+        List<String> list = Lists.newArrayList("1", "2", "3", "4");
+        Iterator<String> iterator = list.iterator();
+        /*for (String s : list) {
+            if (s.equals("3")) {
+                list.remove(s);
+            }
+        }*/
+        while (iterator.hasNext()) {
+            String next = iterator.next();
+            if (next.equals("1")) {
+                iterator.remove();
+            }
+        }
+
+        System.out.println(list);
     }
 
     /**
