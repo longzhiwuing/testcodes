@@ -9,6 +9,7 @@
         <module>spdemo</module>
         <module>demo-codes</module>
         <module>algorithm</module>
+        <module>leetcode</module>
     </modules>
     <packaging>pom</packaging>
 
