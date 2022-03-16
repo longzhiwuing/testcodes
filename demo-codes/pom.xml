@@ -520,6 +520,20 @@
             <version>4.2.0</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/uk.co.jemos.podam/podam -->
+        <dependency>
+            <groupId>uk.co.jemos.podam</groupId>
+            <artifactId>podam</artifactId>
+            <version>7.2.8.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.houbb</groupId>
+            <artifactId>data-factory-core</artifactId>
+            <version>1.2.0</version>
+        </dependency>
+
     </dependencies>
 
 
