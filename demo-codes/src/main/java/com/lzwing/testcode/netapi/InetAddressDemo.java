@@ -21,7 +21,8 @@ public class InetAddressDemo {
     }
 
     private static void testUrl() throws IOException, URISyntaxException {
-        URL url = new URL("http://172.16.21.133/cecd/sdc/ceccloud/dashboard/index.jsp?name=aaa#ccc");
+//        URL url = new URL("http://172.16.21.133/cecd/sdc/ceccloud/dashboard/index.jsp?name=aaa#ccc");
+        URL url = new URL("https://fishkeeper.koolearn.com/oauth/authorize?debug-mode=close&response_type=code&redirect_uri=%2F&client_id=e6758a0b5e56452cb428c7a83ba13d23");
         System.out.println(url);
         System.out.println(url.getPath());
         System.out.println(url.getAuthority());

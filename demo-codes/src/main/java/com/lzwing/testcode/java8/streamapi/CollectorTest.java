@@ -26,7 +26,35 @@ public class CollectorTest {
 //        countTest();
 //        reduceTest();
 //        compareTest();
-        testMapAndFlatMap();
+//        testMapAndFlatMap();
+        testStream();
+    }
+
+    private static void testStream() {
+        // 创建集合
+        Collection collection = new HashSet();
+
+        // 添加元素
+        collection.add("book01xxx");
+        collection.add("book02xx");
+        collection.add("book03x");
+//        collection.add("book04");
+//        collection.add("book0");
+
+        Collection collectionNew = new HashSet();
+        // 使用Lambda表达式遍历传入新的集合
+        collection.forEach(str -> collectionNew.add(str));
+        System.out.println("collectionNew: " + collectionNew);
+
+        // 使用Lambda表达式进行过滤（目标类型是Predicate）
+        collection.removeIf(filter -> ((String)filter).length() > 6);
+        boolean result = collection.stream().allMatch(filter -> ((String) filter).length() > 6);
+
+        System.out.println(result);
+
+        // 使用Lambda表达式遍历打印
+        collection.forEach(str -> System.out.println(str));
+
     }
 
     public static void testMapAndFlatMap() {
